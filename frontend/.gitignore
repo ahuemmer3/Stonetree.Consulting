@@ -1,0 +1,12 @@
+# Abhängigkeiten
+node_modules
+
+# Build-Ergebnis
+dist
+dist-ssr
+
+# Vite / Editor
+.vite
+*.local
+.DS_Store
+*.log
