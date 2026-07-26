@@ -7,7 +7,7 @@ import PillarPage from "./pages/PillarPage.jsx"
 import NotFoundPage from "./pages/NotFoundPage.jsx"
 
 // Sorgt dafuer, dass bei jedem Seitenwechsel sinnvoll gescrollt wird:
-// zu einem Anker (#bereiche), falls vorhanden, sonst nach ganz oben.
+// zu einem Anker (#expertise), falls vorhanden, sonst nach ganz oben.
 function ScrollManager() {
   const { pathname, hash } = useLocation()
 

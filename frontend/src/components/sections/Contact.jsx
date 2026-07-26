@@ -1,4 +1,5 @@
 import Reveal from "../ui/Reveal.jsx"
+import ContactForm from "../../features/contact/ContactForm.jsx"
 
 export default function Contact() {
   return (
@@ -11,11 +12,13 @@ export default function Contact() {
           Sprechen wir über Ihr Vorhaben.
         </Reveal>
         <Reveal as="p" delay={2}>
-          Egal ob Strategie, Automatisierung oder ein Thema aus der Forschung.
-          Schreiben Sie uns, wir melden uns zurück.
+          Ob Strategie, Automatisierung oder eine Frage aus der Forschung:
+          Erzählen Sie uns kurz, worum es geht. Ein erstes Gespräch ist
+          unverbindlich – wir melden uns zeitnah zurück.
         </Reveal>
-        <Reveal as="a" href="#kontakt" delay={3} className="btn-primary">
-          Nachricht schreiben
+
+        <Reveal delay={3} className="contact-form-wrap">
+          <ContactForm />
         </Reveal>
       </div>
     </section>

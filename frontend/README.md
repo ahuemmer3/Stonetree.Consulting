@@ -34,8 +34,10 @@ frontend/
     data/                     Inhalte getrennt vom Code (hier Texte aendern)
       site.js                 Marke, Tagline, Impressum
       navigation.js           Navigationslinks
-      pillars.js              Die drei Bereiche
-      approach.js             Die drei Ansatz-Punkte
+      pillars.js              Die drei Bereiche (Expertise)
+      approach.js             Die drei "Wie wir arbeiten"-Punkte
+      publications.js         Publikationen (Platzhalter)
+      about.js                Text + Kennzahlen fuer "Ueber uns"
     hooks/                    Wiederverwendbare Logik
       useScrolled.js          Header-Hintergrund beim Scrollen
       usePrefersReducedMotion.js   Animationen abschaltbar (Barrierefreiheit)
@@ -44,9 +46,10 @@ frontend/
         Header.jsx            Navigation inkl. Handy-Menue
         Footer.jsx            Footer + Impressum
       sections/               Die Inhaltsabschnitte (von oben nach unten)
-        Hero.jsx              Grosser Kopfbereich
-        Pillars.jsx           Die drei Bereiche
-        Approach.jsx          Unser Ansatz
+        Hero.jsx              Grosser Kopfbereich (Uebersicht)
+        Pillars.jsx           Expertise – die drei Bereiche
+        Publications.jsx      Publikationen
+        About.jsx             Ueber uns
         Contact.jsx           Kontakt
       ui/                     Kleine, wiederverwendbare Bausteine
         Button.jsx            Link im Button-Look (primary / ghost)
@@ -64,20 +67,31 @@ frontend/
 
 ## Design / Theme
 
-Die Seite ist im **Capgemini-Stil** gehalten: heller Hintergrund, Capgemini-Blau
-(`#0070AD`) als Akzent, Schrift **Ubuntu** (Capgeminis Markenschrift, ueber
-Google Fonts in `index.html` geladen).
+Die Seite ist **monochrom** gehalten (angelehnt an Roland Berger): weisse Schrift
+auf dunklen Flaechen, dunkle Schrift auf hellgrauen. Die Abschnitte wechseln sich
+ab (Hero dunkel, Expertise hell, Publikationen dunkel, Ueber uns hell, Kontakt
+dunkel). Schrift ist **Ubuntu** (ueber Google Fonts in `index.html` geladen).
 
 Alle Design-Tokens (Farben, Schriften) stehen zentral in `src/styles/index.css`
-im `@theme`-Block. Eine Farbe dort geaendert wirkt sich ueberall aus – und ist
-gleichzeitig als Tailwind-Utility verfuegbar (z. B. `text-blue`, `bg-soft`).
+im `@theme`-Block – z. B. `--color-dark` (dunkle Flaeche), `--color-soft` (helle
+Flaeche), `--color-heading`. Eine Farbe dort geaendert wirkt sich ueberall aus.
 
-Der Hero zeigt aktuell einen **Platzhalter-Hintergrund** (heller Verlauf) mit
-der typischen halbtransparenten blauen Karte. Fuer ein echtes Foto in
-`src/styles/index.css` bei `.hero-media` ein `background-image: url(...)` setzen.
+### Bilder
+
+Alle Fotos liegen in `public/images/` und sind **Platzhalter von Unsplash**
+(lizenzfrei nutzbar). Zum Austauschen einfach die Datei mit gleichem Namen
+ersetzen – der Code bleibt unveraendert:
+
+- `hero.jpg` – grosses Hero-Foto (dunkel abgedunkelt fuer weisse Schrift)
+- `expertise-*.jpg` – je Bereich ein Foto (siehe `data/pillars.js`, Feld `image`)
+- `pub-*.jpg` – je Publikation ein Foto (siehe `data/publications.js`)
+
+Fuer die spaetere Live-Seite empfiehlt sich, eigene Fotos zu verwenden.
+Bildnachweis: siehe `public/images/BILDNACHWEIS.txt`.
 
 ## Naechste Schritte (laut Arbeitsplan)
 
 - Echtes Hintergrundbild im Hero einsetzen (`.hero-media`)
+- Publikationen mit echten Beitraegen/PDFs fuellen (`data/publications.js`)
 - Woche 7: Framer Motion fuer feinere Animationen
 - Woche 8/9: Anbindung an das FastAPI-Backend (zentrale API-Adresse in `src/`)

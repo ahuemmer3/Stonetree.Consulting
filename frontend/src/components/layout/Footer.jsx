@@ -19,7 +19,7 @@ export default function Footer() {
 
           <div className="footer-cols">
             <div className="footer-col">
-              <h5>Bereiche</h5>
+              <h5>Expertise</h5>
               {pillars.map((pillar) => (
                 <Link key={pillar.id} to={`/bereiche/${pillar.slug}`}>
                   {pillar.title}
@@ -28,7 +28,8 @@ export default function Footer() {
             </div>
             <div className="footer-col">
               <h5>Unternehmen</h5>
-              <Link to="/#ansatz">Ansatz</Link>
+              <Link to="/#publikationen">Publikationen</Link>
+              <Link to="/#ueber-uns">Über uns</Link>
               <Link to="/#kontakt">Kontakt</Link>
               <a href="#impressum">Impressum</a>
             </div>

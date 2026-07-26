@@ -17,7 +17,7 @@ export default function PillarPage() {
           <span className="eyebrow">Hinweis</span>
           <h1>Bereich nicht gefunden</h1>
           <p className="lead">Diesen Bereich gibt es nicht.</p>
-          <Link className="back" to="/#bereiche">
+          <Link className="back" to="/#expertise">
             &larr; Alle Bereiche
           </Link>
         </div>
@@ -29,9 +29,14 @@ export default function PillarPage() {
 
   return (
     <>
-      <section className="page-hero">
+      <section
+        className="page-hero"
+        style={{
+          backgroundImage: `linear-gradient(135deg, rgba(20,20,20,0.9), rgba(20,20,20,0.74)), url(${pillar.image})`,
+        }}
+      >
         <div className="wrap">
-          <Link className="back" to="/#bereiche">
+          <Link className="back" to="/#expertise">
             &larr; Alle Bereiche
           </Link>
           <span className="eyebrow">{pillar.tag}</span>

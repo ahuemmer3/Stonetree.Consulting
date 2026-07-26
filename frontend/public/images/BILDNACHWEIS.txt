@@ -1,0 +1,21 @@
+BILDNACHWEIS / PLATZHALTER-FOTOS
+================================
+
+Alle Fotos in diesem Ordner sind Platzhalter von Unsplash (https://unsplash.com).
+Die Unsplash-Lizenz erlaubt die kostenlose kommerzielle und nicht-kommerzielle
+Nutzung ohne Genehmigung; eine Namensnennung ist erwuenscht, aber nicht Pflicht.
+Siehe: https://unsplash.com/license
+
+Fuer die spaetere Live-Seite sollten idealerweise eigene Fotos verwendet werden
+(z. B. echtes Team, echtes Buero). Zum Austauschen die jeweilige Datei mit
+gleichem Namen ersetzen.
+
+Verwendete Motive (Stand: Platzhalter):
+- hero.jpg               Business-Meeting / Zusammenarbeit
+- expertise-beratung.jpg Partnerschaft / Team
+- expertise-ai.jpg       Platine / Technik (AI Automation)
+- expertise-research.jpg Angewandte Forschung im Labor
+- pub-1.jpg              Analyse am Schreibtisch
+- pub-2.jpg              Workshop (Whiteboard / Post-its)
+- pub-3.jpg              Daten-Dashboard
+- pub-4.jpg              Team-Arbeit am Tisch

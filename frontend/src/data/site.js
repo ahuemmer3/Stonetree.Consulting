@@ -3,7 +3,9 @@
 export const site = {
   brand: "NOVA",
   tagline:
-    "Beratung an der Schnittstelle von Strategie, Künstlicher Intelligenz und Forschung.",
+    "Beratung für den Mittelstand – an der Schnittstelle von Strategie, Künstlicher Intelligenz und angewandter Forschung.",
+  // Ziel-Adresse des Kontaktformulars. Platzhalter – echte Adresse eintragen.
+  contactEmail: "kontakt@nova-consulting.de",
   impressum: {
     company: "NOVA Consulting (Arbeitstitel)",
     person: "Herr Huchs",

@@ -4,32 +4,35 @@ import Reveal from "../ui/Reveal.jsx"
 export default function Hero() {
   return (
     <section className="hero" id="top">
-      {/* Platzhalter fuer ein echtes Hintergrundbild (siehe index.css: .hero-media) */}
-      <div className="hero-media" aria-hidden="true" />
+      {/* Grosses Foto mit dunkler Abdunklung, damit die weisse Schrift lesbar
+          bleibt. Bild austauschen: public/images/hero.jpg ersetzen. */}
+      <div className="hero-media" aria-hidden="true">
+        <img className="hero-img" src="/images/hero.jpg" alt="" />
+      </div>
 
       <div className="wrap hero-wrap">
         <Reveal className="hero-card" immediate>
           <span className="eyebrow">
-            Beratung für Strategie &amp; Künstliche Intelligenz
+            Beratung, KI-Automatisierung &amp; Forschung
           </span>
           <h1>
             Klare Strategien.
             <br />
-            Intelligente Systeme.
+            Intelligente Prozesse.
             <br />
             <em>Echte Forschung.</em>
           </h1>
           <p className="hero-sub">
-            Wir arbeiten an der Schnittstelle von Geschäftsstrategie,
-            KI-Automatisierung und angewandter Forschung – für Unternehmen, die
-            vorausgehen wollen.
+            Wir begleiten mittelständische Unternehmen an der Schnittstelle von
+            Beratung, KI-Automatisierung und angewandter Forschung – mit
+            Lösungen, die im Alltag tragen.
           </p>
           <div className="hero-actions">
-            <Button href="#bereiche" variant="primary">
-              Unsere Bereiche
+            <Button href="#expertise" variant="primary">
+              Unsere Expertise
             </Button>
-            <Button href="#ansatz" variant="ghost">
-              Wie wir arbeiten
+            <Button href="#ueber-uns" variant="ghost">
+              Über uns
             </Button>
           </div>
         </Reveal>

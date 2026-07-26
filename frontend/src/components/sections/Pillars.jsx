@@ -4,15 +4,15 @@ import { pillars } from "../../data/pillars.js"
 
 export default function Pillars() {
   return (
-    <section className="section-pad" id="bereiche">
+    <section className="section-pad expertise" id="expertise">
       <div className="wrap">
         <div className="pillars-intro">
           <div>
             <Reveal as="span" className="eyebrow">
-              Drei Bereiche, ein Anspruch
+              Unsere Expertise
             </Reveal>
             <Reveal as="h2" delay={1}>
-              Was wir tun
+              Drei Bereiche, ein Anspruch
             </Reveal>
           </div>
           <Reveal as="p" delay={2}>
@@ -29,7 +29,9 @@ export default function Pillars() {
               to={`/bereiche/${pillar.slug}`}
               key={pillar.id}
             >
-              <div className="pillar-media" aria-hidden="true" />
+              <div className="pillar-media">
+                <img src={pillar.image} alt="" loading="lazy" />
+              </div>
               <span className="tag">{pillar.tag}</span>
               <h3>{pillar.title}</h3>
               <p className="desc">{pillar.desc}</p>
