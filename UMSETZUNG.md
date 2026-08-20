@@ -1,0 +1,282 @@
+# Umsetzung der Überarbeitung
+
+Diese Datei dokumentiert, wie die Website von stonetree überarbeitet wurde. Sie
+wird während der Arbeit fortlaufend gepflegt und dient als Grundlage für eine
+spätere Projektdokumentation. Sprache bewusst schlicht, ohne Gedankenstriche.
+
+## 1. Ausgangslage
+
+Bestehender Prototyp im Ordner `frontend/`: React 18 mit Vite und Tailwind v4,
+Routing über `react-router-dom`. Startseite mit den Abschnitten Hero, Expertise,
+Publikationen, Über uns, Kontakt sowie Detailseiten je Bereich unter
+`/bereiche/<slug>`. Inhalte lagen bereits zentral in `src/data/` (JavaScript).
+Optik: monochrom in Grautönen. Marke: stonetree, mit Bonsai-auf-Fels-Logo.
+
+## 2. Ziel der Überarbeitung
+
+stonetree ist kein klassisches Consulting. Das Unternehmen betreibt eigene
+angewandte Forschung und bringt die Ergebnisse direkt in Kundenprojekte, vor
+allem im Mittelstand. Begleitet wird von der Strategie bis zur laufenden Lösung.
+Dazu kommen eine Farbwelt aus dem Logo, eine begriffliche Vereinheitlichung und
+neue Abschnitte (Leistungen, Kundenprojekte).
+
+## 3. Änderungen im Detail
+
+### Block 0: Farbwelt aus dem Logo
+Was: Palette aus dem Logo gezogen und alle Sektionen umgefärbt. Layout,
+Typografie, Abstände und Animationen unverändert.
+Warum: Der Auftraggeber wünscht die Gestaltung passend zum Logo.
+Dateien: `src/styles/index.css`, `src/components/layout/Header.tsx`,
+`src/pages/PillarPage.tsx`.
+
+Farben (als `@theme`-Tokens):
+
+| Rolle | Wert |
+| --- | --- |
+| Creme (Grund, heller Header, helle Sektionen) | `#f7efe5` |
+| Oliv-Anthrazit (dunkle Sektionen) | `#2b2920` |
+| Footer (dunkelste Fläche) | `#201e17` |
+| Oliv-Grün (Akzent) | `#4f5c37` |
+| Taupe (gedämpfter Text) | `#797261` |
+
+Der Header ist jetzt hell mit dem farbigen Emblem. Dunkle Sektionen tragen
+Creme-Text statt reinweiß.
+
+### Block 0b: TypeScript-Migration
+Was: Projekt von JavaScript auf TypeScript umgestellt. `tsconfig.json` mit
+`strict`, alle Quelldateien `.jsx` zu `.tsx` und `.js` zu `.ts`, Import-Endungen
+entfernt, `index.html` zeigt auf `main.tsx`. Datenmodelle und Komponenten-Props
+typisiert. Skript `typecheck` ergänzt, `build` prüft erst Typen.
+Warum: Wunsch nach typisierten Datenmodellen und wartbarem Code.
+Ergebnis: `tsc --noEmit` und Build fehlerfrei.
+
+### Block 1: Positionierung und Begriffe
+Was: Neue Positionierung in Hero, Über uns, Tagline und Meta. Begriffe
+vereinheitlicht, Slugs geändert, alte Pfade leiten weiter.
+Warum: Siehe Ziel der Überarbeitung.
+Dateien: `src/components/sections/Hero.tsx`, `src/data/about.ts`,
+`src/data/site.ts`, `src/data/pillars.ts`, `src/components/sections/Contact.tsx`,
+`src/components/sections/About.tsx`, `src/App.tsx`, `index.html`,
+`src/pages/PillarPage.tsx`.
+
+Begriffe vorher und nachher:
+
+| vorher | nachher |
+| --- | --- |
+| Beratung (Bereich) | Consulting |
+| AI Automation | KI-Automatisierung |
+| Forschung (Tag/Eyebrow) | Research |
+| unabhängiges Beratungshaus | mehr als reines Consulting (umformuliert) |
+| `/bereiche/beratung` | `/bereiche/consulting` (alt leitet weiter) |
+| `/bereiche/ai-automation` | `/bereiche/ki-automatisierung` (alt leitet weiter) |
+
+Texte vorher und nachher (Auswahl):
+
+| Stelle | vorher | nachher |
+| --- | --- | --- |
+| Hero H1 | Klare Strategien. Intelligente Prozesse. Echte Forschung. | Aus eigener Forschung. In die Praxis gebracht. Bis zur laufenden Lösung. |
+| Hero Eyebrow | Beratung, KI-Automatisierung & Forschung | Consulting, KI-Automatisierung & Research |
+| Tagline | Beratung für den Mittelstand ... | Eigene Forschung, im Mittelstand umgesetzt. Von der Strategie bis zur laufenden Lösung. |
+| Über uns, Absatz 1 | stonetree ist ein unabhängiges Beratungshaus ... | stonetree ist mehr als reines Consulting ... |
+| Über uns, Absatz 3 | Was uns von klassischer Beratung unterscheidet ... | Unser Alleinstellungsmerkmal ist das eigene Research Lab ... |
+
+### Block 2: Neue Sektionen Branchen, Leistungen, Kundenprojekte
+Was: Drei neue Abschnitte auf der Startseite, direkt nach Expertise. Branchen
+(Automotive, Banking & Finance, Public Sector, Branchenübergreifend) im gleichen
+Kartenraster. Leistungen mit sechs nummerierten Bausteinen von Strategie bis
+Umsetzung. Kundenprojekte mit drei anonymisierten Fällen. Navigation um Branchen
+erweitert, Footer um Branchen und Kundenprojekte.
+Warum: Die Seite soll nach Branchen denken und konkrete Leistungen sowie
+Beispiele zeigen, statt abstrakt zu bleiben.
+Dateien: `src/data/branchen.ts`, `src/data/leistungen.ts`,
+`src/data/kundenprojekte.ts`, drei neue Komponenten unter
+`src/components/sections/`, `src/pages/HomePage.tsx`, `src/data/navigation.ts`,
+`src/components/layout/Footer.tsx`, `src/styles/index.css`. Bilder unter
+`public/images/branche-*.jpg`.
+Hinweis: Eigene Unterseiten je Branche wurden bewusst nicht gebaut, um keinen
+neuen Sonderfall in der Seitenvorlage zu schaffen (der Brief lässt das offen).
+Die Kennzahlen der Fälle sind fiktiv, ein Hinweis steht unter der Sektion.
+
+### Block 3: Research Lab und Publikationen
+Was: Publikationen im Research Lab gebündelt. Die Detailseite
+`/bereiche/research-lab` zeigt jetzt die vollständige Liste aller Beiträge. Die
+Startseite zeigt nur noch die drei neuesten als Teaser mit Link ins Research Lab.
+Datenmodell erweitert: Beitragstyp (PAPER, RESEARCH NOTE, PRAXISBERICHT,
+WHITEPAPER), Themen und optionales pdfUrl. Ist ein pdfUrl gesetzt, wird aus dem
+Badge "PDF folgt" ein Download-Link. Sechs Beiträge angelegt, davon zwei Paper,
+Schwerpunkt KI-Automatisierung.
+Warum: Publikationen gehören inhaltlich zum Research Lab und sollen dort
+gebündelt sein.
+Dateien: `src/data/publications.ts`, `src/components/sections/Publications.tsx`
+(Teaser), `src/components/sections/PublicationList.tsx` (vollständige Liste),
+`src/pages/PillarPage.tsx`, `src/styles/index.css`.
+Entscheidung: Der Nav-Punkt Publikationen bleibt ein Startseiten-Anker
+(`#publikationen`), passend zu den übrigen Nav-Punkten. Von dort führt der
+Teaser-Link in die vollständige Liste im Research Lab. Das ist mit dem
+bestehenden Anker-Routing sauberer als ein Deep-Link in der Navigation.
+
+### Block 4: Aktuelle Themen (Stand 2026)
+Was: Kurze Recherche zu Digitalisierung und KI-Automatisierung im Mittelstand
+2026, Ergebnisse in ganzen Sätzen eingearbeitet. Auf der KI-Automatisierung
+Bereichsseite: welche Abläufe sich eignen (hohe Wiederholung, klare Regeln,
+digitale Datenbasis), der Schritt vom Prototyp zum verlässlichen Betrieb und
+Nachvollziehbarkeit nach dem EU AI Act (gilt ab August 2026, besonders bei
+eigenständig handelnden Systemen). In den Publikationen als Thema EU AI Act
+ergänzt.
+Warum: Die Inhalte sollen aktuell wirken und reale Anforderungen aufgreifen.
+Dateien: `src/data/pillars.ts`, `src/data/publications.ts`.
+
+### Block 5: Footer, Impressum, Links
+Was: Impressum-Firmierung auf stonetree GmbH gesetzt, alle offenen Felder klar
+als Platzhalter gekennzeichnet (noch offen). Footer-Fußzeile aktualisiert
+(Copyright stonetree GmbH, Hinweis auf Platzhalter). Footer-Spalten geprüft:
+Expertise listet die Bereiche datengetrieben, Unternehmen enthält Branchen,
+Kundenprojekte, Publikationen, Über uns, Kontakt, Impressum. Alle internen Links
+und Anker gegengecheckt, keine toten Links.
+Warum: Konsistenz und ein rechtlicher Rahmen als klar erkennbarer Platzhalter.
+Dateien: `src/data/site.ts`, `src/components/layout/Footer.tsx`.
+
+### Block 6: Sprachdurchgang
+Was: Alle sichtbaren Texte auf schlichte Sprache geprüft und die restlichen
+Gedankenstriche entfernt (Kontakt-Text, zwei Arbeitsweise-Punkte, Trenner in der
+Mailto-Nachricht). Verbotene Phrasen wie ganzheitlich, maßgeschneidert, auf
+Augenhöhe oder an der Schnittstelle von kommen nicht vor. Gedankenstriche in
+Code- und CSS-Kommentaren blieben, da nicht sichtbar.
+Warum: Der Text soll schlicht und konkret klingen, nicht generiert.
+Dateien: `src/components/sections/Contact.tsx`, `src/data/approach.ts`,
+`src/features/contact/useContactForm.ts`.
+
+### Block 7: Technischer Durchgang
+Was: Seitentitel und Meta-Beschreibung je Route gesetzt (neuer Hook
+usePageMeta, ohne zusätzliche Bibliothek). Sichtbarer Fokus-Zustand für Links
+und Buttons ergänzt, passt sich hell und dunkel an. Überschriftenhierarchie
+geprüft: genau ein h1 je Seite, Sektionen nutzen h2, Karten h3. Die neuen Grids
+brechen bei 980 und 860 Pixeln auf weniger Spalten um. Typprüfung und Build
+laufen fehlerfrei, keine neuen Laufzeit-Abhängigkeiten.
+Warum: Barrierefreiheit, Auffindbarkeit und saubere Struktur.
+Dateien: `src/hooks/usePageMeta.ts`, `src/pages/HomePage.tsx`,
+`src/pages/PillarPage.tsx`, `src/pages/NotFoundPage.tsx`, `src/styles/index.css`.
+
+### Nacharbeit: Bilder, Branchen-Unterseiten, Beispiel-PDFs
+Was: Research-Lab-Bild auf ein Bibliotheks-Motiv geändert (geisteswissenschaftlich
+statt Labor), KI-Automatisierung auf einen Software-Arbeitsplatz. Branche
+Banking & Finance in Financial Services umbenannt, Branchenübergreifend entfernt,
+sodass drei Branchen in einer Reihe stehen. Jede Branche hat jetzt eine eigene
+Unterseite unter /branchen/<slug> mit Fließtext und Dreispalter. Dafür eine
+gemeinsame Vorlage DetailPage angelegt, die Bereichs- und Branchenseiten nutzen.
+Zwei Beispiel-PDFs für die Paper erzeugt und als pdfUrl hinterlegt, dadurch wird
+aus dem Badge ein Download-Link.
+Warum: Wünsche des Auftraggebers.
+Dateien: `src/data/branchen.ts`, `src/data/publications.ts`,
+`src/components/detail/DetailPage.tsx`, `src/pages/BranchePage.tsx`,
+`src/pages/PillarPage.tsx`, `src/components/sections/Branchen.tsx`, `src/App.tsx`,
+`public/pdf/*.pdf`, geänderte Bilder unter `public/images/`.
+
+### Nacharbeit: Research-Bild und Typische Aufgaben
+Was: Research-Lab-Bild erneut getauscht, jetzt eine Arbeitssituation mit Notizen
+und Diskussion (weder Labor noch Bibliothek). Auf den drei Bereichs-Detailseiten
+einen Abschnitt Typische Aufgaben ergänzt, je sechs konkrete Beispiele, was wir
+dort tun. Umgesetzt über ein optionales Feld tasks im Detail-Datenmodell, das die
+Vorlage DetailPage rendert (Branchenseiten nutzen es nicht).
+Dateien: `src/data/pillars.ts`, `src/components/detail/DetailPage.tsx`,
+`src/pages/PillarPage.tsx`, `src/styles/index.css`,
+`public/images/expertise-research.jpg`.
+
+### Nacharbeit: Branchen entfernt, Bereichsseiten ausgebaut
+Was: Der komplette Branchen-Bereich ist raus, also die Sektion auf der
+Startseite, die drei Unterseiten unter /branchen/, die Daten, die Bilder und die
+Links in Navigation und Footer. Alte Branchen-Adressen leiten auf die Startseite.
+Dafür sind die drei Bereichsseiten deutlich voller: je Bereich kommen
+Ausgangslage (vier typische Situationen), Leistungsbausteine (sechs Stück, jeder
+mit dem Ergebnis, das beim Auftraggeber bleibt), Vorgehen (vier Schritte mit
+Dauer), Einstiegsformate (drei Formate mit Umfang) und häufige Fragen (fünf)
+hinzu. Die Abschnitte stehen als Daten in `pillars.ts` und werden von kleinen
+Komponenten unter `components/detail/` gerendert.
+Warum: Der Auftraggeber wollte die Branchen weg und die Bereichsseiten gefüllt.
+Recherche: Aufbau geprüft bei Roland Berger (Servicesseiten mit Cluster je
+Leistung), CodeCamp:N (zwei Phasen Kompass und Projekt) und mehreren deutschen
+KI-Beratungen (Einstiegsformate, Vorgehen in drei bis vier Schritten, FAQ).
+Übernommen wurden Leistungscluster, Vorgehen mit Dauer, Einstiegsformate und
+FAQ. Bewusst nicht übernommen: Preistabellen, Selbsttests, Newsletter-Kästen und
+Kundenstimmen, weil das zur nüchternen Anmutung nicht passt und die Zahlen im
+Prototyp ohnehin Platzhalter wären.
+Hinweis: Häufige Fragen laufen über das native details-Element, also ohne
+zusätzliches JavaScript und mit Tastaturbedienung.
+Dateien: `src/data/pillars.ts`, `src/components/detail/SectionHead.tsx`,
+`Situations.tsx`, `Offerings.tsx`, `Tasks.tsx`, `Phases.tsx`, `Formats.tsx`,
+`Faq.tsx`, `DetailPage.tsx`, `src/pages/PillarPage.tsx`, `src/App.tsx`,
+`src/pages/HomePage.tsx`, `src/data/navigation.ts`,
+`src/components/layout/Footer.tsx`, `src/styles/index.css`. Entfernt:
+`src/data/branchen.ts`, `src/components/sections/Branchen.tsx`,
+`src/pages/BranchePage.tsx`, `public/images/branche-*.jpg`.
+
+## 4. Neue Struktur (Seitenbaum)
+
+```
+/                         Startseite
+  #top                    Hero (Übersicht)
+  #expertise              Expertise (Consulting, KI-Automatisierung, Research Lab)
+  #leistungen             Leistungen
+  #kundenprojekte         Kundenprojekte
+  #publikationen          Publikationen
+  #ueber-uns              Über uns
+  #kontakt                Kontakt
+/bereiche/consulting          Detailseite Consulting
+/bereiche/ki-automatisierung  Detailseite KI-Automatisierung
+/bereiche/research-lab        Detailseite Research Lab
+/branchen/*                   leitet auf die Startseite (Branchen entfallen)
+/bereiche/beratung            leitet auf /bereiche/consulting
+/bereiche/ai-automation       leitet auf /bereiche/ki-automatisierung
+*                         404
+```
+
+## 5. Datenmodelle
+
+TypeScript-Interfaces in `src/data/`:
+
+- `Pillar`, `PillarDetail`, `PillarPoint` (pillars.ts): die drei Bereiche.
+- `PillarBlock<T>` mit `PillarSituation`, `PillarOffering`, `PillarPhase`, `PillarFormat`, `PillarFaq` (pillars.ts): die Abschnitte der Bereichsseiten, jeweils mit eigener Überschrift.
+- `Publication` und `PublicationType` (publications.ts): Publikationen, mit Typ, Themen und optionalem pdfUrl.
+- `Leistung` (leistungen.ts): Leistungsbausteine.
+- `Kundenprojekt` (kundenprojekte.ts): Fallbeispiele.
+- `About`, `AboutFact` (about.ts): Über-uns-Inhalte.
+- `ApproachItem` (approach.ts): die drei Arbeitsweise-Punkte.
+- `NavLink` (navigation.ts): Navigationslinks.
+- `Site`, `Impressum` (site.ts): Marke, Tagline, Kontakt, Impressum.
+- `ContactValues` (features/contact/useContactForm.ts): Formularfelder.
+
+## 6. Entscheidungen und Abwägungen
+
+- Farbwelt aus dem Logo statt monochrom. Der Auftraggeber hat das gewählt, es
+  widersprach dem ersten Brief (dort hieß es, Farben bleiben unverändert).
+- TypeScript statt JavaScript. Höherer Aufwand, dafür typsichere Datenmodelle.
+- Header hell statt dunkel, damit das farbige Emblem passt.
+- Hero-Headline: Variante, die die eigene Forschung nach vorn stellt.
+- Kontaktformular versendet vorerst per mailto. Umstellung auf das FastAPI
+  Backend ist in `docs/kontaktformular-backend.md` beschrieben.
+
+## 7. Offene Punkte
+
+- Echte Impressumsdaten, weitere echte PDFs (zwei Beispiele liegen vor) und
+  finale Bilder statt der Platzhalter aus Unsplash.
+- Die Angaben auf den Bereichsseiten zu Dauer und Umfang der Formate sind
+  Annahmen und sollten vom Auftraggeber bestätigt werden.
+- `@types/react` liegt als v19 vor, React ist v18. Läuft, kann später
+  angeglichen werden.
+
+## 8. Abschluss-Checkliste
+
+- [x] Kein "Beratungshaus" mehr auf der Seite
+- [x] "Beratung" durchgängig zu "Consulting", sonst als normales Wort umformuliert
+- [x] "AI Automation" durchgängig zu "KI-Automatisierung", inklusive Slug
+- [x] Kein Gedankenstrich mehr in sichtbarem Text
+- [x] Branchen komplett entfernt, alte Branchen-Adressen leiten weiter
+- [x] Bereichsseiten gefüllt: Ausgangslage, Leistungsbausteine, Aufgaben, Vorgehen, Einstiegsformate, häufige Fragen
+- [x] Sechs Leistungsbausteine in der Reihenfolge Strategie bis Umsetzung
+- [x] Drei Kundenprojekte mit Ausgangslage, Vorgehen, Ergebnis
+- [x] Publikationen im Research Lab gebündelt, mindestens zwei Paper
+- [x] Alle internen Links und Anker funktionieren
+- [x] Alte Routen leiten weiter
+- [x] Typprüfung und Build laufen fehlerfrei (kein separater ESLint eingerichtet)
+- [~] Responsive bei 375, 768, 1280 und 1920: über Breakpoints gelöst, in dieser Umgebung nicht pixelgenau getestet
+- [x] UMSETZUNG.md vollständig und aktuell

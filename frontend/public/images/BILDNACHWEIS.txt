@@ -19,3 +19,11 @@ Verwendete Motive (Stand: Platzhalter):
 - pub-2.jpg              Workshop (Whiteboard / Post-its)
 - pub-3.jpg              Daten-Dashboard
 - pub-4.jpg              Team-Arbeit am Tisch
+
+LOGO (kein Stock, eigenes Markenzeichen)
+----------------------------------------
+- logo-full.png          Komplettes Lockup (Emblem + Schriftzug "stonetree")
+- logo-emblem.png        Nur das Emblem (Bonsai auf Fels), farbig
+- logo-emblem-light.png  Helle Silhouette, transparent (fuer dunkle Flaechen)
+- favicon.png / -32.png  Browser-Tab-Icon
+Zugeschnitten aus der Original-Logodatei; frei fuer die eigene Seite verwendbar.

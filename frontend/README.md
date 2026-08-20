@@ -1,4 +1,4 @@
-# Frontend – NOVA Consulting
+# Frontend – stonetree
 
 React-Umsetzung des Prototyps (`../prototyp.html`) mit Vite und Tailwind CSS.
 Gleiches Aussehen, gleiche Animationen – nur sauber in einzelne Komponenten
