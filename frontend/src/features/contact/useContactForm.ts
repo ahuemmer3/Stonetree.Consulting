@@ -13,10 +13,16 @@ export interface ContactValues {
 type FieldName = keyof ContactValues
 type ContactErrors = Partial<Record<FieldName, string>>
 type Touched = Partial<Record<FieldName, boolean>>
+export type ContactStatus = "idle" | "sending" | "sent" | "error"
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 const MIN_MESSAGE_LENGTH = 10
 const EMPTY: ContactValues = { name: "", email: "", message: "" }
+
+// Das Backend nimmt die Nachricht an und verschickt sie per SMTP
+// (backend/app/contact.py). Im Betrieb liegt es unter derselben Domain,
+// in der Entwicklung leitet Vite /api an localhost:8000 weiter.
+const CONTACT_ENDPOINT = import.meta.env.VITE_CONTACT_ENDPOINT ?? "/api/contact"
 
 // Validiert ein einzelnes Feld und liefert eine Fehlermeldung (leer = ok).
 function validateField(field: FieldName, value: string): string {
@@ -48,29 +54,13 @@ function validateAll(values: ContactValues): ContactErrors {
   return errors
 }
 
-// Baut die Nachricht als mailto-Link. Bis das FastAPI-Backend steht
-// (Woche 8/9), ist das der funktionierende Versandweg über das
-// E-Mail-Programm des Nutzers. Später hier stattdessen fetch(POST /api/...).
-function buildMailto(
-  recipient: string,
-  { name, email, message }: ContactValues,
-): string {
-  const subject = encodeURIComponent(`Anfrage von ${name.trim()}`)
-  const body = encodeURIComponent(
-    `${message.trim()}\n\nName: ${name.trim()}\nE-Mail: ${email.trim()}`,
-  )
-  return `mailto:${recipient}?subject=${subject}&body=${body}`
-}
-
-interface UseContactFormOptions {
-  recipient: string
-}
-
-export function useContactForm({ recipient }: UseContactFormOptions) {
+export function useContactForm() {
   const [values, setValues] = useState<ContactValues>(EMPTY)
   const [errors, setErrors] = useState<ContactErrors>({})
   const [touched, setTouched] = useState<Touched>({})
-  const [submitted, setSubmitted] = useState(false)
+  const [status, setStatus] = useState<ContactStatus>("idle")
+  // Honeypot: bleibt bei Menschen leer, Bots füllen es aus.
+  const [website, setWebsite] = useState("")
 
   function handleChange(
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -93,28 +83,48 @@ export function useContactForm({ recipient }: UseContactFormOptions) {
     setErrors((prev) => ({ ...prev, [name]: validateField(name, value) }))
   }
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
+    if (status === "sending") return
+
     const nextErrors = validateAll(values)
     setErrors(nextErrors)
     setTouched({ name: true, email: true, message: true })
     if (Object.keys(nextErrors).length > 0) return
 
-    window.location.href = buildMailto(recipient, values)
-    setSubmitted(true)
+    setStatus("sending")
+    try {
+      const response = await fetch(CONTACT_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: values.name.trim(),
+          email: values.email.trim(),
+          message: values.message.trim(),
+          website,
+        }),
+      })
+      if (!response.ok) throw new Error(`Status ${response.status}`)
+      setStatus("sent")
+    } catch {
+      setStatus("error")
+    }
   }
 
   function reset() {
     setValues(EMPTY)
     setErrors({})
     setTouched({})
-    setSubmitted(false)
+    setWebsite("")
+    setStatus("idle")
   }
 
   return {
     values,
     errors,
-    submitted,
+    status,
+    website,
+    setWebsite,
     handleChange,
     handleBlur,
     handleSubmit,

@@ -1,0 +1,28 @@
+# Caddy liefert die Website aus, holt das HTTPS-Zertifikat automatisch
+# und leitet /api an das Backend weiter. Die Domain kommt aus der .env.
+{$DOMAIN} {
+	encode zstd gzip
+
+	handle /api/* {
+		reverse_proxy api:8000
+	}
+
+	handle {
+		root * /srv
+		# React-Router: unbekannte Pfade liefern die index.html aus
+		try_files {path} /index.html
+		file_server
+	}
+
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "DENY"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		-Server
+	}
+
+	# Gebaute Dateien tragen einen Hash im Namen und dürfen lange im Cache bleiben
+	@assets path /assets/*
+	header @assets Cache-Control "public, max-age=31536000, immutable"
+}

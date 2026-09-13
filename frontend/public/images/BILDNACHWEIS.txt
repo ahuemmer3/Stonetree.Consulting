@@ -27,3 +27,11 @@ LOGO (kein Stock, eigenes Markenzeichen)
 - logo-emblem-light.png  Helle Silhouette, transparent (fuer dunkle Flaechen)
 - favicon.png / -32.png  Browser-Tab-Icon
 Zugeschnitten aus der Original-Logodatei; frei fuer die eigene Seite verwendbar.
+
+VIDEO (Platzhalter)
+-------------------
+- ../videos/hero.mp4     Office Meeting (Mixkit, Clip 261, 720p, 11 s)
+                         https://mixkit.co/free-stock-video/office-meeting-261/
+                         Lizenz: Mixkit Stock Video Free License, https://mixkit.co/license/
+Zum Austauschen public/videos/hero.mp4 durch eine Datei gleichen Namens ersetzen
+(stumm, kurz, Dauerschleife, ideal unter 10 MB).

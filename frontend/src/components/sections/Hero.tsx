@@ -1,13 +1,33 @@
 import Button from "../ui/Button"
 import Reveal from "../ui/Reveal"
+import { useBackgroundVideo } from "../../features/hero-video/useBackgroundVideo"
 
+// Hintergrund: stummes Video in Dauerschleife, darunter das Foto als
+// Vorschaubild und Rückfall. Video austauschen: public/videos/hero.mp4
+// ersetzen, Foto: public/images/hero.jpg.
 export default function Hero() {
+  const { enabled, videoRef, playing, toggle, onError } = useBackgroundVideo()
+
   return (
     <section className="hero" id="top">
-      {/* Grosses Foto mit dunkler Abdunklung, damit die weisse Schrift lesbar
-          bleibt. Bild austauschen: public/images/hero.jpg ersetzen. */}
       <div className="hero-media" aria-hidden="true">
-        <img className="hero-img" src="/images/hero.jpg" alt="" />
+        {enabled ? (
+          <video
+            ref={videoRef}
+            className="hero-video"
+            poster="/images/hero.jpg"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            onError={onError}
+          >
+            <source src="/videos/hero.mp4" type="video/mp4" onError={onError} />
+          </video>
+        ) : (
+          <img className="hero-img" src="/images/hero.jpg" alt="" />
+        )}
       </div>
 
       <div className="wrap hero-wrap">
@@ -37,6 +57,18 @@ export default function Hero() {
           </div>
         </Reveal>
       </div>
+
+      {/* Bewegte Inhalte müssen sich anhalten lassen (WCAG 2.2.2) */}
+      {enabled && (
+        <button
+          type="button"
+          className="hero-video-toggle"
+          onClick={toggle}
+          aria-label={playing ? "Hintergrundvideo anhalten" : "Hintergrundvideo abspielen"}
+        >
+          <span aria-hidden="true">{playing ? "❚❚" : "▶"}</span>
+        </button>
+      )}
     </section>
   )
 }

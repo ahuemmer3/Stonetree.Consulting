@@ -210,6 +210,49 @@ Dateien: `src/data/pillars.ts`, `src/components/detail/SectionHead.tsx`,
 `src/data/branchen.ts`, `src/components/sections/Branchen.tsx`,
 `src/pages/BranchePage.tsx`, `public/images/branche-*.jpg`.
 
+### Nacharbeit: Abstimmung vom Meeting (Farben, Inhalte, Karussell, Video, Mailversand, Hosting)
+Was:
+- Farbwelt neutral: Weiß, helle und dunkle Grautöne, dunkles Grau als Akzent.
+  Creme und Oliv sind raus (Tokens und fest eingetragene Werte).
+- Die drei Bereichskarten sind abgestuft grau: hell, mittel, dunkel.
+- Leistungen jetzt: Strategie und Management, KI-Automatisierung, Target
+  Operating Model, Umsetzungsfahrplan, Umsetzungsbegleitung, Nachhaltigkeit.
+- Kundenprojekte: Automotive raus. Neu ein Energieversorger
+  (KI-Automatisierung), die Regionalbank als Digital Maturity und Impact
+  Assessment, die kommunale Verwaltung als IT-Automatisierung und
+  Organisationsdesign. Alle drei mit Laufzeit „bis 6 Monate", ohne Kennzahlen.
+- Publikationen auf der Startseite laufen als Bild-Karussell durch (alle sechs
+  Beiträge, Pfeile und Positionspunkte, Pause bei Hover und Fokus, kein
+  automatischer Lauf bei „Animationen reduzieren").
+- Hero mit stummem Hintergrundvideo in Dauerschleife, Foto als Vorschau und
+  Rückfall. Pause-Knopf, kein Video bei „Animationen reduzieren" oder
+  Datensparmodus.
+- Kontaktformular verschickt jetzt über ein eigenes FastAPI-Backend per SMTP,
+  mit Honeypot, Rate-Limit je IP, Lade- und Fehlerzustand. Der Anbieter ist
+  frei wählbar über die .env.
+- Hosting vorbereitet: Docker Compose mit Caddy (HTTPS automatisch, liefert die
+  Seite aus, leitet /api weiter) und dem Backend. Anleitung in `docs/hosting.md`.
+Warum: Mitschriften aus der Abstimmung mit dem Auftraggeber.
+Hinweise: Der Energieversorger ist anonymisiert, obwohl der Kundenname in den
+Notizen steht. Ein echter Name gehört erst nach Freigabe auf die Seite. Die
+Projekttexte sind Platzhalter. „TOP" aus den Notizen wurde als Target
+Operating Model gelesen. Das Video ist ein Platzhalter von Mixkit (freie
+Lizenz, siehe BILDNACHWEIS.txt).
+Tests: Typprüfung und Build fehlerfrei, acht Backend-Tests grün, Backend lokal
+mit echten HTTP-Anfragen geprüft. Die Docker-Images sind noch nicht gebaut,
+weil Docker Desktop nicht lief.
+Dateien: `src/styles/index.css`, `src/data/leistungen.ts`,
+`src/data/kundenprojekte.ts`, `src/components/sections/Pillars.tsx`,
+`Publications.tsx`, `Hero.tsx`, `Kundenprojekte.tsx`,
+`src/features/carousel/useCarousel.ts`,
+`src/features/hero-video/useBackgroundVideo.ts`,
+`src/features/contact/useContactForm.ts`, `ContactForm.tsx`,
+`src/components/detail/DetailPage.tsx`, `src/vite-env.d.ts`, `vite.config.js`,
+`public/videos/hero.mp4`, `backend/`, `docker-compose.yml`, `deploy/Caddyfile`,
+`frontend/Dockerfile`, `.env.example`, `.gitignore`, `docs/hosting.md`.
+Entfernt: `docs/kontaktformular-backend.md` (umgesetzt, Inhalt steht jetzt in
+`backend/` und `docs/hosting.md`).
+
 ## 4. Neue Struktur (Seitenbaum)
 
 ```
@@ -243,22 +286,32 @@ TypeScript-Interfaces in `src/data/`:
 - `ApproachItem` (approach.ts): die drei Arbeitsweise-Punkte.
 - `NavLink` (navigation.ts): Navigationslinks.
 - `Site`, `Impressum` (site.ts): Marke, Tagline, Kontakt, Impressum.
-- `ContactValues` (features/contact/useContactForm.ts): Formularfelder.
+- `ContactValues`, `ContactStatus` (features/contact/useContactForm.ts): Formularfelder und Versandzustand.
+- `ContactRequest` (backend/app/contact.py): Anfrage an `POST /api/contact`, geprüft mit Pydantic.
 
 ## 6. Entscheidungen und Abwägungen
 
 - Farbwelt aus dem Logo statt monochrom. Der Auftraggeber hat das gewählt, es
   widersprach dem ersten Brief (dort hieß es, Farben bleiben unverändert).
+  Nach der Abstimmung im September wieder zurück auf Weiß und Grau.
 - TypeScript statt JavaScript. Höherer Aufwand, dafür typsichere Datenmodelle.
 - Header hell statt dunkel, damit das farbige Emblem passt.
 - Hero-Headline: Variante, die die eigene Forschung nach vorn stellt.
-- Kontaktformular versendet vorerst per mailto. Umstellung auf das FastAPI
-  Backend ist in `docs/kontaktformular-backend.md` beschrieben.
+- Kontaktformular über ein eigenes FastAPI-Backend mit SMTP statt über einen
+  Formulardienst. Passt zum geplanten Stack, die Daten laufen über keinen
+  weiteren Dienst außer dem Mailanbieter.
+- Frontend und Backend unter derselben Domain (Caddy leitet /api weiter),
+  dadurch ist kein CORS nötig.
 
 ## 7. Offene Punkte
 
-- Echte Impressumsdaten, weitere echte PDFs (zwei Beispiele liegen vor) und
-  finale Bilder statt der Platzhalter aus Unsplash.
+- Echte Impressumsdaten, Datenschutzerklärung (muss Kontaktformular und
+  Mailanbieter nennen), weitere echte PDFs und finale Bilder und Video statt
+  der Platzhalter.
+- Server, Domain und SMTP-Zugang fehlen noch. Danach nach `docs/hosting.md`
+  live schalten und die Docker-Images einmal bauen.
+- Echte Inhalte der drei Kundenprojekte, Freigabe für den Kundennamen des
+  Energieversorgers.
 - Die Angaben auf den Bereichsseiten zu Dauer und Umfang der Formate sind
   Annahmen und sollten vom Auftraggeber bestätigt werden.
 - `@types/react` liegt als v19 vor, React ist v18. Läuft, kann später
@@ -273,7 +326,11 @@ TypeScript-Interfaces in `src/data/`:
 - [x] Branchen komplett entfernt, alte Branchen-Adressen leiten weiter
 - [x] Bereichsseiten gefüllt: Ausgangslage, Leistungsbausteine, Aufgaben, Vorgehen, Einstiegsformate, häufige Fragen
 - [x] Sechs Leistungsbausteine in der Reihenfolge Strategie bis Umsetzung
-- [x] Drei Kundenprojekte mit Ausgangslage, Vorgehen, Ergebnis
+- [x] Drei Kundenprojekte mit Ausgangslage, Vorgehen, Ergebnis (Energie, Bank, Kommune, je bis 6 Monate)
+- [x] Farben neutral Weiß und Grau, Bereichskarten abgestuft
+- [x] Publikationen als Karussell, Hero mit Hintergrundvideo
+- [x] Kontaktformular verschickt über das Backend, Backend-Tests grün
+- [~] Hosting vorbereitet, Docker-Images lokal noch nicht gebaut
 - [x] Publikationen im Research Lab gebündelt, mindestens zwei Paper
 - [x] Alle internen Links und Anker funktionieren
 - [x] Alte Routen leiten weiter

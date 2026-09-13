@@ -1,0 +1,29 @@
+# Betrieb auf dem Server: docker compose up -d --build
+# Vorher .env.example nach .env kopieren und ausfüllen (Anleitung: docs/hosting.md).
+services:
+  web:
+    build: ./frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    environment:
+      DOMAIN: ${DOMAIN:-localhost}
+    volumes:
+      - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - api
+
+  api:
+    build: ./backend
+    restart: unless-stopped
+    env_file: .env
+    expose:
+      - "8000"
+
+volumes:
+  caddy_data:
+  caddy_config:

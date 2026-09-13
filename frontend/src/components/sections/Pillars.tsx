@@ -2,6 +2,8 @@ import { Link } from "react-router-dom"
 import Reveal from "../ui/Reveal"
 import { pillars } from "../../data/pillars"
 
+// Die drei Bereiche als Karten, von hell nach dunkel abgestuft grau
+// (pillar--tone-1 bis -3 in index.css).
 export default function Pillars() {
   return (
     <section className="section-pad expertise" id="expertise">
@@ -22,9 +24,9 @@ export default function Pillars() {
         </div>
 
         <Reveal className="pillars" delay={1}>
-          {pillars.map((pillar) => (
+          {pillars.map((pillar, index) => (
             <Link
-              className="pillar"
+              className={`pillar pillar--tone-${index + 1}`}
               id={pillar.anchor}
               to={`/bereiche/${pillar.slug}`}
               key={pillar.id}

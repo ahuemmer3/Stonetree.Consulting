@@ -1,4 +1,4 @@
-// Anonymisierte Fallbeispiele. Zahlen sind fiktiv und exemplarisch
+// Anonymisierte Fallbeispiele. Inhalte sind exemplarisch
 // (Hinweis dazu steht in der Sektion selbst).
 export interface Kundenprojekt {
   id: string
@@ -13,42 +13,42 @@ export interface Kundenprojekt {
 
 export const kundenprojekte: Kundenprojekt[] = [
   {
-    id: "automotive-reklamation",
-    branche: "Automotive-Zulieferer",
-    groesse: "rund 180 Mitarbeitende",
+    id: "energie-ki-automatisierung",
+    branche: "Energieversorger",
+    groesse: "Energie und Telekommunikation, regional",
     ausgangslage:
-      "Reklamationen liefen über Papier und Excel. Vorgänge blieben liegen, der Status war für niemanden auf einen Blick sichtbar, und dieselben Daten wurden mehrfach erfasst.",
+      "Kundenanfragen, Zählerstände und Störungsmeldungen kamen über viele Kanäle herein und wurden von Hand gesichtet, zugeordnet und weitergegeben. Zu Spitzenzeiten stauten sich die Vorgänge.",
     vorgehen:
-      "Wir haben den Reklamationsprozess aufgenommen und auf einen durchgängigen digitalen Ablauf umgestellt. Eine automatische Vorprüfung sortiert einfache Fälle vor, der Rest geht strukturiert an die richtige Stelle.",
+      "Wir haben die eingehenden Vorgänge analysiert und eine KI-gestützte Vorsortierung aufgebaut. Sie erkennt das Anliegen, liest die relevanten Angaben aus und leitet den Vorgang an das zuständige Team. Unklare Fälle gehen weiterhin an einen Menschen.",
     ergebnis:
-      "Die Durchlaufzeit je Reklamation sank von rund zwölf auf vier Tage. Doppelte Dateneingaben entfielen, die Fehlerquote in der Erfassung ging deutlich zurück.",
-    laufzeit: "4 Monate",
-    bausteine: ["Prozessoptimierung", "Automatisierung"],
+      "Standardanfragen landen ohne manuelle Sichtung beim richtigen Team. Die Bearbeitung beginnt früher, und Spitzenzeiten lassen sich besser abfangen.",
+    laufzeit: "bis 6 Monate",
+    bausteine: ["KI-Automatisierung"],
   },
   {
-    id: "banking-reporting",
+    id: "bank-digital-maturity",
     branche: "Regionalbank",
     groesse: "rund 320 Mitarbeitende",
     ausgangslage:
-      "Ein monatliches Reporting wurde von Hand aus mehreren Quellen zusammengetragen. Das kostete zwei Arbeitstage und war anfällig für Übertragungsfehler.",
+      "Viele Digitalisierungsvorhaben liefen parallel, ohne gemeinsames Bild davon, wo die Bank insgesamt steht und welche Vorhaben tatsächlich Wirkung zeigen.",
     vorgehen:
-      "Wir haben Datenaufbereitung und Prüfschritte zusammengeführt und die wiederkehrende Strecke automatisiert. Die Fachleute prüfen jetzt Ergebnisse, statt Daten zu kopieren.",
+      "Wir haben den digitalen Reifegrad über Prozesse, Daten, Technologie und Organisation hinweg erhoben und die laufenden Vorhaben nach ihrer Wirkung auf Kosten, Qualität und Kundenerlebnis bewertet.",
     ergebnis:
-      "Der Aufwand je Berichtszyklus fiel von zwei Tagen auf rund zwei Stunden. Die Zahlen sind früher verfügbar und besser nachvollziehbar.",
-    laufzeit: "3 Monate",
-    bausteine: ["Automatisierung", "Umsetzungsfahrplan"],
+      "Die Bank hat ein belastbares Reifegradprofil und eine nach Wirkung priorisierte Liste. Vorhaben mit geringem Nutzen wurden gestoppt, die frei gewordenen Mittel gebündelt.",
+    laufzeit: "bis 6 Monate",
+    bausteine: ["Digital Maturity Assessment", "Impact Assessment"],
   },
   {
-    id: "public-antrag",
+    id: "kommune-it-automatisierung",
     branche: "Kommunale Verwaltung",
     groesse: "rund 90 Mitarbeitende im Fachbereich",
     ausgangslage:
-      "Eine Antragsstrecke lief überwiegend auf Papier. Antragstellende wussten nicht, wie weit ihr Vorgang war, und die Bearbeitung war schwer planbar.",
+      "Wiederkehrende IT-Aufgaben wie Zugänge, Anträge und Datenübertragungen liefen von Hand. Die Zuständigkeiten zwischen IT und Fachbereichen waren über Jahre gewachsen und nicht mehr eindeutig.",
     vorgehen:
-      "Wir haben die Antragsstrecke digitalisiert und den Bearbeitungsstatus für Antragstellende sichtbar gemacht. Barrierefreiheit war von Anfang an Teil der Lösung.",
+      "Wir haben die wiederkehrenden IT-Abläufe automatisiert und parallel die Organisation neu geordnet: klare Rollen, feste Schnittstellen zwischen IT und Fachbereichen und eine Anlaufstelle für Anfragen.",
     ergebnis:
-      "Rückfragen zum Bearbeitungsstand gingen spürbar zurück, die durchschnittliche Bearbeitungszeit wurde kürzer und besser vorhersehbar.",
-    laufzeit: "6 Monate",
-    bausteine: ["Digitalisierungsstrategie", "Prozessoptimierung"],
+      "Standardaufgaben laufen ohne Handarbeit durch, Anfragen landen direkt bei der richtigen Stelle. Die IT gewinnt Zeit für Vorhaben statt für Routine.",
+    laufzeit: "bis 6 Monate",
+    bausteine: ["IT-Automatisierung", "Organisationsdesign"],
   },
 ]

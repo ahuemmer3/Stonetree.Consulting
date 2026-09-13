@@ -9,20 +9,22 @@ export default function ContactForm() {
   const {
     values,
     errors,
-    submitted,
+    status,
+    website,
+    setWebsite,
     handleChange,
     handleBlur,
     handleSubmit,
     reset,
-  } = useContactForm({ recipient: site.contactEmail })
+  } = useContactForm()
 
-  if (submitted) {
+  if (status === "sent") {
     return (
       <div className="contact-done" role="status">
         <h3>Vielen Dank!</h3>
         <p>
-          Ihr E-Mail-Programm öffnet sich mit Ihrer Nachricht. Wir melden uns
-          zeitnah bei Ihnen zurück.
+          Ihre Nachricht ist bei uns angekommen. Wir melden uns zeitnah bei
+          Ihnen zurück.
         </p>
         <button type="button" className="btn-ghost" onClick={reset}>
           Weitere Nachricht schreiben
@@ -33,6 +35,7 @@ export default function ContactForm() {
 
   // Gemeinsame Handler für alle Felder – hält das Markup frei von Wiederholung.
   const shared = { onChange: handleChange, onBlur: handleBlur }
+  const sending = status === "sending"
 
   return (
     <form className="contact-form" onSubmit={handleSubmit} noValidate>
@@ -65,8 +68,30 @@ export default function ContactForm() {
         error={errors.message}
         {...shared}
       />
-      <button type="submit" className="btn-primary">
-        Nachricht senden
+
+      {/* Honeypot gegen Spam-Bots, für Menschen unsichtbar */}
+      <div className="hp-field" aria-hidden="true">
+        <label htmlFor="cf-website">Website</label>
+        <input
+          id="cf-website"
+          name="website"
+          tabIndex={-1}
+          autoComplete="off"
+          value={website}
+          onChange={(event) => setWebsite(event.target.value)}
+        />
+      </div>
+
+      {status === "error" && (
+        <p className="contact-error" role="alert">
+          Die Nachricht konnte gerade nicht gesendet werden. Bitte versuchen Sie
+          es später erneut oder schreiben Sie direkt an{" "}
+          <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>.
+        </p>
+      )}
+
+      <button type="submit" className="btn-primary" disabled={sending}>
+        {sending ? "Wird gesendet …" : "Nachricht senden"}
       </button>
     </form>
   )

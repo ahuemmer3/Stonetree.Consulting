@@ -1,34 +1,33 @@
 @import "tailwindcss";
 
 /* ------------------------------------------------------------------
-   Design-Tokens – Farbwelt aus dem stonetree-Logo:
-   warme Creme-Flächen, gedämpftes Oliv-Grün als Akzent,
-   Oliv-Anthrazit als dunkle Fläche, Taupe für gedämpften Text.
-   Layout, Typografie und Abstände bleiben unverändert.
+   Design-Tokens – neutral: Weiß und Grautöne, dunkles Grau als Akzent.
+   Keine Farbtöne mehr (Wunsch aus der Abstimmung: "Font weiß mit dunkel
+   oder hell grauen Flächen"). Nur Fehlermeldungen im Formular sind farbig.
 ------------------------------------------------------------------- */
 @theme {
-  --color-bg: #f7efe5; /* Creme – Grundfläche & heller Header */
-  --color-soft: #efe7d9; /* tiefere Creme – abwechselnde helle Sektion */
-  --color-soft-2: #e6ddcd;
-  --color-card: #fbf8f1; /* Karten auf hellem Grund (warmes Off-White) */
+  --color-bg: #ffffff; /* Weiß – Grundfläche & Header */
+  --color-soft: #f2f2f3; /* helles Grau – abwechselnde helle Sektion */
+  --color-soft-2: #e4e4e6;
+  --color-card: #ffffff; /* Karten auf hellem Grund */
 
-  --color-dark: #2b2920; /* Oliv-Anthrazit – dunkle Fläche */
-  --color-dark-soft: #353227; /* etwas heller – Karten auf dunkel */
-  --color-darker: #201e17; /* Footer */
+  --color-dark: #2b2b2e; /* dunkles Grau – dunkle Fläche */
+  --color-dark-soft: #38383b; /* etwas heller – Karten auf dunkel */
+  --color-darker: #1d1d1f; /* Footer */
 
-  --color-text: #3b3729; /* Text auf hellem Grund */
-  --color-heading: #2a281d; /* Überschriften auf hell */
-  --color-muted: #797261; /* gedämpfter Text (Taupe/Fels) */
+  --color-text: #333336; /* Text auf hellem Grund */
+  --color-heading: #1d1d1f; /* Überschriften auf hell */
+  --color-muted: #6a6a6e; /* gedämpfter Text */
 
-  --color-invert: #f4ecdf; /* Text auf dunkler Fläche (Creme, nicht reinweiß) */
-  --color-invert-muted: rgba(244, 236, 223, 0.66);
+  --color-invert: #ffffff; /* Text auf dunkler Fläche */
+  --color-invert-muted: rgba(255, 255, 255, 0.66);
 
-  --color-accent: #4f5c37; /* Oliv-Grün – Akzent (Links, Buttons, Eyebrows) */
-  --color-accent-deep: #3b4628; /* dunkler Akzent – Hover */
+  --color-accent: #2b2b2e; /* Akzent (Links, Buttons, Eyebrows) */
+  --color-accent-deep: #111113; /* dunkler Akzent – Hover */
 
-  --color-line: rgba(43, 41, 32, 0.14);
-  --color-line-soft: rgba(43, 41, 32, 0.08);
-  --color-line-invert: rgba(244, 236, 223, 0.18);
+  --color-line: rgba(30, 30, 32, 0.14);
+  --color-line-soft: rgba(30, 30, 32, 0.08);
+  --color-line-invert: rgba(255, 255, 255, 0.18);
 
   --font-body: "Ubuntu", system-ui, sans-serif;
   --font-display: "Ubuntu", system-ui, sans-serif;
@@ -80,7 +79,7 @@ button:focus-visible {
 }
 
 /* ------------------------------------------------------------------
-   Header / Navigation (hell, im Logo-Stil)
+   Header / Navigation (weiß)
 ------------------------------------------------------------------- */
 header {
   position: fixed;
@@ -95,7 +94,7 @@ header {
 }
 header.scrolled {
   padding: 12px 0;
-  box-shadow: 0 6px 22px rgba(43, 41, 32, 0.12);
+  box-shadow: 0 6px 22px rgba(30, 30, 32, 0.12);
 }
 .nav {
   display: flex;
@@ -172,7 +171,7 @@ header.scrolled {
 }
 
 /* ------------------------------------------------------------------
-   Hero – Foto mit warmer Abdunklung, Creme-Text
+   Hero – Foto mit dunkelgrauer Abdunklung, weißer Text
 ------------------------------------------------------------------- */
 .hero {
   position: relative;
@@ -205,13 +204,13 @@ header.scrolled {
   }
 }
 .hero-media::after {
-  /* warme Abdunklung für lesbaren Creme-Text (links stärker) */
+  /* Abdunklung für lesbaren weißen Text (links stärker) */
   content: "";
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(30, 28, 20, 0.86) 0%, rgba(30, 28, 20, 0.58) 55%, rgba(30, 28, 20, 0.34) 100%),
-    linear-gradient(180deg, rgba(30, 28, 20, 0.18), rgba(30, 28, 20, 0.55));
+    linear-gradient(90deg, rgba(20, 20, 22, 0.86) 0%, rgba(20, 20, 22, 0.58) 55%, rgba(20, 20, 22, 0.34) 100%),
+    linear-gradient(180deg, rgba(20, 20, 22, 0.18), rgba(20, 20, 22, 0.55));
 }
 .hero-wrap {
   position: relative;
@@ -224,7 +223,7 @@ header.scrolled {
 }
 .hero-card .eyebrow {
   display: block;
-  color: rgba(244, 236, 223, 0.8);
+  color: rgba(255, 255, 255, 0.8);
   margin-bottom: 18px;
 }
 .hero-card h1 {
@@ -237,12 +236,12 @@ header.scrolled {
 }
 .hero-card h1 em {
   font-style: normal;
-  color: rgba(244, 236, 223, 0.52);
+  color: rgba(255, 255, 255, 0.52);
 }
 .hero-sub {
   font-size: 18px;
   line-height: 1.65;
-  color: rgba(244, 236, 223, 0.74);
+  color: rgba(255, 255, 255, 0.74);
   max-width: 52ch;
 }
 .hero-actions {
@@ -258,15 +257,50 @@ header.scrolled {
   border-color: var(--color-invert);
 }
 .hero-card .btn-primary:hover {
-  background: #fffdf8;
-  border-color: #fffdf8;
+  background: #e9e9ea;
+  border-color: #e9e9ea;
 }
 .hero-card .btn-ghost {
   color: var(--color-invert);
-  border-bottom-color: rgba(244, 236, 223, 0.4);
+  border-bottom-color: rgba(255, 255, 255, 0.4);
 }
 .hero-card .btn-ghost:hover {
   border-bottom-color: var(--color-invert);
+}
+
+/* Hintergrundvideo im Hero: füllt die Fläche wie das Foto, ohne Zoom */
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hero-video-toggle {
+  position: absolute;
+  right: 28px;
+  bottom: 24px;
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  background: rgba(20, 20, 22, 0.35);
+  color: var(--color-invert);
+  font-size: 11px;
+  letter-spacing: -1px;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+.hero-video-toggle:hover {
+  border-color: var(--color-invert);
+  background: rgba(20, 20, 22, 0.55);
+}
+.hero-video-toggle:focus-visible {
+  outline: 2px solid var(--color-invert);
+  outline-offset: 3px;
 }
 
 /* ------------------------------------------------------------------
@@ -313,10 +347,10 @@ section {
 }
 
 /* ------------------------------------------------------------------
-   Expertise – helle Creme-Fläche, Bereiche als Karten
+   Expertise – weiße Fläche, Bereiche als abgestuft graue Karten
 ------------------------------------------------------------------- */
 .expertise {
-  background: var(--color-soft);
+  background: var(--color-bg);
 }
 .pillars-intro {
   display: flex;
@@ -356,7 +390,7 @@ section {
 }
 .pillar:hover {
   transform: translateY(-4px);
-  box-shadow: 0 16px 40px rgba(43, 41, 32, 0.12);
+  box-shadow: 0 16px 40px rgba(30, 30, 32, 0.12);
 }
 .pillar-media {
   height: 210px;
@@ -412,6 +446,36 @@ section {
   transform: translateX(4px);
 }
 
+/* Abstufung der drei Bereichskarten: hellgrau, mittelgrau, dunkelgrau */
+.pillar--tone-1 {
+  background: #e9e9ea;
+}
+.pillar--tone-2 {
+  background: #5a5a5e;
+  border-color: transparent;
+}
+.pillar--tone-3 {
+  background: #2b2b2e;
+  border-color: transparent;
+}
+.pillar--tone-2 h3,
+.pillar--tone-3 h3,
+.pillar--tone-2 .tag,
+.pillar--tone-3 .tag,
+.pillar--tone-2 .more,
+.pillar--tone-3 .more {
+  color: var(--color-invert);
+}
+.pillar--tone-2 .desc {
+  color: rgba(255, 255, 255, 0.84);
+}
+.pillar--tone-3 .desc {
+  color: rgba(255, 255, 255, 0.72);
+}
+.pillar--tone-1 .desc {
+  color: #525256;
+}
+
 /* ------------------------------------------------------------------
    Publikationen – dunkle Fläche, Foto-Karten
 ------------------------------------------------------------------- */
@@ -420,7 +484,7 @@ section {
   color: var(--color-invert);
 }
 .publications .eyebrow {
-  color: rgba(244, 236, 223, 0.8);
+  color: rgba(255, 255, 255, 0.8);
 }
 .pub-head {
   max-width: 62ch;
@@ -436,7 +500,7 @@ section {
   color: var(--color-invert);
 }
 .pub-head p {
-  color: rgba(244, 236, 223, 0.7);
+  color: rgba(255, 255, 255, 0.7);
   margin-top: 16px;
   font-size: 15.5px;
 }
@@ -483,7 +547,7 @@ section {
   font-size: 12px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: rgba(244, 236, 223, 0.55);
+  color: rgba(255, 255, 255, 0.55);
   margin-bottom: 12px;
 }
 .pub-meta .cat {
@@ -492,7 +556,7 @@ section {
 }
 .pub-meta .dot {
   margin: 0 6px;
-  color: rgba(244, 236, 223, 0.4);
+  color: rgba(255, 255, 255, 0.4);
 }
 .pub-content h3 {
   font-family: var(--font-display);
@@ -502,7 +566,7 @@ section {
   color: var(--color-invert);
 }
 .pub-content p {
-  color: rgba(244, 236, 223, 0.64);
+  color: rgba(255, 255, 255, 0.64);
   font-size: 14px;
   line-height: 1.6;
   margin-top: 10px;
@@ -513,7 +577,7 @@ section {
   font-size: 11px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(244, 236, 223, 0.55);
+  color: rgba(255, 255, 255, 0.55);
   border: 1px solid var(--color-line-invert);
   padding: 4px 10px;
   border-radius: 2px;
@@ -544,8 +608,81 @@ section {
   border-color: var(--color-invert);
 }
 
+/* Karussell: Karten laufen seitlich durch. Die Verschiebung setzt die
+   Komponente (translateX), hier stehen Breite und Abstand der Karten. */
+.pub-carousel {
+  --pub-gap: 26px;
+}
+.pub-viewport {
+  overflow: hidden;
+}
+.pub-track {
+  display: flex;
+  gap: var(--pub-gap);
+  transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.pub-slide {
+  display: flex;
+  flex: 0 0 calc((100% - 2 * var(--pub-gap)) / 3);
+}
+.pub-slide .pub-card {
+  width: 100%;
+}
+.pub-slide .pub-card:hover {
+  transform: none;
+  box-shadow: none;
+}
+.pub-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 28px;
+}
+.pub-dots {
+  display: flex;
+  gap: 6px;
+}
+.pub-dot {
+  width: 30px;
+  height: 20px;
+  padding: 9px 0;
+  border: 0;
+  background: rgba(255, 255, 255, 0.28);
+  background-clip: content-box;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.pub-dot.active {
+  background-color: var(--color-invert);
+}
+.pub-dot:focus-visible,
+.pub-nav:focus-visible {
+  outline: 2px solid var(--color-invert);
+  outline-offset: 3px;
+}
+.pub-arrows {
+  display: flex;
+  gap: 10px;
+}
+.pub-nav {
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--color-line-invert);
+  border-radius: 2px;
+  background: transparent;
+  color: var(--color-invert);
+  font-family: inherit;
+  font-size: 18px;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+.pub-nav:hover {
+  border-color: var(--color-invert);
+}
+
 /* ------------------------------------------------------------------
-   Über uns – helle Creme-Fläche
+   Über uns – hellgraue Fläche
 ------------------------------------------------------------------- */
 .about {
   background: var(--color-soft);
@@ -638,7 +775,7 @@ section {
   text-align: center;
 }
 .contact .eyebrow {
-  color: rgba(244, 236, 223, 0.8);
+  color: rgba(255, 255, 255, 0.8);
 }
 .contact h2 {
   font-family: var(--font-display);
@@ -651,7 +788,7 @@ section {
   color: var(--color-invert);
 }
 .contact p {
-  color: rgba(244, 236, 223, 0.72);
+  color: rgba(255, 255, 255, 0.72);
   max-width: 48ch;
   margin: 0 auto 34px;
 }
@@ -662,8 +799,8 @@ section {
   border-color: var(--color-invert);
 }
 .contact .btn-primary:hover {
-  background: #fffdf8;
-  border-color: #fffdf8;
+  background: #e9e9ea;
+  border-color: #e9e9ea;
 }
 
 /* Kontaktformular (linksbündig, auf dunkler Fläche zentriert) */
@@ -685,14 +822,14 @@ section {
 .field label {
   font-size: 13px;
   font-weight: 500;
-  color: rgba(244, 236, 223, 0.75);
+  color: rgba(255, 255, 255, 0.75);
 }
 .field input,
 .field textarea {
   font-family: inherit;
   font-size: 15px;
   color: var(--color-invert);
-  background: rgba(244, 236, 223, 0.06);
+  background: rgba(255, 255, 255, 0.06);
   border: 1px solid var(--color-line-invert);
   border-radius: 2px;
   padding: 12px 14px;
@@ -705,8 +842,8 @@ section {
 .field input:focus,
 .field textarea:focus {
   outline: none;
-  border-color: rgba(244, 236, 223, 0.6);
-  background: rgba(244, 236, 223, 0.1);
+  border-color: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.1);
 }
 .field-invalid input,
 .field-invalid textarea {
@@ -733,13 +870,13 @@ section {
   margin-bottom: 10px;
 }
 .contact-done p {
-  color: rgba(244, 236, 223, 0.72);
+  color: rgba(255, 255, 255, 0.72);
   max-width: 46ch;
   margin: 0 auto 20px;
 }
 .contact-done .btn-ghost {
   color: var(--color-invert);
-  border-bottom-color: rgba(244, 236, 223, 0.4);
+  border-bottom-color: rgba(255, 255, 255, 0.4);
   background: none;
   font-family: inherit;
   cursor: pointer;
@@ -748,12 +885,35 @@ section {
   border-bottom-color: var(--color-invert);
 }
 
+.contact-error {
+  margin: 4px 0 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #e2a184;
+}
+.contact-error a {
+  color: var(--color-invert);
+  text-decoration: underline;
+}
+.contact-form .btn-primary:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+/* Unsichtbares Feld gegen Spam-Bots (Honeypot). Menschen sehen es nicht. */
+.hp-field {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 /* ------------------------------------------------------------------
    Footer / Impressum (dunkelste Fläche)
 ------------------------------------------------------------------- */
 footer {
   background: var(--color-darker);
-  color: rgba(244, 236, 223, 0.8);
+  color: rgba(255, 255, 255, 0.8);
 }
 .footer-top {
   display: flex;
@@ -766,7 +926,7 @@ footer {
   color: var(--color-invert);
 }
 .footer-brand p {
-  color: rgba(244, 236, 223, 0.6);
+  color: rgba(255, 255, 255, 0.6);
   font-size: 14px;
   max-width: 34ch;
   margin-top: 12px;
@@ -781,13 +941,13 @@ footer {
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(244, 236, 223, 0.5);
+  color: rgba(255, 255, 255, 0.5);
   margin-bottom: 16px;
 }
 .footer-col a {
   display: block;
   font-size: 14.5px;
-  color: rgba(244, 236, 223, 0.8);
+  color: rgba(255, 255, 255, 0.8);
   margin-bottom: 10px;
   transition: color 0.2s ease;
 }
@@ -795,7 +955,7 @@ footer {
   color: var(--color-invert);
 }
 .impressum {
-  border-top: 1px solid rgba(244, 236, 223, 0.14);
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
   padding: 30px 0;
 }
 .impressum h5 {
@@ -803,14 +963,14 @@ footer {
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(244, 236, 223, 0.8);
+  color: rgba(255, 255, 255, 0.8);
   margin-bottom: 14px;
 }
 .impressum .imp-grid {
   display: flex;
   gap: 60px;
   flex-wrap: wrap;
-  color: rgba(244, 236, 223, 0.6);
+  color: rgba(255, 255, 255, 0.6);
   font-size: 13.5px;
   line-height: 1.75;
 }
@@ -824,7 +984,7 @@ footer {
   justify-content: space-between;
   gap: 20px;
   flex-wrap: wrap;
-  color: rgba(244, 236, 223, 0.45);
+  color: rgba(255, 255, 255, 0.45);
   font-size: 12.5px;
 }
 
@@ -836,7 +996,7 @@ footer {
   color: var(--color-invert);
 }
 .leistungen .eyebrow {
-  color: rgba(244, 236, 223, 0.8);
+  color: rgba(255, 255, 255, 0.8);
 }
 .leistungen-grid {
   display: grid;
@@ -850,7 +1010,7 @@ footer {
   font-family: var(--font-display);
   font-weight: 300;
   font-size: 34px;
-  color: rgba(244, 236, 223, 0.42);
+  color: rgba(255, 255, 255, 0.42);
 }
 .leistung h3 {
   font-family: var(--font-display);
@@ -862,7 +1022,7 @@ footer {
 .leistung p {
   font-size: 15px;
   line-height: 1.7;
-  color: rgba(244, 236, 223, 0.68);
+  color: rgba(255, 255, 255, 0.68);
 }
 
 /* ------------------------------------------------------------------
@@ -1111,13 +1271,13 @@ footer {
   color: var(--color-invert);
 }
 .offerings .eyebrow {
-  color: rgba(244, 236, 223, 0.8);
+  color: rgba(255, 255, 255, 0.8);
 }
 .offerings .section-head h2 {
   color: var(--color-invert);
 }
 .offerings .section-intro {
-  color: rgba(244, 236, 223, 0.68);
+  color: rgba(255, 255, 255, 0.68);
 }
 .offering-grid {
   display: grid;
@@ -1132,7 +1292,7 @@ footer {
   font-weight: 300;
   font-size: 34px;
   line-height: 1.1;
-  color: rgba(244, 236, 223, 0.42);
+  color: rgba(255, 255, 255, 0.42);
 }
 .offering h3 {
   font-family: var(--font-display);
@@ -1144,13 +1304,13 @@ footer {
 .offering p {
   font-size: 15px;
   line-height: 1.7;
-  color: rgba(244, 236, 223, 0.68);
+  color: rgba(255, 255, 255, 0.68);
 }
 .offering .offering-ergebnis {
   margin-top: 16px;
   padding-top: 14px;
   border-top: 1px solid var(--color-line-invert);
-  color: rgba(244, 236, 223, 0.88);
+  color: rgba(255, 255, 255, 0.88);
 }
 .offering-ergebnis span {
   display: block;
@@ -1158,7 +1318,7 @@ footer {
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(244, 236, 223, 0.5);
+  color: rgba(255, 255, 255, 0.5);
   margin-bottom: 5px;
 }
 
@@ -1379,7 +1539,7 @@ footer {
   gap: 6px;
   font-size: 14px;
   font-weight: 500;
-  color: rgba(244, 236, 223, 0.85);
+  color: rgba(255, 255, 255, 0.85);
   margin-bottom: 24px;
   transition: color 0.2s ease;
 }
@@ -1387,7 +1547,7 @@ footer {
   color: var(--color-invert);
 }
 .page-hero .eyebrow {
-  color: rgba(244, 236, 223, 0.8);
+  color: rgba(255, 255, 255, 0.8);
 }
 .page-hero h1 {
   font-family: var(--font-display);
@@ -1400,7 +1560,7 @@ footer {
 .page-hero .lead {
   font-size: clamp(17px, 2vw, 20px);
   line-height: 1.6;
-  color: rgba(244, 236, 223, 0.9);
+  color: rgba(255, 255, 255, 0.9);
   max-width: 60ch;
 }
 .page-body {
@@ -1472,6 +1632,9 @@ footer {
    Responsive (Tablet / Handy)
 ------------------------------------------------------------------- */
 @media (max-width: 980px) {
+  .pub-slide {
+    flex-basis: calc((100% - var(--pub-gap)) / 2);
+  }
   .pillars {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -1493,6 +1656,9 @@ footer {
   }
 }
 @media (max-width: 860px) {
+  .pub-slide {
+    flex-basis: 100%;
+  }
   /* Navigation als aufklappbares Menue (hell) */
   .nav-links {
     display: none;
@@ -1505,7 +1671,7 @@ footer {
     gap: 0;
     background: var(--color-bg);
     border-bottom: 1px solid var(--color-line);
-    box-shadow: 0 8px 20px rgba(43, 41, 32, 0.12);
+    box-shadow: 0 8px 20px rgba(30, 30, 32, 0.12);
     padding: 8px 28px 20px;
   }
   .nav-links.open {

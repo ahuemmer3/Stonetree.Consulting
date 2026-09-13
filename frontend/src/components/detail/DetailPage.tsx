@@ -41,7 +41,7 @@ export default function DetailPage({
       <section
         className="page-hero"
         style={{
-          backgroundImage: `linear-gradient(135deg, rgba(30,28,20,0.9), rgba(30,28,20,0.72)), url(${image})`,
+          backgroundImage: `linear-gradient(135deg, rgba(20,20,22,0.9), rgba(20,20,22,0.72)), url(${image})`,
         }}
       >
         <div className="wrap">

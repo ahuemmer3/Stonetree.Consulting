@@ -58,7 +58,7 @@ export default function Kundenprojekte() {
         </div>
 
         <p className="cases-note">
-          Beispiele anonymisiert, Kennzahlen exemplarisch.
+          Beispiele anonymisiert und vereinfacht dargestellt.
         </p>
       </div>
     </section>
