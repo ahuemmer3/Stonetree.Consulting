@@ -11,7 +11,6 @@ Fuer die spaetere Live-Seite sollten idealerweise eigene Fotos verwendet werden
 gleichem Namen ersetzen.
 
 Verwendete Motive (Stand: Platzhalter):
-- hero.jpg               Business-Meeting / Zusammenarbeit
 - expertise-beratung.jpg Partnerschaft / Team
 - expertise-ai.jpg       Platine / Technik (AI Automation)
 - expertise-research.jpg Angewandte Forschung im Labor
@@ -28,10 +27,16 @@ LOGO (kein Stock, eigenes Markenzeichen)
 - favicon.png / -32.png  Browser-Tab-Icon
 Zugeschnitten aus der Original-Logodatei; frei fuer die eigene Seite verwendbar.
 
-VIDEO (Platzhalter)
--------------------
-- ../videos/hero.mp4     Office Meeting (Mixkit, Clip 261, 720p, 11 s)
-                         https://mixkit.co/free-stock-video/office-meeting-261/
-                         Lizenz: Mixkit Stock Video Free License, https://mixkit.co/license/
-Zum Austauschen public/videos/hero.mp4 durch eine Datei gleichen Namens ersetzen
-(stumm, kurz, Dauerschleife, ideal unter 10 MB).
+VIDEO IM HERO (Platzhalter, Ordner public/media/)
+-------------------------------------------------
+- hero.mp4 / .webm / -poster.jpg
+                         Luftaufnahme einer Fabrikhalle (Pexels, Video 30899654,
+                         von "Toan BDS", Ausschnitt 0,5 bis 16,5 s)
+                         https://www.pexels.com/video/aerial-view-of-large-industrial-factory-30899654/
+- hero-2.mp4 / .webm / -poster.jpg
+                         Fassade eines Buerohochhauses (Pexels, Video 4673651,
+                         von Tom Fisk, Ausschnitt 6 bis 22 s)
+                         https://www.pexels.com/video/drone-footage-of-building-4673651/
+Lizenz beider Clips: Pexels License (kommerziell frei), https://www.pexels.com/license/
+Aufbereitung und Austausch: frontend/scripts/prepare-hero-video.sh,
+Clip-Liste in src/data/heroClips.ts, Details in UMSETZUNG.md.

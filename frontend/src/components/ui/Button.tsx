@@ -1,23 +1,30 @@
 import type { ReactNode } from "react"
+import { Link } from "react-router-dom"
 
-// Link, der wie ein Button aussieht.
-// variant "primary" = gefuellter Akzent-Button, "ghost" = dezenter Textlink.
+// Link im Button-Look.
+//   primary   gefüllter Akzent-Button, pro Ansicht die wichtigste Aktion
+//   secondary Rahmen ohne Füllung
+// Interne Seiten über to, Anker und andere Adressen über href.
 interface ButtonProps {
-  href: string
-  variant?: "primary" | "ghost"
+  to?: string
+  href?: string
+  variant?: "primary" | "secondary"
   children: ReactNode
-  className?: string
 }
 
 export default function Button({
+  to,
   href,
   variant = "primary",
   children,
-  className = "",
 }: ButtonProps) {
-  const base = variant === "ghost" ? "btn-ghost" : "btn-primary"
-  return (
-    <a href={href} className={`${base} ${className}`.trim()}>
+  const className = `btn btn--${variant}`
+  return to ? (
+    <Link to={to} className={className}>
+      {children}
+    </Link>
+  ) : (
+    <a href={href} className={className}>
       {children}
     </a>
   )

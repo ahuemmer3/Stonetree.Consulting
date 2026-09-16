@@ -1,0 +1,66 @@
+/* ------------------------------------------------------------------
+   Design-Tokens. Alle Farben der Seite stehen hier und nur hier.
+   Komponenten und übrige Stylesheets verwenden ausschließlich diese
+   Variablen. Begründung und Regeln: UMSETZUNG.md, Farbsystem.
+------------------------------------------------------------------- */
+:root {
+  /* Flächen */
+  --surface: #ffffff; /* Standardhintergrund */
+  --surface-muted: #f4f6f7; /* leicht abgesetzte Sektion, kühles Grau */
+  --surface-dark: #10161a; /* nur Hero und Footer */
+
+  /* Linien */
+  --border: #e2e6e9; /* Hairlines, Kartenrahmen, Trennlinien */
+  --border-strong: #c9cfd4;
+
+  /* Text */
+  --text: #121a1f; /* Überschriften */
+  --text-body: #4a555e; /* Fließtext */
+  /* Kicker, Datum, Bildunterschrift. Vorgabe war #78858e, das erreicht auf
+     Weiß nur 3,8 zu 1. Dieser Wert liegt bei 5,0 zu 1 (auf surface-muted 4,6). */
+  --text-muted: #64717a;
+  --text-on-dark: #ffffff;
+  --text-on-dark-muted: #b4bec5; /* 9,6 zu 1 auf surface-dark */
+
+  /* Akzent. Nur an den Stellen aus UMSETZUNG.md, sonst nirgends. */
+  --accent: #1b5e4b; /* Tannengrün */
+  --accent-hover: #164c3d;
+  --accent-soft: #e8f1ee;
+
+  /* Diagramme: Werte ohne Hervorhebung */
+  --chart-muted: #848f97;
+
+  /* Fehlermeldungen im Formular */
+  --danger: #b42318;
+
+  /* Schrift */
+  --font-body: "Ubuntu", system-ui, sans-serif;
+
+  /* Maße */
+  --wrap: 1180px;
+  --gutter: 28px;
+  --section-space: 96px;
+  --measure: 68ch; /* maximale Zeilenlänge für Fließtext */
+  --radius: 4px;
+  --service-bar-h: 36px;
+  --nav-h: 76px;
+  --nav-h-compact: 62px;
+}
+
+/* Umschaltbarer Akzent zum Vergleichen: ?akzent=blau in der Adresse
+   (siehe src/features/theme/accent.ts). */
+:root[data-accent="blau"] {
+  --accent: #1d4ed8;
+  --accent-hover: #1e40af;
+  --accent-soft: #e8eefc;
+}
+
+@media (max-width: 860px) {
+  :root {
+    --gutter: 20px;
+    --section-space: 64px;
+    --service-bar-h: 0px;
+    --nav-h: 64px;
+    --nav-h-compact: 56px;
+  }
+}

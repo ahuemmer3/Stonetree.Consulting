@@ -82,12 +82,36 @@ Alle Fotos liegen in `public/images/` und sind **Platzhalter von Unsplash**
 (lizenzfrei nutzbar). Zum Austauschen einfach die Datei mit gleichem Namen
 ersetzen – der Code bleibt unveraendert:
 
-- `hero.jpg` – grosses Hero-Foto (dunkel abgedunkelt fuer weisse Schrift)
 - `expertise-*.jpg` – je Bereich ein Foto (siehe `data/pillars.js`, Feld `image`)
 - `pub-*.jpg` – je Publikation ein Foto (siehe `data/publications.js`)
 
 Fuer die spaetere Live-Seite empfiehlt sich, eigene Fotos zu verwenden.
 Bildnachweis: siehe `public/images/BILDNACHWEIS.txt`.
+
+### Hero-Video
+
+Das Hintergrundvideo im Hero liegt in `public/media/`. Es wird nicht ueber den
+Bundler importiert. Je Clip gibt es drei Dateien:
+
+| Datei | Format |
+| --- | --- |
+| `<name>.mp4` | H.264, 1920 breit, 25 fps, ohne Tonspur, faststart, unter 6 MB |
+| `<name>.webm` | VP9, gleiche Groesse, ohne Tonspur, kleiner als die mp4 |
+| `<name>-poster.jpg` | erstes Bild des Clips |
+
+Clips sind 12 bis 25 Sekunden lang und stammen nur aus frei lizenzierten
+Quellen (Pexels, Coverr, Mixkit). Quelle und Lizenz in `BILDNACHWEIS.txt`
+und `UMSETZUNG.md` eintragen.
+
+Neuen Clip aufbereiten (braucht ffmpeg):
+
+```bash
+cd frontend
+scripts/prepare-hero-video.sh ~/Downloads/quelle.mp4 hero-3 0 16
+```
+
+Danach den Clip in `src/data/heroClips.ts` eintragen. Die Reihenfolge dort ist
+die Abspielreihenfolge. Ein einzelner Clip laeuft in Schleife.
 
 ## Naechste Schritte (laut Arbeitsplan)
 

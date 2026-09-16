@@ -253,6 +253,104 @@ Dateien: `src/styles/index.css`, `src/data/leistungen.ts`,
 Entfernt: `docs/kontaktformular-backend.md` (umgesetzt, Inhalt steht jetzt in
 `backend/` und `docs/hosting.md`).
 
+### Nacharbeit: Hero mit Hintergrundvideo
+Was: Der Hero zeigt statt eines Fotos stumme Clips, die nacheinander weich
+ineinander überblenden. Darüber liegen wie bisher Abdunklung, Überschrift, Text
+und Buttons. Die Seite funktioniert ohne Video vollständig, dann steht das
+Standbild des ersten Clips.
+Warum: Große Beratungsseiten arbeiten mit ruhigen Bewegtbildern im Kopfbereich.
+Das Video soll zeigen, wo die Arbeit von stonetree ankommt: in Werken und Büros
+des Mittelstands. Es ist Dekoration und trägt keine Information.
+
+Aufbau:
+- `src/data/heroClips.ts`: Liste der Clips (mp4, webm, Standbild groß und klein,
+  Beschreibung). Die Reihenfolge ist die Abspielreihenfolge.
+- `src/features/hero-video/videoPolicy.ts`: entscheidet, ob ein Video lädt.
+- `src/features/hero-video/useHeroVideo.ts`: Abspielen, Überblenden, Pausieren.
+- `src/features/hero-video/HeroMedia.tsx`: nur die Darstellung.
+- `scripts/prepare-hero-video.sh`: bereitet Clips reproduzierbar mit ffmpeg auf.
+- Dateien liegen in `public/media/` und gehen nicht durch den Bundler.
+
+Clips:
+
+| Datei | Motiv | Quelle | Lizenz |
+| --- | --- | --- | --- |
+| `hero.*` | Luftaufnahme einer Fabrikhalle, Ausschnitt 0,5 bis 16,5 s | [Pexels 30899654](https://www.pexels.com/video/aerial-view-of-large-industrial-factory-30899654/), Toàn BDS | [Pexels License](https://www.pexels.com/license/) |
+| `hero-2.*` | Drohnenflug an einer Hochhausfassade, Ausschnitt 6 bis 22 s | [Pexels 4673651](https://www.pexels.com/video/drone-footage-of-building-4673651/), Tom Fisk | [Pexels License](https://www.pexels.com/license/) |
+
+Beide Aufnahmen stammen nicht aus Deutschland. Für die Live-Seite sind eigene
+Aufnahmen von Kunden oder Standorten besser.
+
+ffmpeg-Einstellungen und Gründe:
+
+| Einstellung | Grund |
+| --- | --- |
+| `scale=1920:-2`, `fps=25` | Mehr als Full HD bringt im Hintergrund nichts. |
+| `-an` | Keine Tonspur. Sie kostet nur Bytes und blockiert auf manchen Geräten Autoplay. |
+| H.264, `-crf 32` (Fabrik) und `30` (Fassade), `-preset slow` | Mit CRF 26 lagen die Dateien bei 11,5 und 8,7 MB. Unter der Abdunklung fällt die stärkere Kompression nicht auf. Ergebnis 4,7 und 5,1 MB. |
+| `-movflags +faststart` | Der Index steht am Dateianfang, das Video startet vor dem kompletten Download. |
+| VP9, `-crf 50 -b:v 0` | Mit CRF 34 war die webm größer als die mp4. Ergebnis 3,7 und 3,6 MB. |
+| Standbild erstes Bild, `-q:v 16`, zusätzlich 960 Pixel breit | Das Standbild ist das LCP-Element. Mit `-q:v 3` hatte es 556 KB. Jetzt 207 KB groß und 57 KB klein. |
+| Länge 16 s, ohne harten Schnitt | Die Überblendung startet 800 ms vor dem Ende des Clips. So bleibt kein Standbild am Clipende stehen. Ein einzelner Clip blendet in sich selbst über. |
+
+Wann kein Video lädt:
+
+| Fall | Grund |
+| --- | --- |
+| „Bewegung reduzieren" im System | Barrierefreiheit. |
+| Fenster schmaler als 768 Pixel | Wenig Nutzen, kostet mobiles Datenvolumen. |
+| Datensparmodus (`saveData`) | Wunsch der Nutzerin oder des Nutzers. |
+| Verbindung `slow-2g`, `2g` oder `3g` | Das Video würde die Seite ausbremsen. |
+| Autoplay verweigert oder Datei fehlerhaft | Das Standbild bleibt, das ist ein gültiger Endzustand. |
+
+Die Prüfung läuft erst nach dem `load`-Ereignis. Der erste Render zeigt immer
+das Standbild. Außerhalb des Sichtbereichs hält das Video an
+(IntersectionObserver). Der nächste Clip lädt erst vier Sekunden vor dem
+Wechsel vor.
+
+Lesbarkeit: Die Abdunklung ist jetzt ein Verlauf von unten links (96 Prozent)
+nach oben rechts (55 Prozent). Geprüft wurde rechnerisch mit einem Bild pro
+Sekunde aus beiden Clips, bei 1024, 1440 und 1920 Pixeln Breite, jeweils am
+hellsten Punkt unter jedem Textblock. Mit der alten Abdunklung erreichte die
+graue dritte Zeile der Überschrift nur 3,75 zu 1. Jetzt liegt der schlechteste
+Wert aller Textstellen bei 4,64 zu 1. Die Schriftfarben blieben unverändert.
+
+Lighthouse (Leistung, lokaler Produktions-Build, `vite preview`):
+
+| | vorher | nachher |
+| --- | --- | --- |
+| Mobil: Punkte | 71 | 83 |
+| Mobil: LCP | 4,8 s | 4,1 s |
+| Mobil: Total Blocking Time | 320 ms | 90 ms |
+| Mobil: Datenmenge | 5.343 KiB | 551 KiB |
+| Desktop: Punkte | 97 | 96 bis 97 |
+| Desktop: LCP | 1,1 s | 1,2 s |
+| Desktop: Total Blocking Time | 0 ms | 0 bis 50 ms |
+| Desktop: Datenmenge | 4.608 KiB | 4.688 KiB |
+
+Vorher lud das Video schon beim ersten Aufruf, auch auf dem Handy. Der Desktop-LCP
+ist um 0,1 s gestiegen. Das liegt im Rahmen der Messschwankung, das Standbild
+ist mit 207 KB aber noch etwas schwerer als das alte Foto mit 191 KB.
+
+Geprüft im Browser (Chrome, Netzwerkliste aus Lighthouse): Desktop lädt das
+Standbild und `hero.webm`. Mit „Bewegung reduzieren" lädt nur das Standbild. Bei
+412 Pixeln Breite lädt nur das kleine Standbild. Keine Datei enthält eine
+Tonspur (`ffmpeg -i` zeigt nur einen Videostream).
+
+Abweichungen vom Auftrag:
+- Der kleine Pause-Knopf bleibt. WCAG 2.2.2 verlangt für bewegte Inhalte über
+  fünf Sekunden eine Möglichkeit zum Anhalten. Native Bedienelemente gibt es nicht.
+- Die Überblendung startet kurz vor dem Ende statt bei `onEnded`.
+- Die Clips stehen in `src/data/`, weil dort alle Inhalte des Projekts liegen.
+- Die manuellen Tests mit Netzwerkdrosselung und Betriebssystem-Einstellung
+  wurden über Lighthouse und Chrome-Schalter nachgestellt, nicht von Hand.
+
+Dateien: `src/components/sections/Hero.tsx`, `src/data/heroClips.ts`,
+`src/features/hero-video/*`, `src/styles/index.css`, `scripts/prepare-hero-video.sh`,
+`public/media/*`, `README.md` (frontend), `public/images/BILDNACHWEIS.txt`.
+Entfernt: `src/features/hero-video/useBackgroundVideo.ts`, `public/videos/`,
+`public/images/hero.jpg`.
+
 ## 4. Neue Struktur (Seitenbaum)
 
 ```

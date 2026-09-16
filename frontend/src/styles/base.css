@@ -1,0 +1,274 @@
+/* ------------------------------------------------------------------
+   Basis: Elemente, Raster, Sektionen, Buttons, Links, Einblenden
+------------------------------------------------------------------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  background: var(--surface);
+  color: var(--text-body);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+img {
+  display: block;
+  max-width: 100%;
+}
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+h1,
+h2,
+h3,
+h4 {
+  color: var(--text);
+  font-weight: 500;
+  line-height: 1.2;
+}
+ul,
+ol {
+  list-style: none;
+}
+
+/* Sichtbarer Fokus für Tastaturbedienung, passt sich hell und dunkel an */
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Inhalt beginnt unter dem festen Header */
+main {
+  padding-top: calc(var(--service-bar-h) + var(--nav-h));
+}
+/* Sprungziele nicht unter dem Header verstecken */
+[id] {
+  scroll-margin-top: calc(var(--nav-h-compact) + 16px);
+}
+
+.wrap {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding-inline: var(--gutter);
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Kicker über Überschriften: klein, Versalien, Akzentfarbe */
+.kicker {
+  display: inline-block;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+/* Auf dunklen Flächen reicht der Kontrast des Akzents nicht (2,3 zu 1) */
+.on-dark .kicker {
+  color: var(--text-on-dark-muted);
+}
+
+/* Fließtext auf lesbare Zeilenlänge begrenzen */
+.prose p {
+  max-width: var(--measure);
+  font-size: 17px;
+  line-height: 1.8;
+}
+.prose p + p {
+  margin-top: 1.1em;
+}
+
+/* Hinweis unter Inhalten mit fiktiven Werten */
+.note {
+  margin-top: 28px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* ------------------------------------------------------------------
+   Sektionen: weiß als Standard, abgesetzt in hellem Grau.
+   Gleichfarbige Nachbarn trennt eine Hairline, keine Farbfläche.
+------------------------------------------------------------------- */
+.section {
+  padding-block: var(--section-space);
+  background: var(--surface);
+}
+.section--muted {
+  background: var(--surface-muted);
+}
+.section--default + .section--default,
+.section--muted + .section--muted {
+  border-top: 1px solid var(--border);
+}
+
+.section-head {
+  display: grid;
+  gap: 14px;
+  max-width: var(--measure);
+  margin-bottom: 48px;
+}
+.section-head--split {
+  max-width: none;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  align-items: end;
+  column-gap: 56px;
+}
+.section-head--split .kicker {
+  grid-column: 1;
+}
+.section-head__title {
+  font-size: clamp(28px, 3.4vw, 42px);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+.section-head__intro {
+  max-width: var(--measure);
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--text-body);
+}
+.section-head--split .section-head__intro {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: end;
+}
+
+/* ------------------------------------------------------------------
+   Buttons und Links
+------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.2;
+  padding: 13px 24px;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+.btn--primary {
+  background: var(--accent);
+  color: var(--text-on-dark);
+}
+.btn--primary:hover {
+  background: var(--accent-hover);
+}
+.btn--secondary {
+  border-color: var(--border-strong);
+  color: var(--text);
+}
+.btn--secondary:hover {
+  border-color: var(--text);
+}
+.on-dark .btn--secondary {
+  border-color: var(--text-on-dark-muted);
+  color: var(--text-on-dark);
+}
+.on-dark .btn--secondary:hover {
+  border-color: var(--text-on-dark);
+}
+.btn:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+/* Link mit Pfeil. Der Pfeil trägt den Akzent, der Text bleibt Textfarbe. */
+.arrow {
+  display: inline-block;
+  color: var(--accent);
+  transition: transform 0.15s ease;
+}
+.arrow-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text);
+}
+.arrow-link:hover .arrow {
+  transform: translateX(4px);
+}
+.on-dark .arrow-link,
+.on-dark .arrow {
+  color: var(--text-on-dark);
+}
+
+/* ------------------------------------------------------------------
+   Einblenden beim Scrollen
+------------------------------------------------------------------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.reveal.in {
+  opacity: 1;
+  transform: none;
+}
+.reveal.d1 {
+  transition-delay: 0.08s;
+}
+.reveal.d2 {
+  transition-delay: 0.16s;
+}
+.reveal.d3 {
+  transition-delay: 0.24s;
+}
+
+@media (max-width: 860px) {
+  .section-head--split {
+    grid-template-columns: 1fr;
+  }
+  .section-head--split .section-head__intro {
+    grid-column: 1;
+    grid-row: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}

@@ -1,34 +1,18 @@
 import Button from "../ui/Button"
 import Reveal from "../ui/Reveal"
-import { useBackgroundVideo } from "../../features/hero-video/useBackgroundVideo"
+import { heroClips } from "../../data/heroClips"
+import HeroMedia from "../../features/hero-video/HeroMedia"
+import { useHeroVideo } from "../../features/hero-video/useHeroVideo"
 
-// Hintergrund: stummes Video in Dauerschleife, darunter das Foto als
-// Vorschaubild und Rückfall. Video austauschen: public/videos/hero.mp4
-// ersetzen, Foto: public/images/hero.jpg.
+// Hintergrund: stumme Clips, die nacheinander überblenden. Das Standbild des
+// ersten Clips steht sofort da und bleibt, wenn kein Video laden soll.
+// Clips pflegen: src/data/heroClips.ts, Dateien in public/media/.
 export default function Hero() {
-  const { enabled, videoRef, playing, toggle, onError } = useBackgroundVideo()
+  const video = useHeroVideo(heroClips)
 
   return (
     <section className="hero" id="top">
-      <div className="hero-media" aria-hidden="true">
-        {enabled ? (
-          <video
-            ref={videoRef}
-            className="hero-video"
-            poster="/images/hero.jpg"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
-            onError={onError}
-          >
-            <source src="/videos/hero.mp4" type="video/mp4" onError={onError} />
-          </video>
-        ) : (
-          <img className="hero-img" src="/images/hero.jpg" alt="" />
-        )}
-      </div>
+      <HeroMedia video={video} />
 
       <div className="wrap hero-wrap">
         <Reveal className="hero-card" immediate>
@@ -59,14 +43,14 @@ export default function Hero() {
       </div>
 
       {/* Bewegte Inhalte müssen sich anhalten lassen (WCAG 2.2.2) */}
-      {enabled && (
+      {video.enabled && (
         <button
           type="button"
           className="hero-video-toggle"
-          onClick={toggle}
-          aria-label={playing ? "Hintergrundvideo anhalten" : "Hintergrundvideo abspielen"}
+          onClick={video.toggle}
+          aria-label={video.playing ? "Hintergrundvideo anhalten" : "Hintergrundvideo abspielen"}
         >
-          <span aria-hidden="true">{playing ? "❚❚" : "▶"}</span>
+          <span aria-hidden="true">{video.playing ? "❚❚" : "▶"}</span>
         </button>
       )}
     </section>
