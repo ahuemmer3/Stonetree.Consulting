@@ -26,7 +26,7 @@ export default function ContactForm() {
           Ihre Nachricht ist bei uns angekommen. Wir melden uns zeitnah bei
           Ihnen zurück.
         </p>
-        <button type="button" className="btn-ghost" onClick={reset}>
+        <button type="button" className="btn btn--secondary" onClick={reset}>
           Weitere Nachricht schreiben
         </button>
       </div>
@@ -90,7 +90,7 @@ export default function ContactForm() {
         </p>
       )}
 
-      <button type="submit" className="btn-primary" disabled={sending}>
+      <button type="submit" className="btn btn--primary" disabled={sending}>
         {sending ? "Wird gesendet …" : "Nachricht senden"}
       </button>
     </form>

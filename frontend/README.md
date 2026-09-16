@@ -88,6 +88,23 @@ ersetzen – der Code bleibt unveraendert:
 Fuer die spaetere Live-Seite empfiehlt sich, eigene Fotos zu verwenden.
 Bildnachweis: siehe `public/images/BILDNACHWEIS.txt`.
 
+### Einheitliche Bildbehandlung
+
+Alle Fotos laufen durch ein Skript, damit die Seite nicht zusammengewuerfelt
+wirkt: mittig zugeschnitten, leicht entsaettigt, kuehler Weissabgleich und
+gleiche mittlere Helligkeit.
+
+```bash
+cd frontend
+scripts/prepare-image.sh ~/Downloads/quelle.jpg public/images/pub-1.jpg          # 3:2, 1200x800
+scripts/prepare-image.sh ~/Downloads/person.jpg public/images/team-1.jpg portrait # 4:5, schwarzweiss
+```
+
+Motive zeigen echte Arbeitssituationen (Whiteboard, Bildschirm, Werkstatt,
+Besprechung). Symbolbilder wie Handschlag oder Dashboard werden nicht mehr
+verwendet. Quellen nur von Unsplash oder Pexels, Nachweis in
+`public/images/BILDNACHWEIS.txt`.
+
 ### Hero-Video
 
 Das Hintergrundvideo im Hero liegt in `public/media/`. Es wird nicht ueber den

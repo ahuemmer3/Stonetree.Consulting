@@ -1,7 +1,9 @@
 import type { ReactNode } from "react"
-import { Link } from "react-router-dom"
 import Contact from "../sections/Contact"
+import PageHero from "../ui/PageHero"
+import PointGrid from "../ui/PointGrid"
 import Reveal from "../ui/Reveal"
+import Section from "../ui/Section"
 
 export interface DetailPoint {
   k: string
@@ -21,10 +23,9 @@ interface DetailPageProps {
   children?: ReactNode
 }
 
-// Vorlage für die Bereichs-Detailseiten: Hero mit Bild, Fließtext,
-// Dreispalter und Kontaktaufruf. Alles zwischen Dreispalter und Kontakt
-// kommt über children von der jeweiligen Seite (Ausgangslage, Bausteine,
-// Vorgehen und so weiter), damit die Reihenfolge dort bestimmt wird.
+// Vorlage für die Bereichsseiten: Seitenkopf mit Bild, Fließtext, Dreispalter
+// und Kontaktaufruf. Alles zwischen Dreispalter und Kontakt kommt über
+// children von der jeweiligen Seite, damit die Reihenfolge dort bestimmt wird.
 export default function DetailPage({
   tag,
   title,
@@ -38,41 +39,32 @@ export default function DetailPage({
 }: DetailPageProps) {
   return (
     <>
-      <section
-        className="page-hero"
-        style={{
-          backgroundImage: `linear-gradient(135deg, rgba(20,20,22,0.9), rgba(20,20,22,0.72)), url(${image})`,
-        }}
-      >
-        <div className="wrap">
-          <Link className="back" to={backHref}>
-            &larr; {backLabel}
-          </Link>
-          <span className="eyebrow">{tag}</span>
-          <h1>{title}</h1>
-          <p className="lead">{lead}</p>
-        </div>
-      </section>
+      <PageHero
+        kicker={tag}
+        title={title}
+        lead={lead}
+        image={image}
+        back={{ to: backHref, label: backLabel }}
+      />
 
-      <section className="page-body">
-        <div className="wrap">
-          <Reveal className="body-text">
-            {body.map((para, index) => (
-              <p key={index}>{para}</p>
-            ))}
-          </Reveal>
+      <Section>
+        <Reveal className="prose">
+          {body.map((absatz, index) => (
+            <p key={index}>{absatz}</p>
+          ))}
+        </Reveal>
 
-          <div className="page-points">
-            {points.map((point, index) => (
-              <Reveal className="pt" delay={index} key={point.title}>
-                <div className="k">{point.k}</div>
-                <h3>{point.title}</h3>
-                <p>{point.text}</p>
-              </Reveal>
-            ))}
-          </div>
+        <div className="detail-points">
+          <PointGrid
+            items={points.map((point) => ({
+              kicker: point.k,
+              title: point.title,
+              text: point.text,
+            }))}
+            columns={3}
+          />
         </div>
-      </section>
+      </Section>
 
       {children}
 

@@ -1,49 +1,39 @@
+import PointGrid from "../ui/PointGrid"
 import Reveal from "../ui/Reveal"
+import Section from "../ui/Section"
+import SectionHead from "../ui/SectionHead"
+import StatRow from "../ui/StatRow"
 import { about } from "../../data/about"
 import { approachItems } from "../../data/approach"
 
-// Abschnitt "Über uns": kurze Vorstellung + wie wir arbeiten.
+// Abschnitt "Über uns": kurze Vorstellung, Kennzahlen, Arbeitsweise.
 export default function About() {
   return (
-    <section className="section-pad about" id="ueber-uns">
-      <div className="wrap">
-        <Reveal as="span" className="eyebrow">
-          Über uns
-        </Reveal>
-        <Reveal as="h2" delay={1}>
-          {about.title}
-        </Reveal>
+    <Section id="ueber-uns">
+      <SectionHead kicker="Über uns" title={about.title} />
 
-        <Reveal className="about-intro" delay={2}>
-          {about.intro.map((para, index) => (
-            <p key={index}>{para}</p>
-          ))}
-        </Reveal>
+      <Reveal className="prose">
+        {about.intro.map((absatz, index) => (
+          <p key={index}>{absatz}</p>
+        ))}
+      </Reveal>
 
-        <Reveal className="about-facts" delay={2}>
-          {about.facts.map((fact) => (
-            <div className="fact" key={fact.l}>
-              <div className="n">{fact.n}</div>
-              <div className="l">{fact.l}</div>
-            </div>
-          ))}
-        </Reveal>
+      <StatRow items={about.facts} />
+      <p className="note">{about.factsHinweis}</p>
 
-        <Reveal as="p" delay={1} className="statement">
-          Wir verbinden <b>Erfahrung aus echten Kundenprojekten</b> mit der
-          Neugier unseres Research Labs.
-        </Reveal>
+      <Reveal as="p" className="statement">
+        Wir verbinden <b>Erfahrung aus echten Kundenprojekten</b> mit der
+        Neugier unseres Research Labs.
+      </Reveal>
 
-        <div className="approach-grid">
-          {approachItems.map((item, index) => (
-            <Reveal className="item" delay={index} key={item.k}>
-              <div className="k">{item.k}</div>
-              <h4>{item.title}</h4>
-              <p>{item.text}</p>
-            </Reveal>
-          ))}
-        </div>
+      <div className="about-approach">
+        <PointGrid items={approachItems.map(toPoint)} columns={3} />
       </div>
-    </section>
+    </Section>
   )
+}
+
+// Die Arbeitsweise-Punkte haben eigene Feldnamen, hier auf das Raster gemappt.
+function toPoint(item: { k: string; title: string; text: string }) {
+  return { kicker: item.k, title: item.title, text: item.text }
 }

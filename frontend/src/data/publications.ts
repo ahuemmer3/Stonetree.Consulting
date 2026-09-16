@@ -15,6 +15,8 @@ export interface Publication {
   date: string
   topics: string[]
   image: string
+  // beschreibt das Motiv für Vorlesesoftware
+  imageAlt: string
   pdfUrl?: string
 }
 
@@ -30,6 +32,7 @@ export const publications: Publication[] = [
     date: "August 2026",
     topics: ["KI-Automatisierung", "Prozesse"],
     image: "/images/pub-1.jpg",
+    imageAlt: "Zwei Personen besprechen Zahlen an einem Laptop",
   },
   {
     id: "pub-llm-freigabe",
@@ -40,6 +43,7 @@ export const publications: Publication[] = [
     date: "Juli 2026",
     topics: ["KI", "Regulatorik", "EU AI Act"],
     image: "/images/pub-3.jpg",
+    imageAlt: "Team schaut gemeinsam auf einen Bildschirm und diskutiert",
   },
   {
     id: "pub-prozessdaten",
@@ -52,6 +56,7 @@ export const publications: Publication[] = [
     date: "Juni 2026",
     topics: ["Daten", "KI-Automatisierung"],
     image: "/images/pub-2.jpg",
+    imageAlt: "Frau erklärt Notizen auf Haftzetteln an einer Wand",
   },
   {
     id: "pub-wirkung-2026",
@@ -62,6 +67,7 @@ export const publications: Publication[] = [
     date: "Mai 2026",
     topics: ["KI-Automatisierung", "Mittelstand"],
     image: "/images/pub-4.jpg",
+    imageAlt: "Mehrere Personen arbeiten an einem langen Tisch im Büro",
   },
   {
     id: "pub-insellösung",
@@ -72,6 +78,7 @@ export const publications: Publication[] = [
     date: "April 2026",
     topics: ["Automatisierung", "Prozesse"],
     image: "/images/pub-1.jpg",
+    imageAlt: "Zwei Personen besprechen Zahlen an einem Laptop",
   },
   {
     id: "pub-datenqualitaet",
@@ -83,5 +90,6 @@ export const publications: Publication[] = [
     date: "März 2026",
     topics: ["Daten", "Prozesse"],
     image: "/images/pub-3.jpg",
+    imageAlt: "Team schaut gemeinsam auf einen Bildschirm und diskutiert",
   },
 ]

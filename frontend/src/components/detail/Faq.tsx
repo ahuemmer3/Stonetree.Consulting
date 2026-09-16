@@ -1,29 +1,47 @@
 import Reveal from "../ui/Reveal"
-import SectionHead from "./SectionHead"
-import type { PillarBlock, PillarFaq } from "../../data/pillars"
+import Section from "../ui/Section"
+import SectionHead from "../ui/SectionHead"
 
-// Abschnitt "Häufige Fragen": aufklappbare Fragen über das native
-// details-Element. Kein zusätzliches JavaScript, funktioniert auch mit
-// Tastatur und Vorlesesoftware.
-export default function Faq({ block }: { block: PillarBlock<PillarFaq> }) {
+// Häufige Fragen als Akkordeon über das native details-Element.
+// Kein zusätzliches JavaScript, funktioniert mit Tastatur und Vorlesesoftware.
+export interface FaqItem {
+  frage: string
+  antwort: string
+}
+
+interface FaqProps {
+  kicker: string
+  title: string
+  intro?: string
+  items: FaqItem[]
+  id?: string
+  tone?: "default" | "muted"
+}
+
+export default function Faq({
+  kicker,
+  title,
+  intro,
+  items,
+  id = "fragen",
+  tone = "default",
+}: FaqProps) {
   return (
-    <section className="section-pad faq">
-      <div className="wrap">
-        <SectionHead
-          eyebrow={block.eyebrow}
-          title={block.title}
-          intro={block.intro}
-        />
-
-        <div className="faq-list">
-          {block.items.map((item, index) => (
-            <Reveal as="details" className="faq-item" delay={index % 3} key={item.frage}>
-              <summary>{item.frage}</summary>
-              <p>{item.antwort}</p>
-            </Reveal>
-          ))}
-        </div>
+    <Section id={id} tone={tone}>
+      <SectionHead kicker={kicker} title={title} intro={intro} />
+      <div className="faq-list">
+        {items.map((item, index) => (
+          <Reveal
+            as="details"
+            className="faq-item"
+            delay={index % 3}
+            key={item.frage}
+          >
+            <summary>{item.frage}</summary>
+            <p>{item.antwort}</p>
+          </Reveal>
+        ))}
       </div>
-    </section>
+    </Section>
   )
 }

@@ -1,8 +1,10 @@
-import Reveal from "../ui/Reveal"
-import SectionHead from "./SectionHead"
+import Card from "../ui/Card"
+import CardGrid from "../ui/CardGrid"
+import Section from "../ui/Section"
+import SectionHead from "../ui/SectionHead"
 import type { PillarBlock, PillarFormat } from "../../data/pillars"
 
-// Abschnitt "Einstieg": drei Formate mit Dauer und Leistungsumfang,
+// Abschnitt "Einstieg": Formate mit Dauer und Leistungsumfang,
 // vom kurzen Gespräch bis zum vollen Projekt.
 export default function Formats({
   block,
@@ -10,29 +12,29 @@ export default function Formats({
   block: PillarBlock<PillarFormat>
 }) {
   return (
-    <section className="section-pad formats">
-      <div className="wrap">
-        <SectionHead
-          eyebrow={block.eyebrow}
-          title={block.title}
-          intro={block.intro}
-        />
-
-        <div className="format-grid">
-          {block.items.map((item, index) => (
-            <Reveal className="format" delay={index} key={item.title}>
-              <span className="format-dauer">{item.dauer}</span>
-              <h3>{item.title}</h3>
-              <p>{item.text}</p>
-              <ul className="format-list">
-                {item.enthalten.map((eintrag) => (
-                  <li key={eintrag}>{eintrag}</li>
-                ))}
-              </ul>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-    </section>
+    <Section id="einstieg" tone="muted">
+      <SectionHead
+        kicker={block.eyebrow}
+        title={block.title}
+        intro={block.intro}
+      />
+      <CardGrid columns={3}>
+        {block.items.map((item, index) => (
+          <Card
+            key={item.title}
+            kicker={item.dauer}
+            title={item.title}
+            text={item.text}
+            revealDelay={index % 3}
+          >
+            <ul className="card__list">
+              {item.enthalten.map((eintrag) => (
+                <li key={eintrag}>{eintrag}</li>
+              ))}
+            </ul>
+          </Card>
+        ))}
+      </CardGrid>
+    </Section>
   )
 }

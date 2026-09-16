@@ -1,37 +1,35 @@
-import Reveal from "../ui/Reveal"
-import SectionHead from "./SectionHead"
+import NumberedSteps from "../ui/NumberedSteps"
+import Section from "../ui/Section"
+import SectionHead from "../ui/SectionHead"
 import type { PillarBlock, PillarOffering } from "../../data/pillars"
 
-// Abschnitt "Leistungsbausteine": sechs nummerierte Bausteine auf dunkler
-// Fläche, jeder mit dem Ergebnis, das am Ende beim Auftraggeber bleibt.
+// Abschnitt "Leistungsbausteine": nummerierte Bausteine, jeder mit dem
+// Ergebnis, das am Ende beim Auftraggeber bleibt.
 export default function Offerings({
   block,
 }: {
   block: PillarBlock<PillarOffering>
 }) {
   return (
-    <section className="section-pad offerings">
-      <div className="wrap">
-        <SectionHead
-          eyebrow={block.eyebrow}
-          title={block.title}
-          intro={block.intro}
-        />
-
-        <div className="offering-grid">
-          {block.items.map((item, index) => (
-            <Reveal className="offering" delay={index % 3} key={item.n}>
-              <div className="offering-n">{item.n}</div>
-              <h3>{item.title}</h3>
-              <p>{item.text}</p>
-              <p className="offering-ergebnis">
-                <span>Ergebnis</span>
-                {item.ergebnis}
-              </p>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-    </section>
+    <Section id="leistungsbausteine">
+      <SectionHead
+        kicker={block.eyebrow}
+        title={block.title}
+        intro={block.intro}
+      />
+      <NumberedSteps
+        items={block.items.map((item) => ({
+          n: item.n,
+          title: item.title,
+          text: item.text,
+          extra: (
+            <p className="step__result">
+              <span>Ergebnis</span>
+              {item.ergebnis}
+            </p>
+          ),
+        }))}
+      />
+    </Section>
   )
 }

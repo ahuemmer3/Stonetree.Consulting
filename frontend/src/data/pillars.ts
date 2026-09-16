@@ -71,6 +71,8 @@ export interface Pillar {
   tag: string
   title: string
   image: string
+  // beschreibt das Motiv für Vorlesesoftware
+  imageAlt: string
   anchor?: string
   desc: string
   detail: PillarDetail
@@ -83,6 +85,8 @@ export const pillars: Pillar[] = [
     tag: "Consulting",
     title: "Consulting",
     image: "/images/expertise-beratung.jpg",
+    imageAlt:
+      "Mann erklärt am Whiteboard, Kolleginnen und Kollegen hören zu und machen Notizen",
     desc: "Wir begleiten mittelständische Unternehmen bei Strategie und Ausrichtung, mit Entscheidungen, die über einzelne Quartale hinaus tragen. Von der Marktanalyse über die Positionierung bis zur Umsetzung, immer nah an den Zahlen und am Geschäft.",
     detail: {
       lead: "Strategie und Ausrichtung für den Mittelstand. Von der ersten Analyse bis zur Umsetzung im Betrieb.",
@@ -296,6 +300,8 @@ export const pillars: Pillar[] = [
     tag: "Automatisierung",
     title: "KI-Automatisierung",
     image: "/images/expertise-ai.jpg",
+    imageAlt:
+      "Blick über die Schulter auf einen Bildschirm mit Programmcode",
     desc: "Wir bringen Künstliche Intelligenz dort zum Einsatz, wo sie messbaren Nutzen bringt. Wir automatisieren Abläufe gezielt, ohne unnötige Komplexität und ohne Technik um ihrer selbst willen.",
     detail: {
       lead: "Künstliche Intelligenz und Automatisierung dort, wo sie im Mittelstand messbaren Nutzen bringen.",
@@ -511,6 +517,8 @@ export const pillars: Pillar[] = [
     tag: "Research",
     title: "Research Lab",
     image: "/images/expertise-research.jpg",
+    imageAlt:
+      "Drei Personen besprechen etwas an einem Tisch mit Laptop und Notizen",
     desc: "In unserem Labor erproben wir neue Methoden, bevor sie zum Standard werden. Was sich bewährt, fließt zurück in unsere Projekte und wird offen geteilt.",
     detail: {
       lead: "Neue Methoden erproben, bevor sie zum Standard werden, und das Gelernte in die Praxis bringen.",

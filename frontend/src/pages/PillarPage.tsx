@@ -1,4 +1,4 @@
-import { useParams, Link } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import { pillars } from "../data/pillars"
 import DetailPage from "../components/detail/DetailPage"
 import Situations from "../components/detail/Situations"
@@ -7,6 +7,7 @@ import Tasks from "../components/detail/Tasks"
 import Phases from "../components/detail/Phases"
 import Formats from "../components/detail/Formats"
 import Faq from "../components/detail/Faq"
+import PageHero from "../components/ui/PageHero"
 import PublicationList from "../components/sections/PublicationList"
 import { usePageMeta } from "../hooks/usePageMeta"
 
@@ -23,19 +24,15 @@ export default function PillarPage() {
     pillar?.detail.lead,
   )
 
-  // Unbekannter Bereich -> freundlicher Hinweis statt leerer Seite.
+  // Unbekannter Bereich: freundlicher Hinweis statt leerer Seite.
   if (!pillar) {
     return (
-      <section className="page-hero">
-        <div className="wrap">
-          <span className="eyebrow">Hinweis</span>
-          <h1>Bereich nicht gefunden</h1>
-          <p className="lead">Diesen Bereich gibt es nicht.</p>
-          <Link className="back" to="/#expertise">
-            &larr; Alle Bereiche
-          </Link>
-        </div>
-      </section>
+      <PageHero
+        kicker="Hinweis"
+        title="Bereich nicht gefunden"
+        lead="Diesen Bereich gibt es nicht."
+        back={{ to: "/#expertise", label: "Alle Bereiche" }}
+      />
     )
   }
 
@@ -57,7 +54,12 @@ export default function PillarPage() {
       {detail.tasks && <Tasks items={detail.tasks} />}
       <Phases block={detail.phases} />
       <Formats block={detail.formats} />
-      <Faq block={detail.faq} />
+      <Faq
+        kicker={detail.faq.eyebrow}
+        title={detail.faq.title}
+        intro={detail.faq.intro}
+        items={detail.faq.items}
+      />
       {/* Vollständige Publikationsliste nur im Research Lab */}
       {pillar.slug === "research-lab" && <PublicationList />}
     </DetailPage>

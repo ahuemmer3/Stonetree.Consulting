@@ -1,15 +1,11 @@
+import type { LogoVariante } from "../../data/site"
+
 // Logo von stonetree in zwei Varianten (Auswahl in src/data/site.ts):
 //   wortmarke  nur der Schriftzug, ohne Zeichen
 //   zeichen    vereinfachtes Zeichen plus Schriftzug
 // Das Zeichen ist einfarbig (currentColor) und ohne Innenzeichnung, damit es
-// auch bei 24 Pixeln lesbar bleibt. Vorschau aller Größen: /marke
-export type LogoVariante = "wortmarke" | "zeichen"
-
-interface LogoProps {
-  variante: LogoVariante
-}
-
-export default function Logo({ variante }: LogoProps) {
+// auch bei 24 Pixeln lesbar bleibt. Beide Varianten nebeneinander: /marke
+export default function Logo({ variante }: { variante: LogoVariante }) {
   return (
     <span className={`logo logo--${variante}`}>
       {variante === "zeichen" && <LogoZeichen className="logo__sign" />}
@@ -19,7 +15,7 @@ export default function Logo({ variante }: LogoProps) {
 }
 
 // Baumkrone aus drei Polstern, gebogener Stamm, Fels als Sockel.
-// Eine einzige Fläche im 24er-Raster.
+// Eine einzige Fläche im 24er-Raster, ohne Innenlinien.
 export function LogoZeichen({
   className,
   size,

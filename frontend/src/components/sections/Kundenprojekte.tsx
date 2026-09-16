@@ -1,66 +1,63 @@
-import Reveal from "../ui/Reveal"
+import AufwandChart from "../charts/AufwandChart"
+import Card from "../ui/Card"
+import CardGrid from "../ui/CardGrid"
+import Section from "../ui/Section"
+import SectionHead from "../ui/SectionHead"
 import { kundenprojekte } from "../../data/kundenprojekte"
 
-// Abschnitt "Kundenprojekte": drei anonymisierte Fälle, jeweils gleich
-// aufgebaut (Ausgangslage, Vorgehen, Ergebnis, Laufzeit, Bausteine).
+// Drei anonymisierte Fälle. Das Ergebnis steht als Kennzahl über dem Text,
+// Ausgangslage und Vorgehen lassen sich aufklappen.
 export default function Kundenprojekte() {
   return (
-    <section className="section-pad kundenprojekte" id="kundenprojekte">
-      <div className="wrap">
-        <div className="pillars-intro">
-          <div>
-            <Reveal as="span" className="eyebrow">
-              Kundenprojekte
-            </Reveal>
-            <Reveal as="h2" delay={1}>
-              Was dabei herauskommt
-            </Reveal>
-          </div>
-          <Reveal as="p" delay={2}>
-            Drei Beispiele aus der Arbeit, anonymisiert. Sie zeigen, wie aus einer
-            Ausgangslage eine laufende Lösung wird.
-          </Reveal>
-        </div>
+    <Section id="kundenprojekte">
+      <SectionHead
+        kicker="Kundenprojekte"
+        title="Was dabei herauskommt"
+        intro="Drei Beispiele aus der Arbeit, anonymisiert. Sie zeigen, wie aus einer Ausgangslage eine laufende Lösung wird."
+        split
+      />
 
-        <div className="cases">
-          {kundenprojekte.map((fall, index) => (
-            <Reveal className="case" delay={index % 3} key={fall.id}>
-              <div className="case-head">
-                <h3>{fall.branche}</h3>
-                <span className="case-size">{fall.groesse}</span>
-              </div>
-              <div className="case-body">
-                <div className="case-block">
-                  <span className="case-k">Ausgangslage</span>
-                  <p>{fall.ausgangslage}</p>
-                </div>
-                <div className="case-block">
-                  <span className="case-k">Vorgehen</span>
-                  <p>{fall.vorgehen}</p>
-                </div>
-                <div className="case-block">
-                  <span className="case-k">Ergebnis</span>
-                  <p>{fall.ergebnis}</p>
-                </div>
-              </div>
-              <div className="case-foot">
-                <span className="case-laufzeit">Laufzeit: {fall.laufzeit}</span>
-                <div className="case-tags">
-                  {fall.bausteine.map((baustein) => (
-                    <span className="case-tag" key={baustein}>
-                      {baustein}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </Reveal>
-          ))}
-        </div>
+      <CardGrid columns={3}>
+        {kundenprojekte.map((fall, index) => (
+          <Card
+            key={fall.id}
+            kicker={fall.bausteine.join(" · ")}
+            title={fall.branche}
+            text={fall.ergebnis}
+            revealDelay={index % 3}
+            stretchLink={false}
+            link={{
+              label: `Zum Bereich ${fall.bereichTitel}`,
+              to: `/bereiche/${fall.bereichSlug}`,
+            }}
+            highlight={
+              <p className="card__metric">
+                <span className="card__metric-value">{fall.kennzahl.wert}</span>
+                <span className="card__metric-label">{fall.kennzahl.label}</span>
+              </p>
+            }
+          >
+            <details className="card__details">
+              <summary>Ausgangslage und Vorgehen</summary>
+              <h4>Ausgangslage</h4>
+              <p>{fall.ausgangslage}</p>
+              <h4>Vorgehen</h4>
+              <p>{fall.vorgehen}</p>
+              <h4>Umfang</h4>
+              <p>
+                {fall.groesse}, Laufzeit {fall.laufzeit}
+              </p>
+            </details>
+          </Card>
+        ))}
+      </CardGrid>
 
-        <p className="cases-note">
-          Beispiele anonymisiert und vereinfacht dargestellt.
-        </p>
-      </div>
-    </section>
+      <p className="note">
+        Beispiele anonymisiert und vereinfacht dargestellt. Die Kennzahlen sind
+        Platzhalter für den Prototyp.
+      </p>
+
+      <AufwandChart />
+    </Section>
   )
 }

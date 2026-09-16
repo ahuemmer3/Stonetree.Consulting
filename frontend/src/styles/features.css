@@ -1,0 +1,312 @@
+/* ------------------------------------------------------------------
+   Funktionsteile: Diagramm, Stellenliste, Kontaktformular
+------------------------------------------------------------------- */
+
+/* Diagramm ---------------------------------------------------------- */
+.chart-figure {
+  margin-top: 56px;
+  padding: 26px 26px 18px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.chart-title {
+  font-size: 19px;
+  font-weight: 500;
+}
+.chart-subtitle {
+  margin-top: 4px;
+  font-size: 14.5px;
+  color: var(--text-muted);
+}
+.chart-plot {
+  position: relative;
+  margin-top: 18px;
+}
+.chart-plot svg {
+  display: block;
+  overflow: visible;
+}
+/* Werte ohne Hervorhebung bleiben grau, genau eine Säule trägt den Akzent */
+.chart-bar {
+  fill: var(--chart-muted);
+}
+.chart-bar--accent {
+  fill: var(--accent);
+}
+.chart-hit {
+  fill: transparent;
+}
+.chart-plot g:hover .chart-bar,
+.chart-plot g:focus-visible .chart-bar {
+  fill: var(--text-body);
+}
+.chart-plot g:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
+}
+.chart-plot g:hover .chart-bar--accent,
+.chart-plot g:focus-visible .chart-bar--accent {
+  fill: var(--accent-hover);
+}
+.chart-grid,
+.chart-marker {
+  stroke-width: 1;
+}
+.chart-grid {
+  stroke: var(--border);
+}
+.chart-marker {
+  stroke: var(--border-strong);
+}
+.chart-axis-text {
+  fill: var(--text-muted);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+.chart-marker-text {
+  fill: var(--text-muted);
+  font-size: 12px;
+}
+.chart-value-label {
+  fill: var(--text);
+  font-size: 12.5px;
+  font-weight: 500;
+}
+.chart-axis-caption {
+  margin-top: 10px;
+  font-size: 12.5px;
+  color: var(--text-muted);
+}
+.chart-tooltip {
+  position: absolute;
+  transform: translate(-50%, -100%);
+  padding: 8px 10px;
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: 2px;
+  pointer-events: none;
+  white-space: nowrap;
+  box-shadow: 0 6px 16px color-mix(in srgb, var(--surface-dark) 12%, transparent);
+}
+.chart-tooltip__value {
+  font-weight: 600;
+  color: var(--text);
+}
+.chart-tooltip__label {
+  display: block;
+  font-size: 12.5px;
+  color: var(--text-muted);
+}
+.chart-table {
+  margin-top: 16px;
+  font-size: 14px;
+}
+.chart-table summary {
+  cursor: pointer;
+  color: var(--text-body);
+}
+.chart-table table {
+  margin-top: 12px;
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 420px;
+}
+.chart-table th,
+.chart-table td {
+  padding: 6px 12px 6px 0;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  font-weight: 400;
+  color: var(--text-body);
+}
+.chart-table thead th {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.chart-table td {
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+}
+.chart-source {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  font-size: 12.5px;
+  color: var(--text-muted);
+}
+.chart-brand {
+  font-weight: 500;
+}
+
+/* Stellenliste ------------------------------------------------------ */
+.job-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 16px;
+}
+.job-filter {
+  display: grid;
+  gap: 6px;
+}
+.job-filter label {
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.job-filter select {
+  min-width: 210px;
+  padding: 11px 12px;
+  font: inherit;
+  font-size: 15px;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+}
+.job-filter select:hover {
+  border-color: var(--border-strong);
+}
+.job-count {
+  margin: 22px 0 4px;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+.job-list {
+  border-top: 1px solid var(--border);
+}
+.job-row {
+  border-bottom: 1px solid var(--border);
+}
+.job-row a {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 8px;
+  transition: background-color 0.15s ease;
+}
+.job-row a:hover {
+  background: var(--surface-muted);
+}
+.job-row a:hover .arrow {
+  transform: translateX(4px);
+}
+.job-row__title {
+  display: block;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text);
+}
+.job-row__meta {
+  display: block;
+  margin-top: 4px;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+.job-empty {
+  padding: 28px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.job-empty p + p {
+  margin-top: 10px;
+}
+.job-empty__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+/* Kontaktformular --------------------------------------------------- */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.field label {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--text-body);
+}
+.field input,
+.field textarea {
+  font: inherit;
+  font-size: 15px;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  padding: 12px 14px;
+  transition: border-color 0.15s ease;
+}
+.field textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+.field input:hover,
+.field textarea:hover {
+  border-color: var(--border-strong);
+}
+.field input:focus,
+.field textarea:focus {
+  outline: 2px solid var(--text);
+  outline-offset: 1px;
+  border-color: var(--border-strong);
+}
+.field-invalid input,
+.field-invalid textarea {
+  border-color: var(--danger);
+}
+.field-msg,
+.contact-error {
+  font-size: 13px;
+  color: var(--danger);
+}
+.contact-error {
+  line-height: 1.6;
+}
+.contact-error a {
+  color: var(--text);
+  text-decoration: underline;
+}
+.contact-form .btn {
+  align-self: flex-start;
+  margin-top: 4px;
+}
+.contact-done h3 {
+  font-size: 24px;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+.contact-done p {
+  max-width: 46ch;
+  color: var(--text-body);
+}
+.contact-done .btn {
+  margin-top: 20px;
+}
+/* Unsichtbares Feld gegen Spam-Bots (Honeypot). Menschen sehen es nicht. */
+.hp-field {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}

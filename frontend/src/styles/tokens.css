@@ -7,6 +7,9 @@
   /* Flächen */
   --surface: #ffffff; /* Standardhintergrund */
   --surface-muted: #f4f6f7; /* leicht abgesetzte Sektion, kühles Grau */
+  /* dritte, etwas dunklere Stufe. Nur für abgestufte Karten und kleine
+     Flächen wie Kennzahlen und Schlagworte. Fließtext erreicht darauf 6,3 zu 1. */
+  --surface-tint: #e6ebed;
   --surface-dark: #10161a; /* nur Hero und Footer */
 
   /* Linien */

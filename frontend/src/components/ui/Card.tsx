@@ -25,6 +25,9 @@ interface CardProps {
   // Die ganze Karte wird klickbar. Nur setzen, wenn children keine eigenen
   // Bedienelemente enthält.
   stretchLink?: boolean
+  // Abstufung der Kartenfläche: 1 weiß, 2 helles Grau, 3 etwas dunkleres Grau.
+  // Für Reihen, in denen die Karten sich voneinander abheben sollen.
+  ton?: 1 | 2 | 3
   revealDelay?: number
 }
 
@@ -37,10 +40,12 @@ export default function Card({
   highlight,
   children,
   stretchLink = true,
+  ton,
   revealDelay = 0,
 }: CardProps) {
   const classes = [
     "card",
+    ton && `card--ton-${ton}`,
     link && "card--linked",
     link && stretchLink && "card--stretched",
   ]

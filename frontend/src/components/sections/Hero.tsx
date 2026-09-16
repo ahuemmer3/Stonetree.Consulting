@@ -1,3 +1,4 @@
+import ArrowLink from "../ui/ArrowLink"
 import Button from "../ui/Button"
 import Reveal from "../ui/Reveal"
 import { heroClips } from "../../data/heroClips"
@@ -11,33 +12,29 @@ export default function Hero() {
   const video = useHeroVideo(heroClips)
 
   return (
-    <section className="hero" id="top">
+    <section className="hero on-dark" id="top">
       <HeroMedia video={video} />
 
       <div className="wrap hero-wrap">
         <Reveal className="hero-card" immediate>
-          <span className="eyebrow">
+          <span className="kicker">
             Consulting, KI-Automatisierung &amp; Research
           </span>
-          <h1>
+          <h1 className="hero-title">
             Aus eigener Forschung.
             <br />
             In die Praxis gebracht.
             <br />
             <em>Bis zur laufenden Lösung.</em>
           </h1>
-          <p className="hero-sub">
+          <p className="hero-lead">
             Wir bringen Erkenntnisse aus eigener Forschung in den Mittelstand
             und setzen sie dort um. Von der Strategie bis zur laufenden Lösung,
             die im Alltag trägt.
           </p>
           <div className="hero-actions">
-            <Button href="#expertise" variant="primary">
-              Unsere Expertise
-            </Button>
-            <Button href="#ueber-uns" variant="ghost">
-              Über uns
-            </Button>
+            <Button href="#expertise">Unsere Expertise</Button>
+            <ArrowLink href="#ueber-uns">Über uns</ArrowLink>
           </div>
         </Reveal>
       </div>
@@ -48,7 +45,11 @@ export default function Hero() {
           type="button"
           className="hero-video-toggle"
           onClick={video.toggle}
-          aria-label={video.playing ? "Hintergrundvideo anhalten" : "Hintergrundvideo abspielen"}
+          aria-label={
+            video.playing
+              ? "Hintergrundvideo anhalten"
+              : "Hintergrundvideo abspielen"
+          }
         >
           <span aria-hidden="true">{video.playing ? "❚❚" : "▶"}</span>
         </button>
