@@ -15,22 +15,41 @@
   overflow: hidden;
   transition: border-color 0.15s ease;
 }
-/* Abgestufte Karten: weiß, helles Grau, etwas dunkleres Grau.
-   Nur helle Stufen, dunkle Flächen bleiben Hero und Footer vorbehalten. */
+/* Abgestufte Karten: helles Grau, mittleres Grau, kräftiges Grau.
+   Auf der dritten Stufe steht die Schrift weiß. */
 .card--ton-1 {
-  background: var(--surface);
+  background: var(--card-ton-1);
+  border-color: var(--border-strong);
 }
 .card--ton-2 {
-  background: var(--surface-muted);
+  background: var(--card-ton-2);
   border-color: var(--border-strong);
 }
 .card--ton-3 {
-  background: var(--surface-tint);
-  border-color: var(--border-strong);
+  background: var(--card-ton-3);
+  border-color: var(--card-ton-3);
 }
-.card--ton-2 .card__media,
-.card--ton-3 .card__media {
+.card--ton-1 .card__media,
+.card--ton-2 .card__media {
   background: var(--surface-tint);
+}
+.card--ton-3 .card__media {
+  background: var(--card-ton-3);
+}
+.card--ton-3 .card__title,
+.card--ton-3 .card__text,
+.card--ton-3 .kicker,
+.card--ton-3 .card__link,
+.card--ton-3 .arrow {
+  color: var(--text-on-dark);
+}
+/* Auf der dunklen Stufe hebt sich ein weißer Rahmen besser ab als der Akzent */
+.card--ton-3.card--linked:hover,
+.card--ton-3.card--linked:focus-within {
+  border-color: var(--text-on-dark);
+}
+.card--ton-3:has(:focus-visible) {
+  outline-color: var(--text-on-dark);
 }
 .card--linked:hover,
 .card--linked:focus-within {

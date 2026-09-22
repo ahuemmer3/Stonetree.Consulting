@@ -6,10 +6,16 @@
 :root {
   /* Flächen */
   --surface: #ffffff; /* Standardhintergrund */
-  --surface-muted: #f4f6f7; /* leicht abgesetzte Sektion, kühles Grau */
-  /* dritte, etwas dunklere Stufe. Nur für abgestufte Karten und kleine
-     Flächen wie Kennzahlen und Schlagworte. Fließtext erreicht darauf 6,3 zu 1. */
-  --surface-tint: #e6ebed;
+  --surface-muted: #eff2f4; /* leicht abgesetzte Sektion, kühles Grau */
+  /* etwas dunklere Fläche für kleine Elemente wie Kennzahlen und Schlagworte */
+  --surface-tint: #e3e9ec;
+
+  /* Abstufung der Bereichskarten, von hell nach kräftig. Angelehnt an die
+     frühere Abstufung, aber rund 30 Prozent heller, damit die Seite hell
+     bleibt. Auf Stufe 3 steht weiße Schrift (5,4 zu 1). */
+  --card-ton-1: #edf1f3;
+  --card-ton-2: #d3dbdf;
+  --card-ton-3: #626b71;
   --surface-dark: #10161a; /* nur Hero und Footer */
 
   /* Linien */
@@ -20,8 +26,9 @@
   --text: #121a1f; /* Überschriften */
   --text-body: #4a555e; /* Fließtext */
   /* Kicker, Datum, Bildunterschrift. Vorgabe war #78858e, das erreicht auf
-     Weiß nur 3,8 zu 1. Dieser Wert liegt bei 5,0 zu 1 (auf surface-muted 4,6). */
-  --text-muted: #64717a;
+     Weiß nur 3,8 zu 1. Dieser Wert liegt bei 5,4 zu 1 und hält auch auf der
+     etwas dunkleren Fläche surface-muted die 4,5 zu 1 ein. */
+  --text-muted: #5f6c75;
   --text-on-dark: #ffffff;
   --text-on-dark-muted: #b4bec5; /* 9,6 zu 1 auf surface-dark */
 
