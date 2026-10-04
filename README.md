@@ -5,6 +5,8 @@ Consulting, KI-Automatisierung und Research Lab, ausgerichtet auf den
 Mittelstand. Unternehmen, Personen, Kennzahlen und Kundenprojekte sind
 erfunden. Das Impressum nutzt Musterdaten und weist darauf hin.
 
+**Live:** https://ahuemmer3.github.io/Stonetree.Consulting/ (GitHub Pages)
+
 ## Aufbau
 
 | Ordner | Inhalt |

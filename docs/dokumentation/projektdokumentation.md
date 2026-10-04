@@ -18,7 +18,7 @@ Gegenstand dieser Arbeit ist die Konzeption und Umsetzung der Website des fiktiv
 
 Methodisch stützt sich die Arbeit auf eine Analyse der Webauftritte etablierter Beratungsunternehmen, deren Muster gezielt übernommen oder bewusst verworfen wurden. Die Umsetzung erfolgte iterativ von Juni bis Oktober 2026 in acht dokumentierten Entwicklungsständen. Sie basiert auf React mit TypeScript, einem FastAPI-Backend für das Kontaktformular und einem Betrieb in Containern hinter dem Webserver Caddy. Als Werkzeug zur Unterstützung von Programmierung, Recherche und Dokumentation wurde das Sprachmodell Claude eingesetzt. Art und Grenzen dieses Einsatzes werden in einem eigenen Kapitel offengelegt.
 
-Ergebnis ist eine inhaltlich vollständige Website mit fünf Seitentypen, typisierten Datenmodellen und automatisierten Prüfungen. Die Messung mit Lighthouse ergab für die mobile Ansicht eine Verbesserung der Leistungsbewertung von 71 auf 83 Punkte. Die Website wird zunächst über GitHub Pages veröffentlicht, der Umzug auf eine eigene Domain ist vorbereitet. Offen ist vor allem der Ersatz der Platzhalterinhalte.
+Ergebnis ist eine inhaltlich vollständige Website mit fünf Seitentypen, typisierten Datenmodellen und automatisierten Prüfungen. Die Messung mit Lighthouse ergab für die mobile Ansicht eine Verbesserung der Leistungsbewertung von 71 auf 83 Punkte. Seit dem 4. Oktober 2026 ist die Website über GitHub Pages öffentlich erreichbar, der Umzug auf eine eigene Domain ist vorbereitet. Offen ist vor allem der Ersatz der Platzhalterinhalte.
 
 <!-- toc -->
 
@@ -75,10 +75,10 @@ Tabelle: Rahmendaten des Projekts
 | --- | --- |
 | Zeitraum | 23. Juni 2026 bis 4. Oktober 2026 |
 | Geplanter Aufwand | etwa vier Stunden pro Woche über 13 Wochen |
-| Umfang | acht Commits, 164 Dateien im Repository, rund 7.000 Zeilen Quelltext im Frontend |
+| Umfang | neun Commits bis zur Veröffentlichung, rund 180 Dateien im Repository, rund 7.000 Zeilen Quelltext im Frontend |
 | Seiten | Startseite, drei Bereichsseiten, Karriereseite, Impressum, Logo-Vorschau, Fehlerseite |
 | Technik | React 18, TypeScript 7, Vite 6, Tailwind CSS 4, FastAPI |
-| Betrieb | GitHub Pages als erste Veröffentlichung, Umzug auf eine IONOS-Domain vorgesehen, Docker-Betrieb mit Backend vorbereitet |
+| Betrieb | seit 04.10.2026 veröffentlicht unter https://ahuemmer3.github.io/Stonetree.Consulting/, Umzug auf eine IONOS-Domain vorgesehen, Docker-Betrieb mit Backend vorbereitet |
 
 ## Aufbau der Arbeit
 
@@ -111,7 +111,7 @@ Der tatsächliche Verlauf lässt sich in fünf Phasen gliedern. Abbildung und Ta
 
 **Phase 3: Abstimmung und Ausbau (September 2026).** Nach einer Abstimmung mit dem Auftraggeber wurden Farbwelt, Leistungen und Kundenprojekte angepasst. Es entstanden das FastAPI-Backend für das Kontaktformular, die Containerkonfiguration für den Betrieb, das Hintergrundvideo, das Publikationskarussell, die Karriereseite mit Stellenfilter und ein Diagramm. Die Gestaltung wurde auf ein helles Farbsystem mit einer Akzentfarbe umgestellt.
 
-**Phase 4: Abschluss (Oktober 2026).** Das Impressum wurde mit Musterdaten und einem Hinweis auf den fiktiven Charakter versehen. Diese Dokumentation wurde überarbeitet. Für die Veröffentlichung wurde die Website so angepasst, dass sie zusätzlich ohne Backend auf GitHub Pages läuft (siehe Kapitel 8).
+**Phase 4: Abschluss (Oktober 2026).** Das Impressum wurde mit Musterdaten und einem Hinweis auf den fiktiven Charakter versehen. Diese Dokumentation wurde überarbeitet. Für die Veröffentlichung wurde die Website so angepasst, dass sie zusätzlich ohne Backend auf GitHub Pages läuft. Am 4. Oktober 2026 ging sie dort online (siehe Kapitel 8).
 
 Tabelle: Entwicklungsstände laut Versionsverwaltung
 
@@ -125,7 +125,7 @@ Tabelle: Entwicklungsstände laut Versionsverwaltung
 | 16.09.2026 | d398538 | 63 Dateien | Hintergrundvideo als eigenes Modul, Bildbehandlung per Skript, neue Motive, gemeinsame Bausteine |
 | 16.09.2026 | 7b200f4 | 66 Dateien | helles Farbsystem, Karriereseite mit Stellenfilter, Diagramm, neue Navigation |
 | 22.09.2026 | c48e57c | 17 Dateien | abgestufte Bereichskarten, dunklere Grautöne, korrigierte Servicezeile |
-| 04.10.2026 | ausstehend | | Impressum mit Musterdaten, Projektdokumentation, Veröffentlichung über GitHub Pages |
+| 04.10.2026 | 469291d | 37 Dateien | Impressum mit Musterdaten, Projektdokumentation, Veröffentlichung über GitHub Pages |
 
 ## Abgleich mit dem Arbeitsplan
 
@@ -140,10 +140,10 @@ Tabelle: Abgleich von Arbeitsplan und tatsächlichem Verlauf
 | Responsive Design, Animationen | Woche 6 bis 7 (August) | August bis September | ohne Framer Motion, eigene Lösung |
 | Backend mit Datenbank und Registrierung | Woche 8 (August) | September | auf das Kontaktformular beschränkt |
 | Frontend und Backend verbinden | Woche 9 (September) | September | wie geplant |
-| Server und Livegang | Woche 10 bis 11 (September) | Oktober | zuerst GitHub Pages, eigene Domain folgt |
+| Server und Livegang | Woche 10 bis 11 (September) | Oktober | online über GitHub Pages, eigene Domain folgt |
 | Testen und Abschluss | Woche 12 bis 13 (September) | September bis Oktober | laufend statt am Ende |
 
-Die erste Abweichung betrifft das Backend. Geplant waren eine Datenbank und eine Registrierung. Im Projektverlauf wurde entschieden, auf ein Benutzerkonto vorerst zu verzichten. Das Backend übernimmt deshalb nur den Versand des Kontaktformulars. Die zweite Abweichung betrifft die Animationen. Statt der Bibliothek Framer Motion wird eine eigene Komponente auf Basis des Browser-Standards IntersectionObserver genutzt. Sie kommt ohne zusätzliche Abhängigkeit aus und berücksichtigt die Systemeinstellung zur Bewegungsreduktion. Die dritte Abweichung betrifft den Livegang. Er verschob sich, weil Inhalte und Gestaltung nach der Abstimmung im September noch einmal umfangreich überarbeitet wurden.
+Die erste Abweichung betrifft das Backend. Geplant waren eine Datenbank und eine Registrierung. Im Projektverlauf wurde entschieden, auf ein Benutzerkonto vorerst zu verzichten. Das Backend übernimmt deshalb nur den Versand des Kontaktformulars. Die zweite Abweichung betrifft die Animationen. Statt der Bibliothek Framer Motion wird eine eigene Komponente auf Basis des Browser-Standards IntersectionObserver genutzt. Sie kommt ohne zusätzliche Abhängigkeit aus und berücksichtigt die Systemeinstellung zur Bewegungsreduktion. Die dritte Abweichung betrifft den Livegang. Er verschob sich um rund drei Wochen, weil Inhalte und Gestaltung nach der Abstimmung im September noch einmal umfangreich überarbeitet wurden. Statt des geplanten eigenen Servers ging die Website zunächst über GitHub Pages online.
 
 # Analyse etablierter Beratungswebsites
 
@@ -602,7 +602,7 @@ Tabelle: Veröffentlichungswege im Vergleich
 
 | Weg | Backend | Kontaktformular | Einsatz |
 | --- | --- | --- | --- |
-| A. GitHub Pages | nein | öffnet das E-Mail-Programm | erste Veröffentlichung, Rückfallebene |
+| A. GitHub Pages | nein | öffnet das E-Mail-Programm | seit 04.10.2026 aktiv, Rückfallebene |
 | B. IONOS-Domain | je nach Paket | E-Mail-Programm oder Backend | endgültige Adresse |
 | C. Eigener Server mit Docker | ja | Versand über das Backend | voller Funktionsumfang |
 
@@ -612,11 +612,33 @@ GitHub Pages liefert ausschließlich statische Dateien aus [25]. Das FastAPI-Bac
 
 Erstens liegt eine Projektseite auf GitHub Pages in einem Unterordner, etwa unter `/h2h-consulting/`. Alle Verweise auf Bilder, Videos und PDFs laufen deshalb über eine Hilfsfunktion `publicUrl()`, die den Unterordner aus der Build-Konfiguration voranstellt. Der Router erhält denselben Unterordner als Basis. Zweitens kennt GitHub Pages keine Weiterleitung unbekannter Pfade auf die Startseite. Der Build legt deshalb eine Kopie der Startseite als `404.html` ab, sodass auch Unterseiten beim direkten Aufruf funktionieren. Drittens erkennt das Kontaktformular, wenn kein Backend konfiguriert ist. Es öffnet dann das E-Mail-Programm mit vorausgefüllter Nachricht, statt einen Fehler anzuzeigen.
 
-Der Ablauf ist automatisiert. Ein Workflow mit GitHub Actions baut die Website bei jedem Push auf den Hauptzweig, führt dabei die Typprüfung aus und veröffentlicht das Ergebnis. Die Versionsverwaltung bleibt auf dem GitLab der Hochschule, GitHub wird als zweites Ziel eingetragen.
+Der Ablauf ist automatisiert. Ein Workflow mit GitHub Actions baut die Website bei jedem Push auf den Hauptzweig, führt dabei die Typprüfung aus und veröffentlicht das Ergebnis. Die Versionsverwaltung bleibt auf dem GitLab der Hochschule, GitHub ist als zweites Ziel eingetragen.
+
+## Ergebnis der Veröffentlichung
+
+Die Website ist seit dem 4. Oktober 2026 unter https://ahuemmer3.github.io/Stonetree.Consulting/ öffentlich erreichbar. Der Unterordner `/Stonetree.Consulting/` ergibt sich aus dem Namen des Repositorys und wird vom Workflow automatisch gesetzt.
+
+Der erste Durchlauf des Workflows schlug fehl. Der Build war erfolgreich, die Veröffentlichung brach jedoch mit dem Hinweis ab, dass GitHub Pages im Repository nicht aktiviert war. GitHub Pages muss vor der ersten Veröffentlichung in den Einstellungen des Repositorys auf die Quelle GitHub Actions umgestellt werden. Nach dieser Einstellung lief der wiederholte Durchlauf fehlerfrei. Die Hosting-Anleitung weist auf diesen Schritt hin.
+
+Nach der Veröffentlichung wurde die Website im Browser geprüft. Tabelle 23 fasst das Ergebnis zusammen.
+
+Tabelle: Prüfung der veröffentlichten Website
+
+| Prüfung | Ergebnis |
+| --- | --- |
+| Startseite mit Hintergrundvideo | lädt vollständig, Status 200 |
+| Bilder, Videos und PDFs im Unterordner | erreichbar, Status 200 |
+| Direkter Aufruf einer Unterseite, z. B. /bereiche/consulting | richtige Seite über 404.html, technisch Status 404 |
+| Impressum mit Hinweis auf die fiktive Website | angezeigt |
+| Ausschluss aus Suchmaschinen | Anweisung noindex im Quelltext vorhanden |
+
+Der Status 404 beim direkten Aufruf von Unterseiten ist eine bekannte Einschränkung von GitHub Pages. Für Besucher ist sie nicht sichtbar. Suchmaschinen würden solche Seiten zwar nicht aufnehmen, das ist bei der fiktiven Website aber ohnehin gewollt. Beim späteren Betrieb unter der IONOS-Domain mit Webspace oder eigenem Server entfällt die Einschränkung, weil dort echte Weiterleitungen möglich sind.
+
+![Veröffentlichte Website auf GitHub Pages](../abbildungen/live-github-pages.jpg)
 
 ## Umzug auf die IONOS-Domain
 
-Für die endgültige Adresse kommen je nach gebuchtem IONOS-Paket drei Varianten in Frage. Ist nur die Domain vorhanden, verweist ein DNS-Eintrag (CNAME) einer Subdomain auf GitHub Pages. Die Website bleibt dann technisch auf GitHub Pages, ist aber unter der Domain des Betreuers mit automatisch ausgestelltem HTTPS-Zertifikat erreichbar. Über eine Variable im Repository wird der Unterordner auf die Wurzel umgestellt. Bei einem IONOS-Webspace wird die gebaute Website per SFTP hochgeladen. Eine vorbereitete `.htaccess` übernimmt dort die Weiterleitung unbekannter Pfade. Bei einem IONOS-Server ist schließlich der Docker-Betrieb aus Abschnitt 8.4 möglich.
+Für die endgültige Adresse kommen je nach gebuchtem IONOS-Paket drei Varianten in Frage. Ist nur die Domain vorhanden, verweist ein DNS-Eintrag (CNAME) einer Subdomain auf GitHub Pages. Die Website bleibt dann technisch auf GitHub Pages, ist aber unter der Domain des Betreuers mit automatisch ausgestelltem HTTPS-Zertifikat erreichbar. Über eine Variable im Repository wird der Unterordner auf die Wurzel umgestellt. Bei einem IONOS-Webspace wird die gebaute Website per SFTP hochgeladen. Eine vorbereitete `.htaccess` übernimmt dort die Weiterleitung unbekannter Pfade. Bei einem IONOS-Server ist schließlich der Docker-Betrieb aus Abschnitt 8.5 möglich.
 
 ## Betrieb mit eigenem Server
 
@@ -682,7 +704,7 @@ Die Verantwortung für alle Inhalte, Entscheidungen und das Ergebnis liegt beim 
 
 Die Arbeit hat gezeigt, wie sich das Alleinstellungsmerkmal eines Beratungsunternehmens in eine Website übersetzen lässt. Ausgangspunkt war eine Analyse etablierter Beratungswebsites. Sie zeigte, dass große Anbieter Kompetenz durch Fallbeispiele, Publikationen und eigene Forschungsinstitute belegen. Für stonetree wurde daraus die Positionierung über das Research Lab abgeleitet und konsequent auf alle Seiten übertragen.
 
-Alle vier Ziele aus Abschnitt 1.2 wurden erreicht, das vierte mit Einschränkung. Die Positionierung ist auf allen Seiten umgesetzt. Struktur und Gestaltung orientieren sich nachvollziehbar an Vorbildern, ohne Inhalte zu kopieren. Inhalte sind in typisierten Datenmodellen änderbar, ohne Komponenten anzufassen. Die Website wird über GitHub Pages veröffentlicht. Der Betrieb mit eigenem Backend ohne weitere Fremddienste ist vorbereitet, der Umzug auf die endgültige Domain steht noch aus.
+Alle vier Ziele aus Abschnitt 1.2 wurden erreicht, das vierte mit Einschränkung. Die Positionierung ist auf allen Seiten umgesetzt. Struktur und Gestaltung orientieren sich nachvollziehbar an Vorbildern, ohne Inhalte zu kopieren. Inhalte sind in typisierten Datenmodellen änderbar, ohne Komponenten anzufassen. Die Website ist seit dem 4. Oktober 2026 über GitHub Pages öffentlich erreichbar. Der Betrieb mit eigenem Backend ohne weitere Fremddienste ist vorbereitet, der Umzug auf die endgültige Domain steht noch aus.
 
 ## Offene Punkte
 

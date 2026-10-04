@@ -33,7 +33,15 @@ Einmalig einrichten:
 
 4. Unter **Actions** läuft der Workflow „GitHub Pages" (rund zwei Minuten).
    Danach ist die Seite erreichbar unter
-   `https://<benutzername>.github.io/h2h-consulting/`.
+   `https://<benutzername>.github.io/<repository>/`.
+
+Aktuell: Repository `github.com/ahuemmer3/Stonetree.Consulting`, Seite
+`https://ahuemmer3.github.io/Stonetree.Consulting/` (Groß- und Kleinschreibung
+beachten).
+
+Meldet der Schritt `deploy-pages` „Failed to create deployment (status: 404)",
+war Pages noch nicht auf GitHub Actions umgestellt (Schritt 2). Danach den Lauf
+unter Actions mit „Re-run failed jobs" wiederholen.
 
 Neue Version: `git push github main`. Wer beide Ziele mit einem Befehl
 bedienen will, pusht nacheinander auf `origin` und `github`.
