@@ -5,7 +5,6 @@ import { pillars } from "../../data/pillars"
 import { karriereColumns } from "../../data/navigation"
 
 export default function Footer() {
-  const { impressum } = site
   const karriereLinks = karriereColumns[0].links
 
   return (
@@ -48,36 +47,15 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="footer-impressum" id="impressum">
-          <p className="footer-impressum__title">Impressum</p>
-          <div>
-            <b>{impressum.company}</b>
-            <br />
-            {impressum.person}
-            <br />
-            {impressum.street}
-            <br />
-            {impressum.city}
-          </div>
-          <div>
-            <b>Kontakt</b>
-            <br />
-            Telefon: {impressum.phone}
-            <br />
-            E-Mail: {impressum.email}
-          </div>
-          <div>
-            <b>Verantwortlich für den Inhalt</b>
-            <br />
-            {impressum.responsible}
-            <br />
-            (Daten noch zu ergänzen)
-          </div>
-        </div>
-
         <div className="footer-legal">
-          <span>Prototyp. Inhalte und Kennzahlen sind Platzhalter.</span>
-          <span>© 2026 {site.brand} GmbH</span>
+          <span>
+            Fiktive Website aus einem Hochschulprojekt. Unternehmen, Personen
+            und Kennzahlen sind erfunden.
+          </span>
+          <nav className="footer-legal__links" aria-label="Rechtliches">
+            <Link to="/impressum">Impressum</Link>
+            <span>© 2026 {site.brand} GmbH</span>
+          </nav>
         </div>
       </div>
     </footer>

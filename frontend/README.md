@@ -1,8 +1,7 @@
-# Frontend – stonetree
+# Frontend: stonetree
 
-React-Umsetzung des Prototyps (`../prototyp.html`) mit Vite und Tailwind CSS.
-Gleiches Aussehen, gleiche Animationen – nur sauber in einzelne Komponenten
-aufgeteilt, damit man problemlos weiterbauen kann.
+React-Umsetzung der stonetree-Website mit Vite, TypeScript und Tailwind CSS.
+Überblick und Veröffentlichung: siehe `../README.md` und `../docs/hosting.md`.
 
 ## Starten
 
@@ -15,66 +14,43 @@ npm run dev      # Entwicklungsserver, dann http://localhost:5173 oeffnen
 Weitere Befehle:
 
 ```bash
-npm run build    # Erzeugt die fertige Seite im Ordner dist/ (fuer den Server)
+npm run build    # Typprüfung und fertige Seite im Ordner dist/
 npm run preview  # Zeigt den Build lokal an
 ```
 
-## Ordnerstruktur (differenziert)
+## Ordnerstruktur
 
 ```
-frontend/
-  index.html                  Einstiegspunkt, laedt die Schriften und main.jsx
-  vite.config.js              Vite + React + Tailwind
-  package.json                Abhaengigkeiten und Befehle
-  src/
-    main.jsx                  Haengt die App ans HTML
-    App.jsx                   Setzt die Seite aus den Abschnitten zusammen
-    styles/
-      index.css               Tailwind-Import, Design-Tokens (@theme), alle Stile
-    data/                     Inhalte getrennt vom Code (hier Texte aendern)
-      site.js                 Marke, Tagline, Impressum
-      navigation.js           Navigationslinks
-      pillars.js              Die drei Bereiche (Expertise)
-      approach.js             Die drei "Wie wir arbeiten"-Punkte
-      publications.js         Publikationen (Platzhalter)
-      about.js                Text + Kennzahlen fuer "Ueber uns"
-    hooks/                    Wiederverwendbare Logik
-      useScrolled.js          Header-Hintergrund beim Scrollen
-      usePrefersReducedMotion.js   Animationen abschaltbar (Barrierefreiheit)
-    components/
-      layout/                 Rahmen der Seite
-        Header.jsx            Navigation inkl. Handy-Menue
-        Footer.jsx            Footer + Impressum
-      sections/               Die Inhaltsabschnitte (von oben nach unten)
-        Hero.jsx              Grosser Kopfbereich (Uebersicht)
-        Pillars.jsx           Expertise – die drei Bereiche
-        Publications.jsx      Publikationen
-        About.jsx             Ueber uns
-        Contact.jsx           Kontakt
-      ui/                     Kleine, wiederverwendbare Bausteine
-        Button.jsx            Link im Button-Look (primary / ghost)
-        Reveal.jsx            Sanftes Einblenden beim Scrollen
+src/
+  main.tsx            Einstieg, Router mit basename für Unterordner
+  App.tsx             Routen und Seitenrahmen
+  data/               alle Inhalte als typisierte Daten (Texte hier ändern)
+  features/           Logik mit Zustand (Kontakt, Hero-Video, Karussell, Stellen, Navigation)
+  components/
+    layout/           Header, Footer, Menüs
+    sections/         Abschnitte der Startseite
+    detail/           Abschnitte der Bereichsseiten
+    ui/               kleine wiederverwendbare Bausteine
+  pages/              Seiten (Start, Bereich, Karriere, Impressum, Marke, 404)
+  hooks/              kleine Hilfs-Hooks
+  utils/publicUrl.ts  Pfade zu Dateien aus public/, berücksichtigt den Unterordner
+  styles/             Stile nach Aufgabe getrennt, Farben nur in tokens.css
 ```
 
-### Warum so aufgeteilt?
-
-- **`data/` getrennt vom Code:** Texte, Bereiche und Impressum aendert man hier,
-  ohne in den Komponenten suchen zu muessen.
-- **`layout/` vs. `sections/` vs. `ui/`:** Rahmen (Header/Footer), inhaltliche
-  Abschnitte und kleine Bausteine sind klar getrennt. Jede Datei hat eine Aufgabe.
-- **`hooks/`:** Logik (Scroll, Bewegungsreduktion) liegt fuer sich und ist mehrfach
-  nutzbar.
+Dateien aus `public/` (Bilder, Videos, PDFs) immer über
+`publicUrl("images/datei.jpg")` einbinden, nie mit festem `/images/...`.
+Sonst fehlen sie auf GitHub Pages, wo die Seite in einem Unterordner liegt.
 
 ## Design / Theme
 
-Die Seite ist **monochrom** gehalten (angelehnt an Roland Berger): weisse Schrift
-auf dunklen Flaechen, dunkle Schrift auf hellgrauen. Die Abschnitte wechseln sich
-ab (Hero dunkel, Expertise hell, Publikationen dunkel, Ueber uns hell, Kontakt
-dunkel). Schrift ist **Ubuntu** (ueber Google Fonts in `index.html` geladen).
+Hell und ruhig, angelehnt an Roland Berger: Weiß als Standard, jede zweite
+Sektion hellgrau, dunkel sind nur Kopf- und Fußbereich. Eine einzige
+Akzentfarbe (Tannengrün) an sechs festgelegten Stellen. Schrift ist **Ubuntu**
+(über Google Fonts in `index.html` geladen).
 
-Alle Design-Tokens (Farben, Schriften) stehen zentral in `src/styles/index.css`
-im `@theme`-Block – z. B. `--color-dark` (dunkle Flaeche), `--color-soft` (helle
-Flaeche), `--color-heading`. Eine Farbe dort geaendert wirkt sich ueberall aus.
+Alle Farben und Maße stehen in `src/styles/tokens.css` und nur dort. Eine Farbe
+dort geändert wirkt sich überall aus. Regeln und Begründungen:
+`../docs/Projektdokumentation-stonetree.pdf`, Kapitel Gestaltung.
 
 ### Bilder
 
@@ -129,10 +105,3 @@ scripts/prepare-hero-video.sh ~/Downloads/quelle.mp4 hero-3 0 16
 
 Danach den Clip in `src/data/heroClips.ts` eintragen. Die Reihenfolge dort ist
 die Abspielreihenfolge. Ein einzelner Clip laeuft in Schleife.
-
-## Naechste Schritte (laut Arbeitsplan)
-
-- Echtes Hintergrundbild im Hero einsetzen (`.hero-media`)
-- Publikationen mit echten Beitraegen/PDFs fuellen (`data/publications.js`)
-- Woche 7: Framer Motion fuer feinere Animationen
-- Woche 8/9: Anbindung an das FastAPI-Backend (zentrale API-Adresse in `src/`)

@@ -1,0 +1,17 @@
+# Für klassisches Webhosting mit Apache (z. B. IONOS Webhosting).
+# Wird zusammen mit dem Inhalt von frontend/dist hochgeladen.
+
+# React-Router: unbekannte Pfade liefern index.html aus
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.html [L]
+
+# Gebaute Dateien tragen einen Hash im Namen und dürfen lange im Cache bleiben
+<IfModule mod_headers.c>
+  <If "%{REQUEST_URI} =~ m#/assets/#">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </If>
+  Header set X-Content-Type-Options "nosniff"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>

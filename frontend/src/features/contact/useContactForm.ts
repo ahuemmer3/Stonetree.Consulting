@@ -1,4 +1,5 @@
 import { useState, type ChangeEvent, type FormEvent } from "react"
+import { site } from "../../data/site"
 
 // Reine Formular-Logik: Zustand, Validierung und Absenden – bewusst getrennt
 // von der Darstellung (ContactForm.tsx). So bleibt die Komponente schlank und
@@ -13,7 +14,8 @@ export interface ContactValues {
 type FieldName = keyof ContactValues
 type ContactErrors = Partial<Record<FieldName, string>>
 type Touched = Partial<Record<FieldName, boolean>>
-export type ContactStatus = "idle" | "sending" | "sent" | "error"
+// "mailto": kein Backend vorhanden, das E-Mail-Programm wurde geöffnet
+export type ContactStatus = "idle" | "sending" | "sent" | "mailto" | "error"
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 const MIN_MESSAGE_LENGTH = 10
@@ -22,7 +24,17 @@ const EMPTY: ContactValues = { name: "", email: "", message: "" }
 // Das Backend nimmt die Nachricht an und verschickt sie per SMTP
 // (backend/app/contact.py). Im Betrieb liegt es unter derselben Domain,
 // in der Entwicklung leitet Vite /api an localhost:8000 weiter.
+// Auf statischem Hosting ohne Backend (GitHub Pages) wird die Variable leer
+// gesetzt. Dann öffnet das Formular das E-Mail-Programm mit der Nachricht.
 const CONTACT_ENDPOINT = import.meta.env.VITE_CONTACT_ENDPOINT ?? "/api/contact"
+
+function mailtoLink({ name, email, message }: ContactValues): string {
+  const subject = encodeURIComponent(`Anfrage von ${name.trim()}`)
+  const body = encodeURIComponent(
+    [message.trim(), "", name.trim(), email.trim()].join("\n"),
+  )
+  return `mailto:${site.contactEmail}?subject=${subject}&body=${body}`
+}
 
 // Validiert ein einzelnes Feld und liefert eine Fehlermeldung (leer = ok).
 function validateField(field: FieldName, value: string): string {
@@ -91,6 +103,12 @@ export function useContactForm() {
     setErrors(nextErrors)
     setTouched({ name: true, email: true, message: true })
     if (Object.keys(nextErrors).length > 0) return
+
+    if (!CONTACT_ENDPOINT) {
+      window.location.href = mailtoLink(values)
+      setStatus("mailto")
+      return
+    }
 
     setStatus("sending")
     try {

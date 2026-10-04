@@ -2,6 +2,9 @@
 //   slug   -> Adresse der Detailseite (/bereiche/<slug>)
 //   anchor -> optionale id fuer die Navigation auf der Startseite (#research)
 //   detail -> Inhalte der jeweiligen Detailseite
+
+import { publicUrl } from "../utils/publicUrl"
+
 export interface PillarPoint {
   k: string
   title: string
@@ -84,7 +87,7 @@ export const pillars: Pillar[] = [
     slug: "consulting",
     tag: "Consulting",
     title: "Consulting",
-    image: "/images/expertise-beratung.jpg",
+    image: publicUrl("images/expertise-beratung.jpg"),
     imageAlt:
       "Mann erklärt am Whiteboard, Kolleginnen und Kollegen hören zu und machen Notizen",
     desc: "Wir begleiten mittelständische Unternehmen bei Strategie und Ausrichtung, mit Entscheidungen, die über einzelne Quartale hinaus tragen. Von der Marktanalyse über die Positionierung bis zur Umsetzung, immer nah an den Zahlen und am Geschäft.",
@@ -299,7 +302,7 @@ export const pillars: Pillar[] = [
     slug: "ki-automatisierung",
     tag: "Automatisierung",
     title: "KI-Automatisierung",
-    image: "/images/expertise-ai.jpg",
+    image: publicUrl("images/expertise-ai.jpg"),
     imageAlt:
       "Blick über die Schulter auf einen Bildschirm mit Programmcode",
     desc: "Wir bringen Künstliche Intelligenz dort zum Einsatz, wo sie messbaren Nutzen bringt. Wir automatisieren Abläufe gezielt, ohne unnötige Komplexität und ohne Technik um ihrer selbst willen.",
@@ -516,7 +519,7 @@ export const pillars: Pillar[] = [
     anchor: "research",
     tag: "Research",
     title: "Research Lab",
-    image: "/images/expertise-research.jpg",
+    image: publicUrl("images/expertise-research.jpg"),
     imageAlt:
       "Drei Personen besprechen etwas an einem Tisch mit Laptop und Notizen",
     desc: "In unserem Labor erproben wir neue Methoden, bevor sie zum Standard werden. Was sich bewährt, fließt zurück in unsere Projekte und wird offen geteilt.",

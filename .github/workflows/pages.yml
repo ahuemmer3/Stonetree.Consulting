@@ -1,0 +1,71 @@
+# Veröffentlicht das Frontend auf GitHub Pages, bei jedem Push auf main.
+# GitHub Pages liefert nur statische Dateien aus. Das Backend läuft dort nicht,
+# das Kontaktformular öffnet deshalb das E-Mail-Programm (VITE_CONTACT_ENDPOINT leer).
+# Einrichtung: docs/hosting.md, Abschnitt GitHub Pages.
+name: GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Nur eine Veröffentlichung gleichzeitig, laufende nicht abbrechen
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - run: npm ci
+
+      # Projektseiten liegen unter /<repository>/, eine Seite namens
+      # <name>.github.io dagegen an der Wurzel. Mit eigener Domain (z. B. von
+      # IONOS) unter Settings > Variables die Variable PAGES_BASE=/ anlegen.
+      - name: Unterordner bestimmen
+        run: |
+          repo="${{ github.event.repository.name }}"
+          if [[ -n "${{ vars.PAGES_BASE }}" ]]; then base="${{ vars.PAGES_BASE }}"
+          elif [[ "$repo" == *.github.io ]]; then base="/"
+          else base="/$repo/"; fi
+          echo "VITE_BASE=$base" >> "$GITHUB_ENV"
+
+      - name: Bauen (mit Typprüfung)
+        run: npm run build
+        env:
+          VITE_CONTACT_ENDPOINT: ""
+
+      # GitHub Pages kennt kein Umleiten auf index.html. Unbekannte Pfade wie
+      # /bereiche/consulting liefern 404.html aus, die React-Router übernimmt.
+      - run: cp dist/index.html dist/404.html
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: frontend/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,6 +1,9 @@
 // Publikationen aus dem Research Lab. Neueste zuerst.
 // pdfUrl ist optional: sobald gesetzt, wird aus dem Badge "PDF folgt" ein
 // Download-Link. Inhalte sind Platzhalter, aber fachlich stimmig.
+
+import { publicUrl } from "../utils/publicUrl"
+
 export type PublicationType =
   | "PAPER"
   | "RESEARCH NOTE"
@@ -23,7 +26,7 @@ export interface Publication {
 export const publications: Publication[] = [
   {
     id: "pub-rechnet-sich",
-    pdfUrl: "/pdf/pub-rechnet-sich.pdf",
+    pdfUrl: publicUrl("pdf/pub-rechnet-sich.pdf"),
     type: "PAPER",
     title:
       "Wann sich end-to-end-Automatisierung im Mittelstand rechnet, und wann nicht",
@@ -31,7 +34,7 @@ export const publications: Publication[] = [
       "Eine Kosten-Nutzen-Betrachtung anhand von Durchlaufzeiten, Fehlerquoten und Wartungsaufwand. Mit Kriterien, wann sich der durchgängige Ansatz lohnt und wann eine Teillösung genügt.",
     date: "August 2026",
     topics: ["KI-Automatisierung", "Prozesse"],
-    image: "/images/pub-1.jpg",
+    image: publicUrl("images/pub-1.jpg"),
     imageAlt: "Zwei Personen besprechen Zahlen an einem Laptop",
   },
   {
@@ -42,12 +45,12 @@ export const publications: Publication[] = [
       "Wo Sprachmodelle in Prüf- und Freigabeprozessen an Grenzen stoßen, welche Fehlerarten auftreten und wie sich Nachvollziehbarkeit sicherstellen lässt.",
     date: "Juli 2026",
     topics: ["KI", "Regulatorik", "EU AI Act"],
-    image: "/images/pub-3.jpg",
+    image: publicUrl("images/pub-3.jpg"),
     imageAlt: "Team schaut gemeinsam auf einen Bildschirm und diskutiert",
   },
   {
     id: "pub-prozessdaten",
-    pdfUrl: "/pdf/pub-prozessdaten.pdf",
+    pdfUrl: publicUrl("pdf/pub-prozessdaten.pdf"),
     type: "PAPER",
     title:
       "Prozessdaten als Grundlage für KI-gestützte Entscheidungen in kleinen Organisationen",
@@ -55,7 +58,7 @@ export const publications: Publication[] = [
       "Wie kleine Organisationen aus vorhandenen Prozessdaten belastbare Entscheidungsgrundlagen gewinnen, auch ohne großes Datenteam.",
     date: "Juni 2026",
     topics: ["Daten", "KI-Automatisierung"],
-    image: "/images/pub-2.jpg",
+    image: publicUrl("images/pub-2.jpg"),
     imageAlt: "Frau erklärt Notizen auf Haftzetteln an einer Wand",
   },
   {
@@ -66,7 +69,7 @@ export const publications: Publication[] = [
       "Eine nüchterne Bestandsaufnahme, welche Anwendungsfälle heute schon Zeit und Geld sparen und welche man besser noch abwartet.",
     date: "Mai 2026",
     topics: ["KI-Automatisierung", "Mittelstand"],
-    image: "/images/pub-4.jpg",
+    image: publicUrl("images/pub-4.jpg"),
     imageAlt: "Mehrere Personen arbeiten an einem langen Tisch im Büro",
   },
   {
@@ -77,7 +80,7 @@ export const publications: Publication[] = [
       "Ein anonymisierter Einblick, wie aus mehreren Einzeltools ein durchgängiger Ablauf wurde, inklusive der Stolpersteine unterwegs.",
     date: "April 2026",
     topics: ["Automatisierung", "Prozesse"],
-    image: "/images/pub-1.jpg",
+    image: publicUrl("images/pub-1.jpg"),
     imageAlt: "Zwei Personen besprechen Zahlen an einem Laptop",
   },
   {
@@ -89,7 +92,7 @@ export const publications: Publication[] = [
       "Warum Datenqualität die eigentliche Voraussetzung für Automatisierung ist und wie man sie mit überschaubarem Aufwand verbessert.",
     date: "März 2026",
     topics: ["Daten", "Prozesse"],
-    image: "/images/pub-3.jpg",
+    image: publicUrl("images/pub-3.jpg"),
     imageAlt: "Team schaut gemeinsam auf einen Bildschirm und diskutiert",
   },
 ]

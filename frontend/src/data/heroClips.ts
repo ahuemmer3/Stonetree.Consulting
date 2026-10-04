@@ -4,6 +4,9 @@
 // Dateien liegen in public/media/ und werden mit
 // scripts/prepare-hero-video.sh erzeugt. Quellen und Lizenzen: UMSETZUNG.md.
 // Das Standbild des ersten Clips ist das, was beim Laden sofort zu sehen ist.
+
+import { publicUrl } from "../utils/publicUrl"
+
 export interface HeroClip {
   mp4: string
   webm: string
@@ -17,17 +20,17 @@ export interface HeroClip {
 
 export const heroClips: HeroClip[] = [
   {
-    mp4: "/media/hero.mp4",
-    webm: "/media/hero.webm",
-    poster: "/media/hero-poster.jpg",
-    posterSmall: "/media/hero-poster-960.jpg",
+    mp4: publicUrl("media/hero.mp4"),
+    webm: publicUrl("media/hero.webm"),
+    poster: publicUrl("media/hero-poster.jpg"),
+    posterSmall: publicUrl("media/hero-poster-960.jpg"),
     alt: "Luftaufnahme einer großen Fabrikhalle mit Außengelände",
   },
   {
-    mp4: "/media/hero-2.mp4",
-    webm: "/media/hero-2.webm",
-    poster: "/media/hero-2-poster.jpg",
-    posterSmall: "/media/hero-2-poster-960.jpg",
+    mp4: publicUrl("media/hero-2.mp4"),
+    webm: publicUrl("media/hero-2.webm"),
+    poster: publicUrl("media/hero-2-poster.jpg"),
+    posterSmall: publicUrl("media/hero-2-poster-960.jpg"),
     alt: "Drohnenflug entlang der Fassade eines Bürohochhauses",
   },
 ]

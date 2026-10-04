@@ -1,10 +1,100 @@
-# Website live schalten (Hetzner, Docker, Caddy)
+# Website live schalten
+
+Es gibt drei Wege. Alle nutzen denselben Code, sie unterscheiden sich nur darin,
+ob das Backend für das Kontaktformular mitläuft.
+
+| Weg | Kontaktformular | Aufwand | Wofür |
+| --- | --- | --- | --- |
+| A. GitHub Pages | öffnet das E-Mail-Programm | gering, kostenlos | schnell erreichbare Fassung, Rückfallebene |
+| B. IONOS (Domain des Profs) | je nach Paket, siehe unten | gering bis mittel | endgültige Adresse |
+| C. Eigener Server mit Docker | Versand über das Backend | mittel | volle Funktion |
+
+## A. GitHub Pages
+
+GitHub Pages liefert nur statische Dateien aus. Das FastAPI-Backend läuft dort
+nicht. Das Formular baut deshalb eine E-Mail und öffnet das E-Mail-Programm
+der Besucherin. Der Workflow `.github/workflows/pages.yml` baut und
+veröffentlicht die Seite bei jedem Push auf `main` automatisch.
+
+Einmalig einrichten:
+
+1. Auf github.com ein **öffentliches** Repository anlegen, z. B.
+   `h2h-consulting` (ohne README, leer). Pages ist bei privaten Repositories
+   nur mit bezahltem Konto möglich.
+2. Im Repository unter **Settings > Pages > Build and deployment > Source**
+   den Eintrag **GitHub Actions** wählen.
+3. Lokal GitHub als zweites Ziel eintragen und hochladen. GitLab bleibt
+   `origin`:
+
+   ```bash
+   git remote add github https://github.com/<benutzername>/h2h-consulting.git
+   git push github main
+   ```
+
+4. Unter **Actions** läuft der Workflow „GitHub Pages" (rund zwei Minuten).
+   Danach ist die Seite erreichbar unter
+   `https://<benutzername>.github.io/h2h-consulting/`.
+
+Neue Version: `git push github main`. Wer beide Ziele mit einem Befehl
+bedienen will, pusht nacheinander auf `origin` und `github`.
+
+Hinweise:
+
+- Unterseiten wie `/bereiche/consulting` funktionieren auch beim direkten
+  Aufruf. GitHub liefert dafür `404.html` aus, die eine Kopie der Startseite
+  ist. Der Browser zeigt die richtige Seite, technisch kommt Status 404 zurück.
+- Alle Pfade zu Bildern, Videos und PDFs laufen über `publicUrl()`
+  (`frontend/src/utils/publicUrl.ts`), damit der Unterordner stimmt.
+- Die Seite ist per `noindex` von Suchmaschinen ausgeschlossen, weil das
+  Unternehmen fiktiv ist (`frontend/index.html`).
+
+## B. IONOS
+
+Was hier zu tun ist, hängt davon ab, was bei IONOS gebucht ist. Das im
+IONOS-Kundenbereich nachsehen oder beim Prof erfragen.
+
+**B1. Nur die Domain, Seite bleibt auf GitHub Pages (einfachster Weg).**
+Eine Subdomain, z. B. `stonetree.domain-des-profs.de`, zeigt auf GitHub Pages.
+
+1. IONOS > Domains & SSL > Domain > DNS: einen **CNAME**-Eintrag anlegen,
+   Name `stonetree`, Ziel `<benutzername>.github.io`.
+2. GitHub > Settings > Pages > Custom domain: `stonetree.domain-des-profs.de`
+   eintragen, nach der Prüfung **Enforce HTTPS** anhaken.
+3. GitHub > Settings > Secrets and variables > Actions > **Variables**:
+   `PAGES_BASE` mit dem Wert `/` anlegen. Die Seite liegt dann an der Wurzel
+   der Domain statt im Unterordner. Danach den Workflow einmal neu starten
+   (Actions > GitHub Pages > Run workflow).
+
+Für die Hauptdomain selbst statt einer Subdomain verlangt GitHub vier
+A-Records statt eines CNAME (siehe GitHub-Hilfe „Managing a custom domain").
+
+**B2. IONOS Webhosting (Webspace mit Apache).**
+Die Seite wird gebaut und per SFTP hochgeladen. Ein Backend mit Python läuft
+dort nicht, das Formular nutzt wie bei GitHub Pages das E-Mail-Programm.
+
+```bash
+cd frontend
+VITE_CONTACT_ENDPOINT= npm run build      # Git Bash; PowerShell siehe unten
+cp ../deploy/apache/.htaccess dist/
+```
+
+PowerShell: `$env:VITE_CONTACT_ENDPOINT=""; npm run build`
+
+Dann den **Inhalt** von `frontend/dist` (inklusive `.htaccess`) per SFTP in
+das Verzeichnis laden, auf das die Domain im IONOS-Kundenbereich zeigt.
+Zugangsdaten stehen unter Hosting > SFTP & SSH. Die `.htaccess` sorgt dafür,
+dass Unterseiten beim direkten Aufruf funktionieren.
+
+**B3. IONOS Cloud Server oder VPS.** Wie Weg C unten, nur bei IONOS statt
+Hetzner. Bei IONOS ist ausgehend Port 587 in der Regel offen.
+
+## C. Eigener Server mit Docker (Hetzner o. ä.)
 
 Diese Anleitung bringt die Seite samt Kontaktformular auf einen eigenen Server.
 Alles, was im Projekt dafür nötig ist, liegt bereits bereit. Von euch kommen
 nur Server, Domain und die Zugangsdaten für den Mailversand.
 
-## Überblick
+### Überblick
 
 ```
 Besucher ──HTTPS──▶ Caddy (web)  ──▶ Website-Dateien (React-Build)
@@ -20,7 +110,7 @@ Besucher ──HTTPS──▶ Caddy (web)  ──▶ Website-Dateien (React-Buil
 | `backend/` | FastAPI mit `POST /api/contact` (Mailversand, Spam-Schutz) |
 | `.env.example` | Vorlage für Domain und SMTP-Zugangsdaten |
 
-## 1. Was ihr braucht
+### 1. Was ihr braucht
 
 1. **Server:** Hetzner Cloud, kleinste Stufe (CX22 o. ä.), Ubuntu 24.04, Standort
    Deutschland. Beim Anlegen einen SSH-Schlüssel hinterlegen.
@@ -36,7 +126,7 @@ Besucher ──HTTPS──▶ Caddy (web)  ──▶ Website-Dateien (React-Buil
 > Hetzner sperrt bei neuen Konten ausgehend die Ports 25 und 465. Deshalb
 > **Port 587 mit `SMTP_SECURITY=starttls`** verwenden, der ist offen.
 
-## 2. Server vorbereiten (einmalig)
+### 2. Server vorbereiten (einmalig)
 
 ```bash
 ssh root@SERVER-IP
@@ -44,7 +134,7 @@ curl -fsSL https://get.docker.com | sh
 ufw allow OpenSSH && ufw allow 80 && ufw allow 443 && ufw --force enable
 ```
 
-## 3. Projekt holen und einrichten
+### 3. Projekt holen und einrichten
 
 ```bash
 git clone <URL-des-Repositorys> /opt/stonetree
@@ -53,7 +143,7 @@ cp .env.example .env
 nano .env        # DOMAIN und SMTP-Daten eintragen
 ```
 
-## 4. Starten
+### 4. Starten
 
 ```bash
 docker compose up -d --build
@@ -72,7 +162,7 @@ curl https://eure-domain.de/api/health
 
 Dann das Kontaktformular auf der Seite einmal selbst ausfüllen.
 
-## 5. Neue Version einspielen
+### 5. Neue Version einspielen
 
 ```bash
 cd /opt/stonetree
@@ -80,7 +170,7 @@ git pull
 docker compose up -d --build
 ```
 
-## 6. Damit Mails nicht im Spam landen
+### 6. Damit Mails nicht im Spam landen
 
 Beim Domain-Anbieter die Einträge setzen, die euer Mailanbieter vorgibt:
 
@@ -88,7 +178,7 @@ Beim Domain-Anbieter die Einträge setzen, die euer Mailanbieter vorgibt:
 - **DKIM** (TXT- oder CNAME-Eintrag, liefert der Anbieter)
 - **DMARC** (TXT auf `_dmarc`, zum Start `v=DMARC1; p=none`)
 
-## 7. Fehlersuche
+### 7. Fehlersuche
 
 | Problem | Nachsehen |
 | --- | --- |
@@ -98,7 +188,7 @@ Beim Domain-Anbieter die Einträge setzen, die euer Mailanbieter vorgibt:
 | `mail_configured: false` | SMTP_HOST, SMTP_USER oder CONTACT_RECIPIENT fehlt in `.env` |
 | „Versand fehlgeschlagen" im Log | SMTP-Daten oder Port falsch (bei Hetzner 587 nehmen) |
 
-## Lokal testen
+### Lokal testen
 
 Ohne Docker, zwei Terminals:
 
@@ -120,9 +210,10 @@ Mit Docker wie auf dem Server: `.env` mit `DOMAIN=localhost` anlegen und
 `docker compose up --build`. Die Seite läuft dann unter `https://localhost`
 (der Browser warnt einmal wegen des lokalen Zertifikats).
 
-## Vor dem Livegang
+### Vor dem Livegang
 
-- Impressum und Datenschutzerklärung mit echten Daten füllen. Die
-  Datenschutzerklärung muss das Kontaktformular und den Mailanbieter nennen.
+- Das Impressum enthält bewusst Musterdaten mit Hinweis auf die fiktive
+  Website. Für eine echte Firma echte Daten eintragen (`frontend/src/data/site.ts`)
+  und eine Datenschutzerklärung ergänzen, die Kontaktformular und Mailanbieter nennt.
 - Google Fonts werden derzeit von Google geladen. Für DSGVO sauberer ist, die
   Schrift Ubuntu selbst auszuliefern.

@@ -6,6 +6,7 @@ import HomePage from "./pages/HomePage"
 import PillarPage from "./pages/PillarPage"
 import KarrierePage from "./pages/KarrierePage"
 import MarkePage from "./pages/MarkePage"
+import ImpressumPage from "./pages/ImpressumPage"
 import NotFoundPage from "./pages/NotFoundPage"
 
 // Sorgt dafür, dass bei jedem Seitenwechsel sinnvoll gescrollt wird:
@@ -43,6 +44,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/karriere" element={<KarrierePage />} />
+          <Route path="/impressum" element={<ImpressumPage />} />
           {/* Interne Vorschau der Logo-Varianten */}
           <Route path="/marke" element={<MarkePage />} />
           {/* Alte Bereichs-Pfade weiterleiten, damit keine Links ins Leere laufen */}

@@ -4,6 +4,9 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
+  // Unterordner der Seite. Standard ist die Domain-Wurzel. Für GitHub Pages
+  // setzt der Workflow VITE_BASE=/<repository>/
+  base: process.env.VITE_BASE ?? '/',
   plugins: [react(), tailwindcss()],
   server: {
     // Kontaktformular in der Entwicklung an das lokale Backend weiterleiten

@@ -33,6 +33,22 @@ export default function ContactForm() {
     )
   }
 
+  if (status === "mailto") {
+    return (
+      <div className="contact-done" role="status">
+        <h3>E-Mail vorbereitet</h3>
+        <p>
+          Ihr E-Mail-Programm sollte sich mit Ihrer Nachricht geöffnet haben.
+          Falls nicht, schreiben Sie direkt an{" "}
+          <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>.
+        </p>
+        <button type="button" className="btn btn--secondary" onClick={reset}>
+          Zurück zum Formular
+        </button>
+      </div>
+    )
+  }
+
   // Gemeinsame Handler für alle Felder – hält das Markup frei von Wiederholung.
   const shared = { onChange: handleChange, onBlur: handleBlur }
   const sending = status === "sending"

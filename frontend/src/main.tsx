@@ -10,7 +10,8 @@ akzentAnwenden()
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <BrowserRouter>
+    {/* basename: Unterordner beim Hosting, z. B. auf GitHub Pages */}
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       <App />
     </BrowserRouter>
   </StrictMode>,

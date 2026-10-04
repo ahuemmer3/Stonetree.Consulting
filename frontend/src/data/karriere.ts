@@ -1,6 +1,7 @@
 // Inhalte der Karriereseite (/karriere). Personen, Zitate und Angaben sind
 // Platzhalter für den Prototyp. Ein Hinweis dazu steht auf der Seite.
 import type { JobArt } from "./jobs"
+import { publicUrl } from "../utils/publicUrl"
 
 export interface KarrierePunkt {
   title: string
@@ -76,7 +77,7 @@ export const einstiegswege: Einstiegsweg[] = [
     kicker: "3 bis 6 Monate",
     title: "Praktikum",
     text: "Sie arbeiten in einem echten Projekt mit. Eine feste Ansprechperson begleitet Sie. Pflichtpraktikum und freiwilliges Praktikum sind möglich.",
-    image: "/images/karriere-praktikum.jpg",
+    image: publicUrl("images/karriere-praktikum.jpg"),
     alt: "Zwei junge Menschen arbeiten an einem Versuchsaufbau in einer Werkstatt",
     art: "Praktikum",
   },
@@ -84,7 +85,7 @@ export const einstiegswege: Einstiegsweg[] = [
     kicker: "10 bis 20 Stunden pro Woche",
     title: "Werkstudium",
     text: "Sie arbeiten neben dem Studium in einem unserer drei Bereiche. Die Stunden richten sich nach Ihrem Semesterplan. Eine Abschlussarbeit kann folgen.",
-    image: "/images/karriere-werkstudium.jpg",
+    image: publicUrl("images/karriere-werkstudium.jpg"),
     alt: "Frau arbeitet am Laptop neben einer Roboteranlage in einer Werkhalle",
     art: "Werkstudium",
   },
@@ -92,7 +93,7 @@ export const einstiegswege: Einstiegsweg[] = [
     kicker: "Vollzeit nach dem Abschluss",
     title: "Berufseinstieg",
     text: "Sie steigen direkt in Projekte ein. In den ersten Monaten lernen Sie unsere Methoden in einem festen Programm. Beratungserfahrung brauchen Sie nicht.",
-    image: "/images/karriere-einstieg.jpg",
+    image: publicUrl("images/karriere-einstieg.jpg"),
     alt: "Mann erklärt dem Team Notizen an einem Whiteboard",
     art: "Berufseinstieg",
   },
@@ -100,7 +101,7 @@ export const einstiegswege: Einstiegsweg[] = [
     kicker: "Ab drei Jahren Erfahrung",
     title: "Berufserfahrene",
     text: "Sie bringen Erfahrung aus Beratung, Industrie oder IT mit. Bei uns leiten Sie Projekte und bauen Themen auf. Die Wege zur Entscheidung sind kurz.",
-    image: "/images/karriere-erfahren.jpg",
+    image: publicUrl("images/karriere-erfahren.jpg"),
     alt: "Zwei Kollegen besprechen ein Bauteil an der Werkbank",
     art: "Berufserfahren",
   },
@@ -164,21 +165,21 @@ export const einblicke: Einblick[] = [
     name: "Lena Hartmann",
     rolle: "Consultant, Consulting",
     zitat: "Im ersten Monat war ich schon beim Kunden in der Produktion. Danach wusste ich genau, wofür unsere Analyse gebraucht wird.",
-    image: "/images/team-1.jpg",
+    image: publicUrl("images/team-1.jpg"),
     alt: "Porträt von Lena Hartmann",
   },
   {
     name: "Jonas Weber",
     rolle: "KI-Engineer, KI-Automatisierung",
     zitat: "Meine Lösung zur Belegprüfung läuft seit einem halben Jahr im Betrieb. Dass ich sie bis zur Übergabe begleiten konnte, war mir wichtig.",
-    image: "/images/team-2.jpg",
+    image: publicUrl("images/team-2.jpg"),
     alt: "Porträt von Jonas Weber",
   },
   {
     name: "Mira Yilmaz",
     rolle: "Research Associate, Research Lab",
     zitat: "Ich schreibe an einem Paper und arbeite parallel in einem Kundenprojekt. Die Fragen aus dem Projekt landen direkt in der Forschung.",
-    image: "/images/team-3.jpg",
+    image: publicUrl("images/team-3.jpg"),
     alt: "Porträt von Mira Yilmaz",
   },
 ]
@@ -215,6 +216,6 @@ export const ansprechperson: Ansprechperson = {
   rolle: "Recruiting und Personal",
   text: "Sie haben Fragen zu einer Stelle oder wissen noch nicht, welcher Einstieg passt? Schreiben Sie mir einfach.",
   email: "karriere@stonetree.example",
-  image: "/images/team-kontakt.jpg",
+  image: publicUrl("images/team-kontakt.jpg"),
   alt: "Porträt von Sarah Brandt",
 }
