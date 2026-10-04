@@ -16,9 +16,9 @@ repository: gitlab.hof-university.de/ahuemmer/h2h-consulting
 
 Gegenstand dieser Arbeit ist die Konzeption und Umsetzung der Website des fiktiven Beratungsunternehmens stonetree. Das Unternehmen gliedert sich in die Bereiche Consulting, KI-Automatisierung und Research Lab und richtet sich an mittelständische Unternehmen. Die Arbeit verfolgt zwei Ziele. Inhaltlich soll die Website ein klares Alleinstellungsmerkmal vermitteln, nämlich die Verbindung von eigener angewandter Forschung und Umsetzung beim Kunden. Technisch soll ein wartbares, barrierearmes und ohne Fremddienste betreibbares System entstehen.
 
-Methodisch stützt sich die Arbeit auf eine Analyse der Webauftritte etablierter Beratungsunternehmen, deren Muster gezielt übernommen oder bewusst verworfen wurden. Die Umsetzung erfolgte iterativ von Juni bis Oktober 2026 in acht dokumentierten Entwicklungsständen. Sie basiert auf React mit TypeScript, einem FastAPI-Backend für das Kontaktformular und einem Betrieb in Containern hinter dem Webserver Caddy. Als Werkzeug zur Unterstützung von Programmierung, Recherche und Dokumentation wurde das Sprachmodell Claude eingesetzt. Art und Grenzen dieses Einsatzes werden in einem eigenen Kapitel offengelegt.
+Methodisch stützt sich die Arbeit auf eine Analyse der Webauftritte etablierter Beratungsunternehmen, deren Muster gezielt übernommen oder bewusst verworfen wurden. Die Umsetzung erfolgte iterativ von Juni bis Oktober 2026 in elf dokumentierten Entwicklungsständen. Sie basiert auf React mit TypeScript, einem FastAPI-Backend für das Kontaktformular und einem Betrieb in Containern hinter dem Webserver Caddy. Als Werkzeug zur Unterstützung von Programmierung, Recherche und Dokumentation wurde das Sprachmodell Claude eingesetzt. Art und Grenzen dieses Einsatzes werden in einem eigenen Kapitel offengelegt.
 
-Ergebnis ist eine inhaltlich vollständige Website mit fünf Seitentypen, typisierten Datenmodellen und automatisierten Prüfungen. Die Messung mit Lighthouse ergab für die mobile Ansicht eine Verbesserung der Leistungsbewertung von 71 auf 83 Punkte. Seit dem 4. Oktober 2026 ist die Website über GitHub Pages öffentlich erreichbar, der Umzug auf eine eigene Domain ist vorbereitet. Offen ist vor allem der Ersatz der Platzhalterinhalte.
+Ergebnis ist eine inhaltlich vollständige Website mit fünf Seitentypen, typisierten Datenmodellen und automatisierten Prüfungen. Die Bereichsseiten benennen konkrete Leistungen, etwa SAP-Beratung, Logistik-Templates und zwölf KI-Anwendungsfälle, statt allgemeiner Beratungsbausteine. Die Messung mit Lighthouse ergab für die mobile Ansicht eine Verbesserung der Leistungsbewertung von 71 auf 83 Punkte. Seit dem 4. Oktober 2026 ist die Website über GitHub Pages öffentlich erreichbar, der Umzug auf eine eigene Domain ist vorbereitet. Offen ist vor allem der Ersatz der Platzhalterinhalte.
 
 <!-- toc -->
 
@@ -75,7 +75,7 @@ Tabelle: Rahmendaten des Projekts
 | --- | --- |
 | Zeitraum | 23. Juni 2026 bis 4. Oktober 2026 |
 | Geplanter Aufwand | etwa vier Stunden pro Woche über 13 Wochen |
-| Umfang | neun Commits bis zur Veröffentlichung, rund 180 Dateien im Repository, rund 7.000 Zeilen Quelltext im Frontend |
+| Umfang | elf Commits, rund 180 Dateien im Repository, rund 7.000 Zeilen Quelltext im Frontend |
 | Seiten | Startseite, drei Bereichsseiten, Karriereseite, Impressum, Logo-Vorschau, Fehlerseite |
 | Technik | React 18, TypeScript 7, Vite 6, Tailwind CSS 4, FastAPI |
 | Betrieb | seit 04.10.2026 veröffentlicht unter https://ahuemmer3.github.io/Stonetree.Consulting/, Umzug auf eine IONOS-Domain vorgesehen, Docker-Betrieb mit Backend vorbereitet |
@@ -111,7 +111,7 @@ Der tatsächliche Verlauf lässt sich in fünf Phasen gliedern. Abbildung und Ta
 
 **Phase 3: Abstimmung und Ausbau (September 2026).** Nach einer Abstimmung mit dem Auftraggeber wurden Farbwelt, Leistungen und Kundenprojekte angepasst. Es entstanden das FastAPI-Backend für das Kontaktformular, die Containerkonfiguration für den Betrieb, das Hintergrundvideo, das Publikationskarussell, die Karriereseite mit Stellenfilter und ein Diagramm. Die Gestaltung wurde auf ein helles Farbsystem mit einer Akzentfarbe umgestellt.
 
-**Phase 4: Abschluss (Oktober 2026).** Das Impressum wurde mit Musterdaten und einem Hinweis auf den fiktiven Charakter versehen. Diese Dokumentation wurde überarbeitet. Für die Veröffentlichung wurde die Website so angepasst, dass sie zusätzlich ohne Backend auf GitHub Pages läuft. Am 4. Oktober 2026 ging sie dort online (siehe Kapitel 8). Danach wurden die drei Bereichsseiten mit konkreten Leistungen neu gefasst (siehe Abschnitt 4.6).
+**Phase 4: Veröffentlichung und Abschluss (Oktober 2026).** Das Impressum wurde mit Musterdaten und einem Hinweis auf den fiktiven Charakter versehen. Diese Dokumentation wurde überarbeitet. Für die Veröffentlichung wurde die Website so angepasst, dass sie zusätzlich ohne Backend auf GitHub Pages läuft. Am 4. Oktober 2026 ging sie dort online (siehe Kapitel 8). Danach wurden die drei Bereichsseiten mit konkreten Leistungen neu gefasst (siehe Abschnitt 4.6).
 
 Tabelle: Entwicklungsstände laut Versionsverwaltung
 
@@ -126,7 +126,8 @@ Tabelle: Entwicklungsstände laut Versionsverwaltung
 | 16.09.2026 | 7b200f4 | 66 Dateien | helles Farbsystem, Karriereseite mit Stellenfilter, Diagramm, neue Navigation |
 | 22.09.2026 | c48e57c | 17 Dateien | abgestufte Bereichskarten, dunklere Grautöne, korrigierte Servicezeile |
 | 04.10.2026 | 469291d | 37 Dateien | Impressum mit Musterdaten, Projektdokumentation, Veröffentlichung über GitHub Pages |
-| 04.10.2026 | ausstehend | | Bereichsseiten mit konkreten Leistungen, Reitern und Projektbeispielen |
+| 04.10.2026 | 8ff55c3 | 5 Dateien | Dokumentation auf den veröffentlichten Stand gebracht |
+| 04.10.2026 | f5d9d36 | 22 Dateien | Bereichsseiten mit konkreten Leistungen, Reitern und Projektbeispielen |
 
 ## Abgleich mit dem Arbeitsplan
 
@@ -578,6 +579,7 @@ Drei Schutzmechanismen begrenzen Missbrauch. Ein unsichtbares Feld (Honeypot) er
 - Typprüfung mit strikten Einstellungen. Der Build bricht bei Fehlern ab.
 - Linter oxlint ohne Befund.
 - Acht automatisierte Tests im Backend, alle erfolgreich (Stand 4. Oktober 2026).
+- Tastaturbedienung der Reiter auf den Bereichsseiten automatisiert im Browser geprüft: Pfeiltasten, Pos1 und Ende wechseln den Reiter, Fokus und Adresse folgen, nur der aktive Reiter ist per Tabulatortaste erreichbar.
 
 ## Kontraste und Lesbarkeit
 
@@ -602,13 +604,13 @@ Der größte Gewinn liegt in der mobilen Ansicht. Vorher wurde das Video dort mi
 
 ## Darstellung auf verschiedenen Bildschirmgrößen
 
-Ganzseitige Screenshots wurden bei 375, 768, 1280 und 1920 Pixeln Breite erstellt und vor und nach der Überarbeitung abgelegt. Für diese Dokumentation wurde die mobile Ansicht zusätzlich mit einer echten Geräteemulation von 375 Pixeln geprüft. Auf keiner der geprüften Seiten ist die Seite breiter als der Bildschirm.
+Ganzseitige Screenshots wurden bei 375, 768, 1280 und 1920 Pixeln Breite erstellt und vor und nach der Überarbeitung abgelegt. Für diese Dokumentation wurde die mobile Ansicht zusätzlich mit einer echten Geräteemulation von 375 Pixeln geprüft. Auf keiner der geprüften Seiten ist die Seite breiter als der Bildschirm. Die Reiterleiste der Bereichsseiten ist am Smartphone breiter als der Bildschirm. Sie lässt sich waagerecht wischen, der aktive Reiter wird automatisch ins Bild geholt, und ein Verlauf am rechten Rand zeigt, dass weitere Reiter folgen.
 
 ![Mobile Ansicht bei 375 Pixeln: Startseite, Bereichsseite und Karriereseite](../abbildungen/mobil.jpg)
 
 ## Grenzen der Prüfung
 
-Nicht von Hand geprüft wurden die Bedienung der Ausklappmenüs mit der Tastatur in verschiedenen Browsern und die Darstellung in Safari. Die Netzwerkdrosselung wurde über Lighthouse nachgestellt, nicht auf echten Mobilgeräten getestet. Diese Punkte stehen in der Liste offener Punkte.
+Nicht von Hand geprüft wurden die Bedienung der Ausklappmenüs mit der Tastatur in verschiedenen Browsern und die Darstellung in Safari. Die Tastaturprüfung der Reiter lief nur in Chrome. Die Netzwerkdrosselung wurde über Lighthouse nachgestellt, nicht auf echten Mobilgeräten getestet. Diese Punkte stehen in der Liste offener Punkte.
 
 # Betrieb und Deployment
 
@@ -696,11 +698,12 @@ Tabelle: Einsatz von Claude nach Aufgabenbereich
 | --- | --- | --- |
 | Programmierung | Migration von JavaScript zu TypeScript, Aufteilung in Komponenten und Features, Hintergrundvideo, Karussell, Stellenfilter, Diagramm, FastAPI-Backend mit Tests | Vorgaben zu Architektur und Codequalität, Prüfung und Abnahme jeder Änderung |
 | Gestaltung | Umsetzung der Farbvorgaben als Tokens, Berechnung von Kontrasten, Anpassung an Breakpoints | Gestaltungsentscheidungen, Auswahl der Varianten, Abstimmung mit dem Auftraggeber |
-| Inhalte | Entwürfe für Texte der Bereichsseiten, Leistungen, Karriereseite und FAQ, Sprachdurchgang nach den Sprachregeln | Positionierung, Freigabe und Überarbeitung der Texte |
-| Recherche | strukturierte Analyse von Referenzwebsites, Recherche zu KI im Mittelstand und zur KI-Verordnung | Auswahl der Vorbilder, Entscheidung über Übernahme oder Verzicht |
+| Inhalte | Entwürfe für Texte der Bereichsseiten, Leistungen, Karriereseite und FAQ, Sprachdurchgang nach den Sprachregeln, Neufassung der Bereichsseiten mit konkreten Leistungen | Positionierung, Vorgabe der Leistungsfelder (etwa SAP-Beratung und Logistik-Templates), Freigabe und Überarbeitung der Texte |
+| Recherche | strukturierte Analyse von Referenzwebsites, Recherche zu KI im Mittelstand, zur KI-Verordnung, zum SAP-Wartungsende und zu realen Angeboten von SAP- und Logistikberatungen | Auswahl der Vorbilder, Entscheidung über Übernahme oder Verzicht |
 | Medien | Skripte zur Bild- und Videoaufbereitung, Zuschnitt des Logos und Erzeugung der Favicons | Auswahl der Motive und Quellen |
-| Qualitätssicherung | Lighthouse-Messungen, Screenshots, Kontrastprüfung, Ausführen von Typprüfung, Linter und Tests | Bewertung der Ergebnisse |
+| Qualitätssicherung | Lighthouse-Messungen, Screenshots, Kontrastprüfung, Tastaturtest der Reiter, Prüfung der veröffentlichten Website, Ausführen von Typprüfung, Linter und Tests | Bewertung der Ergebnisse |
 | Dokumentation | fortlaufendes Änderungsprotokoll, Hosting-Anleitung, Überarbeitung dieser Projektdokumentation | Struktur, inhaltliche Prüfung, Endfassung |
+| Betrieb | Einrichtung von GitHub Pages mit Workflow, Anpassung an den Unterordner, Vorbereitung für IONOS | Anlage des Repositorys, Aktivierung von GitHub Pages, Freigabe der Veröffentlichung |
 
 ## Arbeitsweise
 
@@ -712,7 +715,7 @@ Für eine gleichbleibende Qualität wurden dem Werkzeug feste Vorgaben gemacht. 
 
 Der Einsatz brachte einen deutlichen Zeitgewinn bei wiederkehrenden Aufgaben wie der Typisierung von Datenmodellen, der Aufteilung von Komponenten oder dem Schreiben von Tests. Ebenso hilfreich war die Möglichkeit, Messungen wie Kontrastberechnungen über alle Bilder eines Videos automatisiert durchzuführen, die von Hand kaum praktikabel wären.
 
-Dem stehen bekannte Grenzen großer Sprachmodelle gegenüber. Sprachmodelle können plausibel klingende, aber falsche Aussagen erzeugen. Deshalb wurden Fakten, Quellen und Rechtsfragen gesondert geprüft. Ein Beispiel aus dieser Dokumentation: Die im August protokollierte Darstellung der Einstiegsphasen bei CodeCamp:N ließ sich im Oktober nicht mehr bestätigen und ist entsprechend gekennzeichnet. Rechtliche Texte wie das Impressum wurden bewusst als Musterdaten angelegt. Für eine echte Website ersetzt das Werkzeug keine Rechtsberatung. Texte aus Sprachmodellen neigen zudem zu Floskeln. Die Sprachregeln und ein eigener Sprachdurchgang wirkten dem entgegen.
+Dem stehen bekannte Grenzen großer Sprachmodelle gegenüber. Sprachmodelle können plausibel klingende, aber falsche Aussagen erzeugen. Deshalb wurden Fakten, Quellen und Rechtsfragen gesondert geprüft. Ein Beispiel aus dieser Dokumentation: Die im August protokollierte Darstellung der Einstiegsphasen bei CodeCamp:N ließ sich im Oktober nicht mehr bestätigen und ist entsprechend gekennzeichnet. Bei der Neufassung der Bereichsseiten wurde ein zunächst erwogener Anwendungsfall, die automatische Vorauswahl von Bewerbungen, wieder verworfen, weil KI-Systeme im Personalbereich nach der KI-Verordnung als Hochrisiko-Systeme gelten [8]. Rechtliche Texte wie das Impressum wurden bewusst als Musterdaten angelegt. Für eine echte Website ersetzt das Werkzeug keine Rechtsberatung. Texte aus Sprachmodellen neigen zudem zu Floskeln. Die Sprachregeln und ein eigener Sprachdurchgang wirkten dem entgegen.
 
 Die Verantwortung für alle Inhalte, Entscheidungen und das Ergebnis liegt beim Autor. Claude wurde als Werkzeug eingesetzt, vergleichbar mit einer Entwicklungsumgebung oder einer Suchmaschine, nicht als Urheber der Arbeit.
 
@@ -720,7 +723,7 @@ Die Verantwortung für alle Inhalte, Entscheidungen und das Ergebnis liegt beim 
 
 ## Zusammenfassung
 
-Die Arbeit hat gezeigt, wie sich das Alleinstellungsmerkmal eines Beratungsunternehmens in eine Website übersetzen lässt. Ausgangspunkt war eine Analyse etablierter Beratungswebsites. Sie zeigte, dass große Anbieter Kompetenz durch Fallbeispiele, Publikationen und eigene Forschungsinstitute belegen. Für stonetree wurde daraus die Positionierung über das Research Lab abgeleitet und konsequent auf alle Seiten übertragen.
+Die Arbeit hat gezeigt, wie sich das Alleinstellungsmerkmal eines Beratungsunternehmens in eine Website übersetzen lässt. Ausgangspunkt war eine Analyse etablierter Beratungswebsites. Sie zeigte, dass große Anbieter Kompetenz durch Fallbeispiele, Publikationen und eigene Forschungsinstitute belegen. Für stonetree wurde daraus die Positionierung über das Research Lab abgeleitet und konsequent auf alle Seiten übertragen. In der letzten Phase zeigte sich, dass eine klare Positionierung allein nicht genügt. Erst die Benennung konkreter Leistungen wie SAP-Beratung, Logistik-Templates und einzelner KI-Anwendungsfälle macht das Angebot für die Zielgruppe greifbar. Die Bereichsseiten wurden deshalb kürzer und konkreter gefasst.
 
 Alle vier Ziele aus Abschnitt 1.2 wurden erreicht, das vierte mit Einschränkung. Die Positionierung ist auf allen Seiten umgesetzt. Struktur und Gestaltung orientieren sich nachvollziehbar an Vorbildern, ohne Inhalte zu kopieren. Inhalte sind in typisierten Datenmodellen änderbar, ohne Komponenten anzufassen. Die Website ist seit dem 4. Oktober 2026 über GitHub Pages öffentlich erreichbar. Der Betrieb mit eigenem Backend ohne weitere Fremddienste ist vorbereitet, der Umzug auf die endgültige Domain steht noch aus.
 
