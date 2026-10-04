@@ -1,6 +1,7 @@
 import AufwandChart from "../charts/AufwandChart"
 import Card from "../ui/Card"
 import CardGrid from "../ui/CardGrid"
+import CardMetric from "../ui/CardMetric"
 import Section from "../ui/Section"
 import SectionHead from "../ui/SectionHead"
 import { kundenprojekte } from "../../data/kundenprojekte"
@@ -30,12 +31,7 @@ export default function Kundenprojekte() {
               label: `Zum Bereich ${fall.bereichTitel}`,
               to: `/bereiche/${fall.bereichSlug}`,
             }}
-            highlight={
-              <p className="card__metric">
-                <span className="card__metric-value">{fall.kennzahl.wert}</span>
-                <span className="card__metric-label">{fall.kennzahl.label}</span>
-              </p>
-            }
+            highlight={<CardMetric {...fall.kennzahl} />}
           >
             <details className="card__details">
               <summary>Ausgangslage und Vorgehen</summary>

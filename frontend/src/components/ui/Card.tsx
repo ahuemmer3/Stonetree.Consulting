@@ -28,6 +28,9 @@ interface CardProps {
   // Abstufung der Kartenfläche: 1 weiß, 2 helles Grau, 3 etwas dunkleres Grau.
   // Für Reihen, in denen die Karten sich voneinander abheben sollen.
   ton?: 1 | 2 | 3
+  // false zeigt den Text vollständig statt nach drei Zeilen abzuschneiden.
+  // Für Karten, deren Text bewusst nur ein Satz ist und ganz lesbar sein muss.
+  clampText?: boolean
   revealDelay?: number
 }
 
@@ -41,6 +44,7 @@ export default function Card({
   children,
   stretchLink = true,
   ton,
+  clampText = true,
   revealDelay = 0,
 }: CardProps) {
   const classes = [
@@ -63,7 +67,9 @@ export default function Card({
         {kicker && <span className="kicker card__kicker">{kicker}</span>}
         <h3 className="card__title">{title}</h3>
         {highlight}
-        {text && <p className="card__text">{text}</p>}
+        {text && (
+          <p className={`card__text${clampText ? "" : " card__text--full"}`}>{text}</p>
+        )}
         {children}
         {link && <CardLinkView link={link} title={title} />}
       </div>

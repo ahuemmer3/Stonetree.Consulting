@@ -45,18 +45,17 @@ export const homeSectionIds = mainNav
 
 export const contactLink: NavLink = { label: "Kontakt", href: "/#kontakt" }
 
-// Ausklappmenü Expertise: je Bereich die Abschnitte seiner Detailseite.
-// Die Beschriftungen kommen aus den Daten, weil sie je Bereich anders heißen.
+// Ausklappmenü Expertise: je Bereich seine Leistungsfelder. Jeder Link öffnet
+// den passenden Reiter (?feld=...), der erste Reiter braucht keinen Parameter.
 export const expertiseColumns: MegaColumn[] = pillars.map((pillar) => {
   const base = `/bereiche/${pillar.slug}`
   return {
     title: pillar.title,
     href: base,
-    links: [
-      { label: pillar.detail.offerings.eyebrow, href: `${base}#leistungsbausteine` },
-      { label: pillar.detail.phases.eyebrow, href: `${base}#vorgehen` },
-      { label: pillar.detail.formats.eyebrow, href: `${base}#einstieg` },
-    ],
+    links: pillar.detail.services.items.map((feld, index) => ({
+      label: feld.label,
+      href: index === 0 ? `${base}#leistungen` : `${base}?feld=${feld.id}#leistungen`,
+    })),
   }
 })
 

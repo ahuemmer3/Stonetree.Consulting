@@ -351,6 +351,33 @@ Dateien: `src/components/sections/Hero.tsx`, `src/data/heroClips.ts`,
 Entfernt: `src/features/hero-video/useBackgroundVideo.ts`, `public/videos/`,
 `public/images/hero.jpg`.
 
+### Nacharbeit: Bereichsseiten konkret und überfliegbar (Oktober 2026)
+Was: Die drei Bereichsseiten neu gefasst. Statt drei Absätzen, Dreispalter,
+Ausgangslagen, Leistungsbausteinen und Aufgaben gibt es jetzt einen kurzen
+Einleitungssatz mit drei Eckdaten, Leistungsfelder als Reiter mit kompakten
+Karten (ein Satz, Schlagworte, Eckdaten) und drei Projektbeispiele mit Kennzahl.
+Inhalte konkret: Consulting mit SAP-Beratung (S/4HANA, Clean Core),
+Logistik-Templates mit SAP EWM und Rollout, Management und Organisation.
+KI-Automatisierung mit zwölf Anwendungsfällen in vier Unternehmensbereichen.
+Research Lab mit neun Vorhaben in KI-Entwicklung, SAP-Optimierung und Agenten,
+jeweils mit Stand.
+Warum: Rückmeldung, dass die Seiten zu viel Text hatten und das Angebot
+abstrakt blieb.
+Technik: Reiter nach dem WAI-ARIA-Tabs-Muster, Logik in
+`src/features/tabs/useTabs.ts`, aktiver Reiter in der Adresse (`?feld=sap`).
+Das Menü Expertise verlinkt jedes Leistungsfeld. Karten können Text jetzt
+vollständig zeigen (`clampText`). Kennzahl in Karten als eigener Baustein
+`CardMetric`. Bewerbungs-Vorauswahl bewusst nicht aufgenommen (Hochrisiko nach
+EU AI Act).
+Dateien: `src/data/pillars.ts`, `src/data/navigation.ts`,
+`src/components/detail/Services.tsx`, `Cases.tsx`, `DetailPage.tsx`,
+`src/components/ui/Card.tsx`, `CardMetric.tsx`, `NumberedSteps.tsx`,
+`src/components/sections/Kundenprojekte.tsx`, `src/pages/PillarPage.tsx`,
+`src/features/tabs/useTabs.ts`, `src/styles/ui.css`, `sections.css`.
+Entfernt: `Situations.tsx`, `Offerings.tsx`, `Tasks.tsx` samt Stilen.
+Tests: Typprüfung, Build und Linter fehlerfrei. Tastaturbedienung der Reiter
+im Browser geprüft, mobile Ansicht bei 375 Pixeln ohne waagerechtes Scrollen.
+
 ## 4. Neue Struktur (Seitenbaum)
 
 ```
@@ -375,8 +402,8 @@ Entfernt: `src/features/hero-video/useBackgroundVideo.ts`, `public/videos/`,
 
 TypeScript-Interfaces in `src/data/`:
 
-- `Pillar`, `PillarDetail`, `PillarPoint` (pillars.ts): die drei Bereiche.
-- `PillarBlock<T>` mit `PillarSituation`, `PillarOffering`, `PillarPhase`, `PillarFormat`, `PillarFaq` (pillars.ts): die Abschnitte der Bereichsseiten, jeweils mit eigener Überschrift.
+- `Pillar`, `PillarDetail` (pillars.ts): die drei Bereiche.
+- `PillarBlock<T>` mit `PillarField`, `PillarService`, `PillarCase`, `PillarPhase`, `PillarFormat`, `PillarFaq` (pillars.ts): die Abschnitte der Bereichsseiten, jeweils mit eigener Überschrift.
 - `Publication` und `PublicationType` (publications.ts): Publikationen, mit Typ, Themen und optionalem pdfUrl.
 - `Leistung` (leistungen.ts): Leistungsbausteine.
 - `Kundenprojekt` (kundenprojekte.ts): Fallbeispiele.
@@ -422,7 +449,7 @@ TypeScript-Interfaces in `src/data/`:
 - [x] "AI Automation" durchgängig zu "KI-Automatisierung", inklusive Slug
 - [x] Kein Gedankenstrich mehr in sichtbarem Text
 - [x] Branchen komplett entfernt, alte Branchen-Adressen leiten weiter
-- [x] Bereichsseiten gefüllt: Ausgangslage, Leistungsbausteine, Aufgaben, Vorgehen, Einstiegsformate, häufige Fragen
+- [x] Bereichsseiten konkret: Eckdaten, Leistungsfelder als Reiter, Projektbeispiele, Vorgehen, Einstieg, häufige Fragen
 - [x] Sechs Leistungsbausteine in der Reihenfolge Strategie bis Umsetzung
 - [x] Drei Kundenprojekte mit Ausgangslage, Vorgehen, Ergebnis (Energie, Bank, Kommune, je bis 6 Monate)
 - [x] Farben neutral Weiß und Grau, Bereichskarten abgestuft

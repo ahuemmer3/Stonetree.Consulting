@@ -111,7 +111,7 @@ Der tatsächliche Verlauf lässt sich in fünf Phasen gliedern. Abbildung und Ta
 
 **Phase 3: Abstimmung und Ausbau (September 2026).** Nach einer Abstimmung mit dem Auftraggeber wurden Farbwelt, Leistungen und Kundenprojekte angepasst. Es entstanden das FastAPI-Backend für das Kontaktformular, die Containerkonfiguration für den Betrieb, das Hintergrundvideo, das Publikationskarussell, die Karriereseite mit Stellenfilter und ein Diagramm. Die Gestaltung wurde auf ein helles Farbsystem mit einer Akzentfarbe umgestellt.
 
-**Phase 4: Abschluss (Oktober 2026).** Das Impressum wurde mit Musterdaten und einem Hinweis auf den fiktiven Charakter versehen. Diese Dokumentation wurde überarbeitet. Für die Veröffentlichung wurde die Website so angepasst, dass sie zusätzlich ohne Backend auf GitHub Pages läuft. Am 4. Oktober 2026 ging sie dort online (siehe Kapitel 8).
+**Phase 4: Abschluss (Oktober 2026).** Das Impressum wurde mit Musterdaten und einem Hinweis auf den fiktiven Charakter versehen. Diese Dokumentation wurde überarbeitet. Für die Veröffentlichung wurde die Website so angepasst, dass sie zusätzlich ohne Backend auf GitHub Pages läuft. Am 4. Oktober 2026 ging sie dort online (siehe Kapitel 8). Danach wurden die drei Bereichsseiten mit konkreten Leistungen neu gefasst (siehe Abschnitt 4.6).
 
 Tabelle: Entwicklungsstände laut Versionsverwaltung
 
@@ -126,6 +126,7 @@ Tabelle: Entwicklungsstände laut Versionsverwaltung
 | 16.09.2026 | 7b200f4 | 66 Dateien | helles Farbsystem, Karriereseite mit Stellenfilter, Diagramm, neue Navigation |
 | 22.09.2026 | c48e57c | 17 Dateien | abgestufte Bereichskarten, dunklere Grautöne, korrigierte Servicezeile |
 | 04.10.2026 | 469291d | 37 Dateien | Impressum mit Musterdaten, Projektdokumentation, Veröffentlichung über GitHub Pages |
+| 04.10.2026 | ausstehend | | Bereichsseiten mit konkreten Leistungen, Reitern und Projektbeispielen |
 
 ## Abgleich mit dem Arbeitsplan
 
@@ -175,6 +176,8 @@ Die Analysen fanden zu verschiedenen Zeitpunkten im Projekt statt, jeweils dann,
 
 **Kleinere KI-Beratungen.** Mehrere deutsche Anbieter für KI im Mittelstand arbeiten mit klar umrissenen Einstiegsformaten, einem Vorgehen in drei bis vier Schritten mit Zeitangaben und häufigen Fragen am Seitenende. Häufig finden sich zudem Preistabellen, Selbsttests und Newsletter-Kästen.
 
+**SAP- und Logistikberatungen.** Für die Überarbeitung der Bereichsseiten im Oktober 2026 wurden zusätzlich Referenzen spezialisierter SAP-Beratungen ausgewertet. Sie beschreiben ihre Leistungen nicht abstrakt, sondern über Systeme und Projekttypen, etwa den Aufbau eines Logistik-Templates mit SAP EWM und dessen Rollout auf weitere Standorte [27].
+
 ## Übernahme in das Projekt im zeitlichen Verlauf
 
 Die Erkenntnisse flossen nicht auf einmal ein, sondern Schritt für Schritt. Tabelle 5 ordnet jede Übernahme der Phase zu, in der sie umgesetzt wurde.
@@ -187,7 +190,7 @@ Tabelle: Übernommene Muster nach Projektphase
 | 1 (Juli) | Roland Berger | Hauptnavigation Expertise, Publikationen, Über uns, Kontakt | Navigation Übersicht, Expertise, Publikationen, Über uns, Kontakt |
 | 1 (Juli) | Roland Berger | Servicezeile über der Hauptnavigation | Servicezeile mit Publikationen, Research Lab, Kontakt, Karriere, Sprachwahl |
 | 1 (Juli) | BCG, Capgemini | echte Arbeitssituationen statt abstrakter Grafiken | Fotos statt Illustrationen, abstrakte Motive verworfen |
-| 2 (August) | Roland Berger | Leistungsseiten mit Clustern je Leistung | sechs Leistungsbausteine je Bereich, jeweils mit Ergebnis |
+| 2 (August) | Roland Berger | Leistungsseiten mit Clustern je Leistung | sechs Leistungsbausteine je Bereich, jeweils mit Ergebnis (im Oktober durch Leistungsfelder ersetzt) |
 | 2 (August) | CodeCamp:N | Einstieg über eine kurze Standortbestimmung vor dem Projekt | Einstiegsformate mit Umfang, etwa eine Standortbestimmung über vier bis sechs Wochen |
 | 2 (August) | KI-Beratungen | Vorgehen in Schritten mit Dauer, häufige Fragen | Vorgehen in vier Schritten mit Zeitangabe, fünf häufige Fragen je Bereich |
 | 2 (August) | BCG, McKinsey | eigenes Forschungsinstitut als Beleg für Kompetenz | Research Lab als eigener Bereich mit typisierten Publikationen |
@@ -195,6 +198,8 @@ Tabelle: Übernommene Muster nach Projektphase
 | 3 (September) | Roland Berger, BCG | ruhige Bewegtbilder im Kopfbereich | stummes Hintergrundvideo mit Pausenknopf |
 | 3 (September) | BCG | Karriereseite nach Einstiegswegen, Stellensuche mit Filter, Erfahrungsberichte | Karriereseite mit vier Einstiegswegen, drei Filtern und drei Zitaten |
 | 3 (September) | Roland Berger | Ausklappmenüs mit Unterpunkten | zwei Ausklappmenüs mit Vorschaukarte |
+| 4 (Oktober) | SAP- und Logistikberatungen | Leistungen nach Systemen und Projekttypen benannt, Template-Rollouts als Referenz | Consulting mit SAP-Beratung und Logistik-Templates |
+| 4 (Oktober) | KI-Beratungen | Anwendungsfälle nach Unternehmensbereich mit Dauer bis zum Pilot | zwölf Anwendungsfälle in vier Reitern |
 
 ## Bewusst nicht übernommene Muster
 
@@ -234,7 +239,7 @@ Tabelle: Zielgruppen und ihre Fragen an die Website
 | Zielgruppe | Was sie sucht | Wo die Website antwortet |
 | --- | --- | --- |
 | Geschäftsführung im Mittelstand | Kann das jemand umsetzen, nicht nur beraten? | Leistungen 01 bis 06, Kundenprojekte mit Kennzahl, Vorgehen mit Dauer |
-| Fachbereich oder IT | Wie läuft ein Projekt konkret ab? | Bereichsseiten mit Ausgangslage, Bausteinen, Aufgaben, Vorgehen, Fragen |
+| Fachbereich oder IT | Was wird konkret angeboten, und wie läuft ein Projekt ab? | Bereichsseiten mit Leistungsfeldern, Projektbeispielen, Vorgehen und Fragen |
 | Bewerberinnen und Bewerber | Wie arbeitet man dort und wie bewirbt man sich? | Karriereseite mit Einstiegswegen, Bewerbungsprozess, Stellen, Einblicken |
 | Hochschulen | Gibt es Kooperationen und Abschlussarbeiten? | Research Lab und Abschnitt Forschung auf der Karriereseite |
 
@@ -293,25 +298,36 @@ Tabelle: Abschnitte der Startseite
 
 ## Die drei Bereichsseiten
 
-Jeder Bereich hat eine eigene Seite. Alle drei Seiten sind gleich aufgebaut. Das erleichtert den Vergleich und reduziert den Erklärungsaufwand. Der Aufbau geht auf die Analyse in Kapitel 3 zurück.
+Jeder Bereich hat eine eigene Seite. Alle drei Seiten sind gleich aufgebaut. Das erleichtert den Vergleich und reduziert den Erklärungsaufwand.
 
-Tabelle: Aufbau einer Bereichsseite
+In der ersten Fassung bestand jede Bereichsseite aus drei Absätzen Fließtext, einem Dreispalter, vier Ausgangslagen, sechs Leistungsbausteinen und sechs typischen Aufgaben, gefolgt von Vorgehen, Einstieg und Fragen. Die Rückmeldung im Oktober 2026 lautete, dass diese Menge an Text kaum gelesen wird und das Angebot dennoch abstrakt bleibt. Begriffe wie Standortbestimmung oder Zielbild sagen wenig darüber, was ein Unternehmen tatsächlich einkaufen kann.
 
-| Abschnitt | Zweck | Umfang |
+Die Seiten wurden deshalb nach zwei Grundsätzen neu gefasst. Erstens konkrete Leistungen statt allgemeiner Bausteine: Consulting nennt SAP-Beratung, Logistik-Templates und Managementberatung beim Namen, KI-Automatisierung zeigt zwölf Anwendungsfälle mit Pilotdauer und betroffenen Systemen, das Research Lab nennt seine Vorhaben mit Laufzeit und Stand. Zweitens überfliegbare Form statt Fließtext: Jede Leistung besteht aus einem Satz, Schlagworten und Eckdaten. Die Leistungsfelder stehen als Reiter nebeneinander, sodass immer nur drei Karten gleichzeitig sichtbar sind.
+
+Tabelle: Aufbau einer Bereichsseite vor und nach der Überarbeitung
+
+| Abschnitt | vorher | nachher |
 | --- | --- | --- |
-| Kopfbereich | Bereich benennen und einordnen | Kicker, Titel, ein Satz |
-| Fließtext | Haltung und Vorgehen erklären | drei Absätze |
-| Dreispalter | Kern in drei Stichpunkten | je Titel und zwei Sätze |
-| Ausgangslage | Anlässe, in denen Kunden anfragen | vier Situationen |
-| Leistungsbausteine | Was konkret geliefert wird | sechs Bausteine, je mit Ergebnis |
-| Typische Aufgaben | Was tatsächlich getan wird | sechs Stichpunkte |
-| Vorgehen | Ablauf und Dauer | vier Schritte mit Zeitangabe |
-| Einstieg | Wie man klein anfangen kann | drei Formate mit Umfang |
-| Häufige Fragen | Einwände vorwegnehmen | fünf Fragen |
+| Einleitung | drei Absätze und Dreispalter | ein bis zwei Sätze und drei Eckdaten |
+| Leistungen | vier Ausgangslagen, sechs Bausteine, sechs Aufgaben | drei bis vier Reiter mit je drei Karten aus einem Satz, Schlagworten und Eckdaten |
+| Projektbeispiele | keine | drei Fälle mit Kennzahl, Details aufklappbar |
+| Vorgehen | vier Schritte mit je zwei Sätzen | vier Schritte mit je einem Satz |
+| Einstieg | drei Formate mit bis zu vier Punkten | drei Formate mit je drei Punkten |
+| Häufige Fragen | fünf Fragen | vier Fragen |
 
-Die Abschnitte heißen nicht überall gleich. Im Research Lab heißen die Bausteine Formate, und der Einstieg heißt Mitarbeit. Das Lab verkauft keine Pakete, es nimmt Fragen auf. Diese Beschriftungen stehen in den Daten, nicht im Code.
+Tabelle: Leistungsfelder je Bereich
 
-![Bereichsseite Consulting, Kopfbereich und Einleitung](../abbildungen/bereichsseite-consulting.jpg)
+| Bereich | Reiter | Beispiele für Leistungen |
+| --- | --- | --- |
+| Consulting | SAP-Beratung, Logistik und Supply Chain, Management und Strategie, Organisation und Projekte | Umstieg auf S/4HANA, Clean Core, Logistik-Template mit SAP EWM, Rollout an Standorten, Business Case, Programmmanagement |
+| KI-Automatisierung | Finanzen und Einkauf, Vertrieb und Service, Produktion und Logistik, Wissen und Verwaltung | Rechnungseingang, Service-Postfach, Angebotsentwürfe, Bedarfsprognose, Sichtprüfung, Wissensassistent |
+| Research Lab | KI-Entwicklung, SAP-Optimierung, Automatisierung und Agenten | kleine Sprachmodelle, KI im eigenen Rechenzentrum, Process Mining auf SAP-Daten, KI-gestützte Code-Analyse, Agenten mit Freigabegrenzen |
+
+Die Inhalte orientieren sich an realen Angeboten. Die Standardwartung für SAP ECC 6.0 endet am 31. Dezember 2027, die verlängerte Wartung läuft gegen Aufpreis bis Ende 2030 [26]. Für viele Mittelständler ist der Umstieg auf S/4HANA deshalb das drängendste IT-Thema. Spezialisierte Beratungen führen Logistik-Templates zunächst an einem Standort ein und rollen sie danach auf weitere Werke aus [27]. Bei der KI-Automatisierung gelten die Verarbeitung von Eingangsrechnungen und die Sortierung von Service-Postfächern als Anwendungsfälle mit besonders günstigem Verhältnis von Aufwand und Nutzen [28]. Bewusst nicht aufgenommen wurde die automatische Vorauswahl von Bewerbungen, weil KI-Systeme im Personalbereich nach der KI-Verordnung als Hochrisiko-Systeme gelten [8].
+
+Die Unterschiede zwischen den Bereichen stehen in den Daten, nicht im Code. Im Research Lab heißen die Leistungen Forschungsfelder und tragen zusätzlich einen Stand (laufend, abgeschlossen, geplant). Die Projektbeispiele heißen dort Transfer und zeigen, welche Ergebnisse des Labs in Kundenprojekte übernommen wurden. Unternehmen und Kennzahlen der Beispiele sind Platzhalter und als solche gekennzeichnet.
+
+![Bereichsseite Consulting mit Eckdaten und Reiter Logistik und Supply Chain](../abbildungen/bereichsseite-consulting.jpg)
 
 ## Leistungen
 
@@ -436,6 +452,7 @@ Barrierefreiheit betrifft nicht nur die Technik, sondern auch die Texte. Die Web
 - Überschriften folgen einer Hierarchie mit genau einer Hauptüberschrift je Seite.
 - Links tragen für Vorlesesoftware zusätzlich den Titel der Karte.
 - Das Hintergrundvideo lässt sich anhalten, weil bewegte Inhalte über fünf Sekunden das nach Erfolgskriterium 2.2.2 erfordern.
+- Die Reiter der Bereichsseiten folgen dem Tabs-Muster der WAI-ARIA Authoring Practices [29]: Pfeiltasten wechseln den Reiter, nur der aktive ist per Tabulatortaste erreichbar.
 - Farben wurden gegen die Schrift rechnerisch geprüft, nicht nach Augenmaß gewählt.
 
 # Gestaltung
@@ -511,7 +528,7 @@ Tabelle: Ordnerstruktur des Frontends
 | src/components/ui | wiederverwendbare Bausteine | Karte, Raster, Schritte, Punkte, Zitat, Seitenkopf |
 | src/components/sections | Abschnitte der Startseite | je Abschnitt eine Datei |
 | src/components/detail | Abschnitte der Bereichsseiten | Ausgangslage bis häufige Fragen |
-| src/features | Logik mit Zustand | Hintergrundvideo, Karussell, Stellenfilter, Navigation, Diagramm, Kontaktformular |
+| src/features | Logik mit Zustand | Hintergrundvideo, Karussell, Stellenfilter, Reiter, Navigation, Diagramm, Kontaktformular |
 | src/pages | Seiten | Startseite, Bereich, Karriere, Impressum, Logo-Vorschau, Fehlerseite |
 | src/styles | Stile nach Aufgabe getrennt | 7 Dateien, rund 2.100 Zeilen |
 | scripts | Aufbereitung von Video und Bildern | zwei Shell-Skripte mit ffmpeg |
@@ -520,7 +537,7 @@ Am Kontaktformular lässt sich die Trennung beispielhaft zeigen. Die Datei `useC
 
 ## Datenmodelle
 
-Alle Inhalte sind über TypeScript-Schnittstellen beschrieben. Fehlt in einem Datensatz ein Pflichtfeld, bricht der Build ab. Die wichtigsten Modelle sind `Pillar` und `PillarDetail` für die Bereiche, `Publication` mit dem Typ `PublicationType`, `Leistung`, `Kundenprojekt`, `Job` sowie `Site` mit `Impressum`. Auf Seite des Backends prüft das Pydantic-Modell `ContactRequest` jede Anfrage, bevor sie verarbeitet wird.
+Alle Inhalte sind über TypeScript-Schnittstellen beschrieben. Fehlt in einem Datensatz ein Pflichtfeld, bricht der Build ab. Die wichtigsten Modelle sind `Pillar` und `PillarDetail` für die Bereiche mit `PillarField`, `PillarService` und `PillarCase` für Leistungsfelder, Leistungen und Projektbeispiele, `Publication` mit dem Typ `PublicationType`, `Leistung`, `Kundenprojekt`, `Job` sowie `Site` mit `Impressum`. Auf Seite des Backends prüft das Pydantic-Modell `ContactRequest` jede Anfrage, bevor sie verarbeitet wird.
 
 ## Hintergrundvideo im Kopfbereich
 
@@ -543,6 +560,7 @@ Tabelle: Weitere Funktionsbausteine
 | Navigation | Servicezeile, Hauptnavigation, zwei Ausklappmenüs mit Vorschaukarte, Vollbildmenü am Smartphone |
 | Aktiver Menüpunkt | auf Unterseiten über die Adresse, auf der Startseite über den sichtbaren Abschnitt |
 | Stellenfilter | Auswahl steht in der Adresse, gefilterte Listen sind dadurch verlinkbar |
+| Reiter | Bedienung mit Pfeiltasten, aktiver Reiter in der Adresse, das Menü Expertise verlinkt jedes Leistungsfeld direkt |
 | Diagramm | Berechnung getrennt von der Darstellung, Tooltip für Maus und Tastatur, Tabelle als zweiter Zugang |
 | Kontaktformular | FastAPI-Backend, Honeypot gegen Bots, Begrenzung der Anfragen je IP-Adresse, Lade- und Fehlerzustand, ohne Backend Rückfall auf das E-Mail-Programm |
 | Impressum | eigene Seite, Daten zentral in `site.ts`, Hinweis auf die fiktive Website |
@@ -776,6 +794,14 @@ Für eine Weiterentwicklung bieten sich drei Richtungen an. Erstens eine englisc
 [24] Anthropic: Claude Code Documentation. https://docs.anthropic.com/en/docs/claude-code/overview, abgerufen am 04.10.2026.
 
 [25] GitHub: GitHub Pages Documentation. https://docs.github.com/en/pages, abgerufen am 04.10.2026.
+
+[26] part: SAP ECC-Wartungsende 2027. https://www.part.de/en/blog/sap-wartungsende-2027-umstieg-s4hana, abgerufen am 04.10.2026.
+
+[27] mind logistik: SAP EWM Beratung, Rollout und Standardisierung eines Logistik-Templates bei der Gebr. Knauf KG. https://mind-logistik.de/referenz/sap-ewm-beratung-rollout-standardisierung-eines-logistik-templates-bei-der-gebr-knauf-kg/, abgerufen am 04.10.2026.
+
+[28] automationflow: KI Use Cases Mittelstand 2026. https://www.automationflow.de/wissen/ki-use-cases-mittelstand-2026-der-praxis-guide, abgerufen am 04.10.2026.
+
+[29] World Wide Web Consortium (W3C): ARIA Authoring Practices Guide, Tabs Pattern. https://www.w3.org/WAI/ARIA/apg/patterns/tabs/, abgerufen am 04.10.2026.
 
 # Anhang {-}
 

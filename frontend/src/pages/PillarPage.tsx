@@ -1,9 +1,8 @@
 import { useParams } from "react-router-dom"
 import { pillars } from "../data/pillars"
 import DetailPage from "../components/detail/DetailPage"
-import Situations from "../components/detail/Situations"
-import Offerings from "../components/detail/Offerings"
-import Tasks from "../components/detail/Tasks"
+import Services from "../components/detail/Services"
+import Cases from "../components/detail/Cases"
 import Phases from "../components/detail/Phases"
 import Formats from "../components/detail/Formats"
 import Faq from "../components/detail/Faq"
@@ -13,8 +12,8 @@ import { usePageMeta } from "../hooks/usePageMeta"
 
 // Detailseite eines Bereichs, z. B. /bereiche/ki-automatisierung
 // Der Bereich wird anhand des "slug" in der Adresse gesucht.
-// Reihenfolge der Abschnitte: Ausgangslage, Leistungsbausteine, typische
-// Aufgaben, Vorgehen, Einstiegsformate, häufige Fragen.
+// Reihenfolge der Abschnitte: Leistungen (Reiter), Projektbeispiele,
+// Vorgehen, Einstiegsformate, häufige Fragen.
 export default function PillarPage() {
   const { slug } = useParams()
   const pillar = pillars.find((p) => p.slug === slug)
@@ -44,14 +43,13 @@ export default function PillarPage() {
       title={pillar.title}
       image={pillar.image}
       lead={detail.lead}
-      body={detail.body}
-      points={detail.points}
+      intro={detail.intro}
+      facts={detail.facts}
       backHref="/#expertise"
       backLabel="Alle Bereiche"
     >
-      <Situations block={detail.situations} />
-      <Offerings block={detail.offerings} />
-      {detail.tasks && <Tasks items={detail.tasks} />}
+      <Services block={detail.services} />
+      <Cases block={detail.cases} />
       <Phases block={detail.phases} />
       <Formats block={detail.formats} />
       <Faq

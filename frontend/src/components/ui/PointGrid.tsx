@@ -1,8 +1,7 @@
 import Reveal from "./Reveal"
 
 // Kurze Punkte im Raster, ohne Bilder: optionaler Kicker, Titel, Text.
-// Genutzt für "Wie wir arbeiten", die Dreispalter der Bereichsseiten und
-// "Warum stonetree" auf der Karriereseite.
+// Genutzt für "Wie wir arbeiten" und "Warum stonetree" auf der Karriereseite.
 export interface Point {
   kicker?: string
   title: string

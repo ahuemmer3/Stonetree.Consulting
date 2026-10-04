@@ -130,37 +130,12 @@
 }
 
 /* Detailseiten ------------------------------------------------------ */
-.detail-points {
-  margin-top: 56px;
-  padding-top: 46px;
-  border-top: 1px solid var(--border);
-}
-.tasks-list {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px 44px;
-  max-width: 920px;
-}
-.tasks-list li {
-  position: relative;
-  padding-left: 22px;
-  font-size: 16px;
-  line-height: 1.55;
-  color: var(--text-body);
-}
-.tasks-list li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 12px;
-  width: 10px;
-  height: 1px;
-  background: var(--border-strong);
-}
-@media (max-width: 860px) {
-  .tasks-list {
-    grid-template-columns: 1fr;
-  }
+/* Einleitungssatz unter dem Seitenkopf: etwas größer, kurze Zeilen */
+.detail-intro {
+  max-width: var(--measure);
+  font-size: clamp(19px, 2vw, 22px);
+  line-height: 1.6;
+  color: var(--text);
 }
 
 /* Publikationen ----------------------------------------------------- */
