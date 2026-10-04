@@ -3,11 +3,13 @@ titel: Konzeption und Umsetzung der Unternehmenswebsite stonetree
 untertitel: Projektdokumentation zur inhaltlichen Ausarbeitung, Gestaltung und technischen Realisierung einer fiktiven Beratungswebsite für den Mittelstand
 autor: Aaron Huemmer
 hochschule: Hochschule für angewandte Wissenschaften Hof
-studiengang: "[Studiengang eintragen]"
-modul: "[Modul eintragen]"
-betreuung: "[Betreuung eintragen]"
+studiengang: Wirtschaftsinformatik
+taetigkeit: Wissenschaftliche Hilfskraft
+betreuung: Prof. Dr. Stefan Huch
 ort_datum: Hof, 4. Oktober 2026
-repository: gitlab.hof-university.de/ahuemmer/h2h-consulting
+gitlab: gitlab.hof-university.de/ahuemmer/h2h-consulting
+github: github.com/ahuemmer3/Stonetree.Consulting
+website: ahuemmer3.github.io/Stonetree.Consulting
 ---
 
 <!-- frontmatter -->
@@ -67,18 +69,20 @@ Aus der Fragestellung leiten sich vier Ziele ab:
 
 ## Rahmenbedingungen
 
-stonetree ist ein fiktives Unternehmen. Die Website entstand im Rahmen eines Hochschulprojekts und dient der Lehre. Alle Firmendaten, Personen, Kennzahlen und Kundenprojekte sind erfunden und auf der Website als solche gekennzeichnet. Das Impressum verwendet Musterdaten und enthält einen ausdrücklichen Hinweis auf den fiktiven Charakter (siehe Abschnitt 4.14).
+stonetree ist ein fiktives Unternehmen. Die Website entstand im Rahmen einer Tätigkeit als wissenschaftliche Hilfskraft an der Hochschule Hof, betreut von Prof. Dr. Stefan Huch, und dient der Lehre. Alle Firmendaten, Personen, Kennzahlen und Kundenprojekte sind erfunden und auf der Website als solche gekennzeichnet. Das Impressum verwendet Musterdaten und enthält einen ausdrücklichen Hinweis auf den fiktiven Charakter (siehe Abschnitt 4.14).
 
 Tabelle: Rahmendaten des Projekts
 
 | Punkt | Angabe |
 | --- | --- |
+| Rahmen | Tätigkeit als wissenschaftliche Hilfskraft im Studiengang Wirtschaftsinformatik, betreut von Prof. Dr. Stefan Huch |
 | Zeitraum | 23. Juni 2026 bis 4. Oktober 2026 |
 | Geplanter Aufwand | etwa vier Stunden pro Woche über 13 Wochen |
 | Umfang | elf Commits, rund 180 Dateien im Repository, rund 7.000 Zeilen Quelltext im Frontend |
 | Seiten | Startseite, drei Bereichsseiten, Karriereseite, Impressum, Logo-Vorschau, Fehlerseite |
 | Technik | React 18, TypeScript 7, Vite 6, Tailwind CSS 4, FastAPI |
 | Betrieb | seit 04.10.2026 veröffentlicht unter https://ahuemmer3.github.io/Stonetree.Consulting/, Umzug auf eine IONOS-Domain vorgesehen, Docker-Betrieb mit Backend vorbereitet |
+| Repositorys | GitLab der Hochschule: gitlab.hof-university.de/ahuemmer/h2h-consulting; GitHub: github.com/ahuemmer3/Stonetree.Consulting |
 
 ## Aufbau der Arbeit
 

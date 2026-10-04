@@ -65,4 +65,11 @@ Drei Wege, beschrieben in [docs/hosting.md](docs/hosting.md):
 Fotos und Videos stammen von Unsplash und Pexels, Nachweis in
 `frontend/public/images/BILDNACHWEIS.txt`.
 
-Autor: Aaron Huemmer, Hochschule Hof
+## Projekt
+
+| | |
+| --- | --- |
+| Autor | Aaron Huemmer, wissenschaftliche Hilfskraft, Wirtschaftsinformatik |
+| Betreuung | Prof. Dr. Stefan Huch, Hochschule Hof |
+| GitLab (Hochschule) | https://gitlab.hof-university.de/ahuemmer/h2h-consulting |
+| GitHub (Veröffentlichung) | https://github.com/ahuemmer3/Stonetree.Consulting |

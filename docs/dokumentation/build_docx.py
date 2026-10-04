@@ -237,10 +237,15 @@ class Dokument:
         for beschriftung, schluessel in (
             ("Verfasser", "autor"),
             ("Studiengang", "studiengang"),
-            ("Modul", "modul"),
+            ("Tätigkeit", "taetigkeit"),
             ("Betreuung", "betreuung"),
-            ("Repository", "repository"),
+            ("GitLab", "gitlab"),
+            ("GitHub", "github"),
+            ("Website", "website"),
         ):
+            # Fehlende Angaben im Kopf der Quelle einfach weglassen
+            if schluessel not in m:
+                continue
             links, rechts = tabelle.add_row().cells
             links.width, rechts.width = Cm(4), Cm(9)
             links.paragraphs[0].add_run(beschriftung + ":").bold = True
