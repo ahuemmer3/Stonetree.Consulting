@@ -36,13 +36,15 @@ jobs:
 
       - run: npm ci
 
-      # Projektseiten liegen unter /<repository>/, eine Seite namens
-      # <name>.github.io dagegen an der Wurzel. Mit eigener Domain (z. B. von
-      # IONOS) unter Settings > Variables die Variable PAGES_BASE=/ anlegen.
+      # Projektseiten liegen unter /<repository>/. An der Wurzel liegt die Seite,
+      # wenn sie eine eigene Domain hat (Datei public/CNAME, z. B. alfilus.de)
+      # oder das Repository <name>.github.io heißt. Die Variable PAGES_BASE
+      # unter Settings > Variables überschreibt beides.
       - name: Unterordner bestimmen
         run: |
           repo="${{ github.event.repository.name }}"
           if [[ -n "${{ vars.PAGES_BASE }}" ]]; then base="${{ vars.PAGES_BASE }}"
+          elif [[ -s public/CNAME ]]; then base="/"
           elif [[ "$repo" == *.github.io ]]; then base="/"
           else base="/$repo/"; fi
           echo "VITE_BASE=$base" >> "$GITHUB_ENV"
