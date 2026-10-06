@@ -290,6 +290,11 @@
   .nav__menu-btn {
     display: grid;
   }
+  /* Ohne Hauptnavigation würde die Leiste auf ihren Inhalt schrumpfen und
+     mittig stehen. Logo links, Knöpfe rechts. */
+  .main-nav__inner {
+    flex: 1;
+  }
 }
 @media (max-width: 860px) {
   /* Auf schmalen Bildschirmen gibt es keine Servicezeile. Ihre Links stehen

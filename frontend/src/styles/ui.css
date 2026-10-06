@@ -264,6 +264,10 @@
   .card-grid--3 {
     --cols: 2;
   }
+}
+/* Nur auf dem Tablet waagerecht. Am Handy (eine Spalte) bleibt jede Karte
+   senkrecht, sonst wird der Text neben dem Bild auf null zusammengedrückt. */
+@media (min-width: 641px) and (max-width: 980px) {
   .card-grid--3 > .card:last-child:nth-child(2n + 1),
   .card-grid--4 > .card:last-child:nth-child(2n + 1) {
     grid-column: 1 / -1;

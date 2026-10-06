@@ -1,7 +1,11 @@
 import { useState } from "react"
 import { aufwand } from "../../data/aufwand"
 import { site } from "../../data/site"
-import { balkenPfad, berechneGeometrie } from "../../features/chart/geometry"
+import {
+  achsenTextSichtbar,
+  balkenPfad,
+  berechneGeometrie,
+} from "../../features/chart/geometry"
 import { useElementWidth } from "../../hooks/useElementWidth"
 
 // Säulendiagramm mit genau einer hervorgehobenen Säule. Alle anderen Werte
@@ -104,14 +108,16 @@ export default function AufwandChart() {
                     {balken.punkt.wert}
                   </text>
                 )}
-                <text
-                  className="chart-axis-text"
-                  x={balken.x + balken.breite / 2}
-                  y={geo.plot.oben + geo.plot.hoehe + 20}
-                  textAnchor="middle"
-                >
-                  {balken.punkt.label}
-                </text>
+                {achsenTextSichtbar(balken.index, geo.balken.length, geo.plot.breite) && (
+                  <text
+                    className="chart-axis-text"
+                    x={balken.x + balken.breite / 2}
+                    y={geo.plot.oben + geo.plot.hoehe + 20}
+                    textAnchor="middle"
+                  >
+                    {balken.punkt.label}
+                  </text>
+                )}
               </g>
             )
           })}

@@ -378,6 +378,26 @@ Entfernt: `Situations.tsx`, `Offerings.tsx`, `Tasks.tsx` samt Stilen.
 Tests: Typprüfung, Build und Linter fehlerfrei. Tastaturbedienung der Reiter
 im Browser geprüft, mobile Ansicht bei 375 Pixeln ohne waagerechtes Scrollen.
 
+### Nacharbeit: Mobile Ansicht (Oktober 2026)
+Was: Drei Fehler unter 640 bzw. 980 Pixeln behoben, Desktop unverändert.
+- Research-Lab-Karte auf der Startseite zeigte am Handy nur ein riesiges Bild
+  ohne Text. Ursache: Die Regel für die waagerechte Einzelkarte (Tablet) war
+  spezifischer als die Handy-Regel und galt deshalb auch am Handy. Sie gilt
+  jetzt nur noch von 641 bis 980 Pixeln.
+- Kopfzeile am Handy und Tablet: Logo und Knöpfe standen gedrängt in der
+  Mitte, weil der innere Container in der Flex-Leiste auf seinen Inhalt
+  schrumpfte. Unter 980 Pixeln füllt er jetzt die Breite (Logo links, Knöpfe
+  rechts).
+- Diagramm: Monatsnamen liefen bei 360 bis 375 Pixeln ineinander. Bei zu wenig
+  Platz steht jetzt nur jeder zweite Monat, vom Ende gezählt, sodass der
+  hervorgehobene Dezember immer beschriftet ist (`achsenTextSichtbar` in
+  `features/chart/geometry.ts`).
+Geprüft: alle Seiten bei 375 und 360 Pixeln mit Geräteemulation, kein Element
+ragt über den Rand, Handymenü geöffnet. Desktop bei 1280 Pixeln pixelgleich
+zur vorherigen Fassung (abgesehen von verzögert geladenen Bildern).
+Dateien: `src/styles/ui.css`, `src/styles/layout.css`,
+`src/features/chart/geometry.ts`, `src/components/charts/AufwandChart.tsx`.
+
 ## 4. Neue Struktur (Seitenbaum)
 
 ```

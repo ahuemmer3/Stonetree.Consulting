@@ -80,6 +80,19 @@ export function berechneGeometrie(
   return { breite, hoehe, plot, balken, ticks }
 }
 
+// Monatsbeschriftung unter einer Säule. Ist pro Säule zu wenig Platz (am
+// Handy), steht nur jede zweite, vom Ende her gezählt, damit der letzte
+// Monat mit dem hervorgehobenen Wert immer beschriftet ist.
+export function achsenTextSichtbar(
+  index: number,
+  anzahl: number,
+  plotBreite: number,
+  mindestBreite = 32,
+): boolean {
+  if (plotBreite / anzahl >= mindestBreite) return true
+  return (anzahl - 1 - index) % 2 === 0
+}
+
 // Säule mit abgerundeter Oberkante und geradem Fuß auf der Grundlinie
 export function balkenPfad(balken: Balken, radius = 4): string {
   const r = Math.min(radius, balken.breite / 2, Math.max(0, balken.hoehe))
